@@ -68,7 +68,7 @@ SRC_URI="
 	https://github.com/mdevctl/mdevctl/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
 	$(cargo_crate_uris)
 "
-LICENSE="Apache-2.0 Apache-2.0-with-LLVM-exceptions Boost-1.0 ISC LGPL-2.1 MIT Unlicense"
+LICENSE="LGPL-2.1"
 SLOT="0"
 KEYWORDS="~amd64"
 
