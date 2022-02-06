@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>theaifam5@gmail.com</email>
+    <name>TheAifam5</name>
+  </maintainer>
+  <longdescription>
+    Android Command-Line Tools
+  </longdescription>
+  <use>
+		  <flag name="udev">Install <pkg>dev-util/android-udev-rules</pkg> for Android Tools (adb, fastboot, ...)</flag>
+      <flag name="group-writable">Install <pkg>acct-group/androidsdk</pkg> and make package group-writable</flag>
+      <flag name="bootstrap">Bootstrap Android Command-Line Tools</flag>
+	</use>
+</pkgmetadata>
