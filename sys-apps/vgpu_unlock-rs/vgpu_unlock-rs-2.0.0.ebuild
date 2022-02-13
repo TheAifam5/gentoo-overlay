@@ -1,4 +1,4 @@
-# Copyright 1999-2021 Gentoo Authors
+# Copyright 1999-2022 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -30,13 +30,11 @@ inherit cargo
 
 DESCRIPTION="Unlock vGPU functionality for consumer-grade GPUs on Linux"
 HOMEPAGE="https://github.com/mbilker/vgpu_unlock-rs"
-SRC_URI="
-	https://github.com/mbilker/vgpu_unlock-rs/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
-	$(cargo_crate_uris)
-"
+SRC_URI="https://github.com/mbilker/vgpu_unlock-rs/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
+	$(cargo_crate_uris)"
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64"
+KEYWORDS="~amd64 ~x86"
 
 src_install() {
 	default
