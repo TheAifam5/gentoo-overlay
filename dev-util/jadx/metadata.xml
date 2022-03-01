@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+    <maintainer type="person">
+        <email>theaifam5@gmail.com</email>
+        <name>TheAifam5</name>
+    </maintainer>
+    <longdescription>
+        jadx - Dex to Java decompiler
+        Command line and GUI tools for producing Java source code from Android Dex and Apk files
+    </longdescription>
+</pkgmetadata>
