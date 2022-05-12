@@ -26,7 +26,6 @@ IUSE="debug"
 
 RDEPEND=""
 BDEPEND="virtual/pkgconfig"
-PATCHES=( "${FILESDIR}/a9b5302a517e19d7a2da114acf71ef1e69cfb497.patch" )
 
 S="${WORKDIR}/${P}"
 

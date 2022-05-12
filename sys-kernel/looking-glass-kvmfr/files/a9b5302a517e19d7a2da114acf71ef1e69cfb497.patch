@@ -1,0 +1,22 @@
+From a9b5302a517e19d7a2da114acf71ef1e69cfb497 Mon Sep 17 00:00:00 2001
+From: arcnmx <arcnmx@users.noreply.github.com>
+Date: Thu, 13 Jan 2022 08:57:46 -0800
+Subject: [PATCH] [module] fix compile on 5.16
+
+The `DMA_BUF` namespace was introduced in:
+https://github.com/torvalds/linux/commit/16b0314aa746be6c84c0bc6eca9dde0dce2e99df
+---
+ module/kvmfr.c | 3 +++
+ 1 file changed, 3 insertions(+)
+
+diff --git a/module/kvmfr.c b/module/kvmfr.c
+index 77198223..861e07a2 100644
+--- a/module/kvmfr.c
++++ b/module/kvmfr.c
+@@ -571,3 +571,6 @@ MODULE_LICENSE("GPL v2");
+ MODULE_AUTHOR("Geoffrey McRae <geoff@hostfission.com>");
+ MODULE_AUTHOR("Guanzhong Chen <quantum2048@gmail.com>");
+ MODULE_VERSION("0.0.7");
++#if LINUX_VERSION_CODE >= KERNEL_VERSION(5,16,0)
++MODULE_IMPORT_NS(DMA_BUF);
++#endif
