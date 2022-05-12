@@ -6,23 +6,25 @@ EAPI=8
 inherit desktop java-utils-2 gradle
 
 DESCRIPTION="Android Dex to Java decompiler"
-HOMEPAGE="https://github.com/skylot/jadx"
+HOMEPAGE="https://github.com/skylot/${PN}"
 
-if [[ "${PV}" == *9999 ]] ; then
+if [[ "${PV}" == *9999* ]] ; then
 	inherit git-r3
-	EGIT_REPO_URI="https://github.com/skylot/${PN}"
+	EGIT_REPO_URI="https://github.com/skylot/${PN}.git"
 	EGIT_SUBMODULES=( "*" "-*test*" )
 else
-	SRC_URI="https://github.com/skylot/jadx/archive/refs/tags/v${PV}.tar.gz"
+	SRC_URI="https://github.com/skylot/${PN}/archive/refs/tags/v${PV}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
 fi
 
 LICENSE="Apache-2.0"
 SLOT="0"
-IUSE=""
+IUSE="quark-engine"
 
 RDEPEND="
 	>=virtual/jre-1.7:*
+	quark-engine? ( dev-python/quark-engine )
+	dev-util/android-commandlinetools-bin
 "
 DEPEND="
 	${RDEPEND}
