@@ -24,8 +24,8 @@ SLOT="0"
 IUSE="X opengl egl wayland libdecor debug"
 REQUIRED_USE="
 	libdecor? ( wayland )
+	opengl? ( egl )
 	|| ( X wayland )
-	|| ( opengl egl )
 "
 
 RDEPEND="
