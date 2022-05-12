@@ -1,0 +1,9 @@
+<pkgmetadata>
+    <maintainer type="person">
+        <email>theaifam5@gmail.com</email>
+        <name>TheAifam5</name>
+    </maintainer>
+    <upstream>
+        <remote-id type="github">raspberrypi/rpi-imager</remote-id>
+    </upstream>
+</pkgmetadata>
