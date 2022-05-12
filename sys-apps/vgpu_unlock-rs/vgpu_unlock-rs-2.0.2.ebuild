@@ -4,6 +4,7 @@
 EAPI=8
 
 CRATES="
+	ctor-0.1.21
 	libc-0.2.112
 	parking_lot-0.11.2
 	instant-0.1.12

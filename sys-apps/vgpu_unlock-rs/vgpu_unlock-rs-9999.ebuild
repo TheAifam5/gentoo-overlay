@@ -8,22 +8,23 @@ CRATES="
 
 inherit cargo
 
+DESCRIPTION="Unlock vGPU functionality for consumer-grade GPUs on Linux"
+HOMEPAGE="https://github.com/mbilker/${PN}"
+
 if [ ${PV} == "9999" ]; then
 	inherit git-r3
-	EGIT_REPO_URI="https://github.com/mbilker/vgpu_unlock-rs"
+	EGIT_REPO_URI="https://github.com/mbilker/${PN}.git"
 else
-	SRC_URI="https://github.com/mbilker/vgpu_unlock-rs/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
+	SRC_URI="https://github.com/mbilker/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
 		$(cargo_crate_uris)"
+	KEYWORDS="~amd64 ~x86"
 fi
 
-
-DESCRIPTION="Unlock vGPU functionality for consumer-grade GPUs on Linux"
-HOMEPAGE="https://github.com/mbilker/vgpu_unlock-rs"
 LICENSE="MIT"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
 
 src_unpack() {
+	default
 	if [[ "${PV}" == *9999* ]]; then
 		git-r3_src_unpack
 		cargo_live_src_unpack
