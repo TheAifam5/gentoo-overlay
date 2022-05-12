@@ -63,14 +63,28 @@ CRATES="
 inherit cargo
 
 DESCRIPTION="A mediated device management utility for Linux"
-HOMEPAGE="https://github.com/mdevctl/mdevctl"
-SRC_URI="
-	https://github.com/mdevctl/mdevctl/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
-	$(cargo_crate_uris)
-"
+HOMEPAGE="https://github.com/mdevctl/${PN}"
+
+if [[ "${PV}" == *9999* ]]; then
+	inherit git-r3
+	EGIT_REPO_URI="https://github.com/mdevctl/${PN}.git"
+else
+	SRC_URI="https://github.com/mdevctl/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
+		$(cargo_crate_uris)"
+	KEYWORDS="~amd64 ~x86"
+fi
+
 LICENSE="LGPL-2.1"
 SLOT="0"
-KEYWORDS="~amd64 ~x86"
+
+src_unpack() {
+	if [[ "${PV}" == *9999* ]]; then
+		git-r3_src_unpack
+		cargo_live_src_unpack
+	else
+		cargo_src_unpack
+	fi
+}
 
 src_install() {
 	default
