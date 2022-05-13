@@ -15,7 +15,7 @@ HOMEPAGE="https://looking-glass.io/
 EGIT_REPO_URI="https://github.com/gnif/${MY_PN}.git"
 
 if [[ "${PV}" != *9999* ]]; then
-	EGIT_COMMIT=${MY_PV}
+	EGIT_COMMIT="${MY_PV}"
 	KEYWORDS="~amd64 ~x86"
 fi
 
