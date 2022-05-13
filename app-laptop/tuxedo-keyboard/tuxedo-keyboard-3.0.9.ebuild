@@ -11,7 +11,6 @@ HOMEPAGE="https://github.com/tuxedocomputers/${PN}"
 if [[ "${PV}" == *9999* ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/tuxedocomputers/${PN}.git"
-	EGIT_COMMIT=${MY_PV}
 else
 	SRC_URI="https://github.com/tuxedocomputers/${PN}/archive/v${PV}.tar.gz -> ${P}.tar.gz"
 	KEYWORDS="~amd64 ~x86"
