@@ -35,5 +35,5 @@ src_install() {
   # Install shell completions if enabled
   use bash-completion && install_completion "bash" "/usr/share/bash-completion/completions" "op"
   use zsh-completion && install_completion "zsh" "/usr/share/zsh/site-functions" "_op"
-  use fish-completion && install_completion "fish" "/usr/share/fish/completions" "op.fish"
+  use fish-completion && install_completion "fish" "/usr/share/fish/vendor_completions.d" "op.fish"
 }
