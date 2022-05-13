@@ -42,7 +42,7 @@ src_install() {
 	cargo_src_install
 
 	install_completion() {
-		./target/$(usex debug debug release)/cog completion "$1" > "$1-completion"
+		./target/$(usex debug debug release)/cog generate-completions "$1" > "$1-completion"
 		insinto "$2"
 		newins "$1-completion" "$3"
 	}
@@ -50,5 +50,5 @@ src_install() {
 	# Install shell completions if enabled
 	use bash-completion && install_completion "bash" "/usr/share/bash-completion/completions" "cog"
 	use zsh-completion && install_completion "zsh" "/usr/share/zsh/site-functions" "_cog"
-	use fish-completion && install_completion "fish" "/usr/share/fish/completions" "cog.fish"
+	use fish-completion && install_completion "fish" "/usr/share/fish/vendor_completions.d" "cog.fish"
 }
