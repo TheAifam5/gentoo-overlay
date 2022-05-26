@@ -14,14 +14,15 @@ LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="hardened bash-completion zsh-completion"
-RESTRICT+=" mirror"
+RESTRICT+=" test"
 
 DOCS=( README.md )
 
+BDEPEND=">=dev-lang/go-1.18.1"
 RDEPEND="
 	bash-completion? ( app-shells/bash-completion )
 "
-
+RESTRICT+=" test"
 S="${WORKDIR}/cluster-api-${PV}"
 
 src_compile() {
@@ -29,11 +30,11 @@ src_compile() {
 }
 
 src_install() {
-	dobin clusterctl
+	dobin ${PN}
 	einstalldocs
 
 	install_completion() {
-		./clusterctl completion "$1" > "$1-completion"
+		./${PN} completion "$1" > "$1-completion"
 		insinto "$2"
 		newins "$1-completion" "$3"
 	}
