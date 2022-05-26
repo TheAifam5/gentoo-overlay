@@ -14,14 +14,15 @@ LICENSE="MPL-2.0"
 SLOT="0"
 KEYWORDS="~amd64 ~x86"
 IUSE="hardened bash-completion zsh-completion fish-completion"
-RESTRICT+=" mirror"
+RESTRICT+=" test"
 
 DOCS=( {README,CHANGELOG}.md )
 
+BDEPEND=">=dev-lang/go-1.18.1"
 RDEPEND="
 	bash-completion? ( app-shells/bash-completion )
 "
-
+RESTRICT+=" test"
 S="${WORKDIR}/talos-${PV}"
 
 src_compile() {
@@ -29,11 +30,11 @@ src_compile() {
 }
 
 src_install() {
-	dobin talosctl
+	dobin ${PN}
 	einstalldocs
 
 	install_completion() {
-		./talosctl completion "$1" > "$1-completion"
+		./${PN} completion "$1" > "$1-completion"
 		insinto "$2"
 		newins "$1-completion" "$3"
 	}
