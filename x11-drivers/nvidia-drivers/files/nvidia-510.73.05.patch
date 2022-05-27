@@ -1,0 +1,252 @@
+diff --git a/.manifest b/.manifest
+index 5ac0e9e..1890af2 100644
+--- a/.manifest
++++ b/.manifest
+@@ -1,7 +1,7 @@
+ NVIDIA Accelerated Graphics Driver for Linux-x86_64
+ 510.73.05
+  
+-nvidia nvidia-uvm  nvidia-modeset nvidia-drm nvidia-peermem
++nvidia nvidia-uvm nvidia-vgpu-vfio nvidia-modeset nvidia-drm nvidia-peermem
+  
+  
+ ./kernel/
+@@ -98,6 +98,8 @@ kernel/common/inc/nv-retpoline.h 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MOD
+ kernel/common/inc/nv-mm.h 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:resman
+ kernel/common/inc/nv-lock.h 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:resman
+ kernel/common/inc/nv_stdarg.h 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:resman
++kernel/nvidia/nv-vgpu-vfio-interface.c 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:vgpu
++kernel/common/inc/nv-vgpu-vfio-interface.h 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:vgpu
+ kernel/nvidia/nvlink_linux.c 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:nvlink
+ kernel/nvidia/nvlink_caps.c 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:nvlink
+ kernel/nvidia/nvlink_linux.h 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:nvlink
+@@ -324,6 +326,15 @@ kernel/nvidia-uvm/uvm_thread_context_test.c 0644 KERNEL_MODULE_SRC INHERIT_PATH_
+ kernel/nvidia-uvm/uvm_rb_tree_test.c 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:uvm
+ kernel/nvidia-uvm/uvm_test_ioctl.h 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:uvm
+ firmware/gsp.bin 0444 FIRMWARE INHERIT_PATH_DEPTH:1 MODULE:gsp
++kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.c 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:vgpu
++kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.Kbuild 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:vgpu
++kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio.h 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:vgpu
++kernel/nvidia-vgpu-vfio/vgpu-devices.c 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:vgpu
++kernel/nvidia-vgpu-vfio/vgpu-devices.h 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:vgpu
++kernel/nvidia-vgpu-vfio/nv-vgpu-ioctl.h 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:vgpu
++kernel/nvidia-vgpu-vfio/nv-pci-table.c 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:vgpu
++kernel/nvidia-vgpu-vfio/nv-pci-table.h 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:vgpu
++kernel/nvidia-vgpu-vfio/nvidia-vgpu-vfio-sources.Kbuild 0644 KERNEL_MODULE_SRC INHERIT_PATH_DEPTH:1 MODULE:vgpu
+ nvidia-bug-report.sh 0755 UTILITY_BINARY MODULE:installer
+ nvidia-installer.1.gz 0444 MANPAGE man1/ MODULE:installer
+ nvidia-installer 0755 INSTALLER_BINARY MODULE:installer
+@@ -344,6 +355,7 @@ libglvnd_install_checker/libGLX_installcheck.so.0 0755 INTERNAL_UTILITY_LIB NATI
+ libglvnd_install_checker/egl_dummy_vendor.json 0644 INTERNAL_UTILITY_DATA MODULE:installer
+ NVIDIA_Changelog 0444 DOCUMENTATION NVIDIA_GLX-1.0/ MODULE:installer
+ LICENSE 0444 DOCUMENTATION NVIDIA_GLX-1.0/ MODULE:installer
++GRID_LICENSE 0444 DOCUMENTATION NVIDIA_GLX-1.0/ MODULE:installer
+ README.txt 0444 DOCUMENTATION NVIDIA_GLX-1.0/ MODULE:installer
+ supported-gpus/supported-gpus.json 0444 DOCUMENTATION NVIDIA_GLX-1.0/supported-gpus/ MODULE:installer
+ supported-gpus/LICENSE 0444 DOCUMENTATION NVIDIA_GLX-1.0/supported-gpus/ MODULE:installer
+@@ -643,3 +655,22 @@ libnvidia-opticalflow.so.1 0000 NVCUVID_LIB_SYMLINK COMPAT32 libnvidia-opticalfl
+ libnvidia-opticalflow.so 0000 NVCUVID_LIB_SYMLINK COMPAT32 libnvidia-opticalflow.so.1 MODULE:opticalflow
+ nvngx.dll 0755 WINE_LIB NATIVE MODULE:ngx
+ _nvngx.dll 0755 WINE_LIB NATIVE MODULE:ngx
++libnvidia-vgpu.so.510.73.05 0755 VGX_LIB NATIVE MODULE:vgpu
++libnvidia-vgpu.so 0000 VGX_LIB_SYMLINK libnvidia-vgpu.so.510.73.05 MODULE:vgpu
++libnvidia-vgxcfg.so.510.73.05 0755 VGX_LIB NATIVE MODULE:vgpu
++libnvidia-vgxcfg.so 0000 VGX_LIB_SYMLINK libnvidia-vgxcfg.so.510.73.05 MODULE:vgpu
++init-scripts/post-install 0755 EXPLICIT_PATH /usr/lib/nvidia MODULE:vgpu
++init-scripts/pre-unload 0755 EXPLICIT_PATH /usr/lib/nvidia MODULE:vgpu
++init-scripts/pre-uninstall 0755 EXPLICIT_PATH /usr/lib/nvidia MODULE:vgpu
++init-scripts/common.sh 0755 EXPLICIT_PATH /usr/lib/nvidia MODULE:vgpu
++sriov-manage 0755 EXPLICIT_PATH /usr/lib/nvidia MODULE:vgpu
++nvidia-vgpud 0755 UTILITY_BINARY MODULE:vgpu
++vgpuConfig.xml 0444 EXPLICIT_PATH /usr/share/nvidia/vgpu MODULE:vgpu
++init-scripts/systemd/nvidia-vgpud.service 0444 EXPLICIT_PATH /usr/lib/nvidia/systemd MODULE:vgpu
++init-scripts/sysv/nvidia-vgpud 0755 EXPLICIT_PATH /usr/lib/nvidia/sysv MODULE:vgpu
++init-scripts/upstart/nvidia-vgpud.conf 0444 EXPLICIT_PATH /usr/lib/nvidia/upstart MODULE:vgpu
++nvidia-vgpu-mgr 0755 UTILITY_BINARY MODULE:vgpu
++init-scripts/systemd/nvidia-vgpu-mgr.service 0444 EXPLICIT_PATH /usr/lib/nvidia/systemd MODULE:vgpu
++init-scripts/sysv/nvidia-vgpu-mgr 0755 EXPLICIT_PATH /usr/lib/nvidia/sysv MODULE:vgpu
++init-scripts/upstart/nvidia-vgpu-mgr.conf 0444 EXPLICIT_PATH /usr/lib/nvidia/upstart MODULE:vgpu
++grid-third-party-licenses.txt 0444 EXPLICIT_PATH /usr/share/nvidia/ MODULE:vgpu
+diff --git a/kernel/conftest.sh b/kernel/conftest.sh
+index 7b30693..61ee5b4 100755
+--- a/kernel/conftest.sh
++++ b/kernel/conftest.sh
+@@ -24,6 +24,7 @@ fi
+ 
+ # VGX_BUILD parameter defined only for VGX builds (vGPU Host driver)
+ # VGX_KVM_BUILD parameter defined only vGPU builds on KVM hypervisor
++VGX_KVM_BUILD=1
+ # GRID_BUILD parameter defined only for GRID builds (GRID Guest driver)
+ # GRID_BUILD_CSP parameter defined only for GRID CSP builds (GRID Guest driver for CSPs)
+ 
+diff --git a/kernel/nvidia/nvidia-sources.Kbuild b/kernel/nvidia/nvidia-sources.Kbuild
+index 339022c..e51be82 100644
+--- a/kernel/nvidia/nvidia-sources.Kbuild
++++ b/kernel/nvidia/nvidia-sources.Kbuild
+@@ -31,6 +31,7 @@ NVIDIA_SOURCES += nvidia/nv-msi.c
+ NVIDIA_SOURCES += nvidia/nv-caps.c
+ NVIDIA_SOURCES += nvidia/nv-frontend.c
+ NVIDIA_SOURCES += nvidia/nv_uvm_interface.c
++NVIDIA_SOURCES += nvidia/nv-vgpu-vfio-interface.c
+ NVIDIA_SOURCES += nvidia/nvlink_linux.c
+ NVIDIA_SOURCES += nvidia/nvlink_caps.c
+ NVIDIA_SOURCES += nvidia/linux_nvswitch.c
+diff --git a/nvidia-bug-report.sh b/nvidia-bug-report.sh
+index 05cc0ce..4ada681 100755
+--- a/nvidia-bug-report.sh
++++ b/nvidia-bug-report.sh
+@@ -25,6 +25,19 @@ set_filename() {
+     fi
+ }
+ 
++# Check if running within Xen dom0
++if [ -f /proc/xen/capabilities ]; then
++    IS_CONTROL_D=`cat /proc/xen/capabilities`
++    if [ "$IS_CONTROL_D" == "control_d" ]; then
++        IS_XEN_HYPERVISOR=1
++    fi
++fi
++
++if [ -d /sys/devices/virtual/misc/kvm ]; then
++    if [ -d /sys/class/mdev_bus ]; then
++        IS_KVM_HYPERVISOR=1
++    fi
++fi
+ 
+ if [ -d /proc/driver/nvidia -a ! -f /proc/driver/nvidia/version ]; then
+     proc_module_dirs=`ls /proc/driver/nvidia/ 2> /dev/null`
+@@ -68,6 +81,10 @@ usage() {
+     echo "        of certain classes of bugs. If running the script without the"
+     echo "        --safe-mode option hangs the system, consider using this"
+     echo "        option to help identify stuck kernel software."
++    if [ -n "$IS_XEN_HYPERVISOR" ]; then
++        echo "    --domain-name \"<domain_name>\""
++        echo "        Create bug report for the specified Virtual machine domain."
++    fi
+     echo ""
+ }
+ 
+@@ -103,6 +120,17 @@ while [ "$1" != "" ]; do
+         -h | --help )           usage
+                                 exit
+                                 ;;
++        --domain-name )         if [ -z "$IS_XEN_HYPERVISOR" ] || [ -z "$2" ]; then
++                                    usage
++                                    exit 1
++                                elif [ "$(echo "$2" | cut -c 1)" = "-" ]; then
++                                    echo "Domain names starting with \"-\" are not supported"
++                                    usage
++                                    exit 1
++                                fi
++                                DOMAIN_NAME=$2
++                                shift
++                                ;;
+         * )                     usage
+                                 exit 1
+     esac
+@@ -405,6 +433,11 @@ if [ $BUG_REPORT_SAFE_MODE -eq 0 ]; then
+     echo "and --extra-system-data command line arguments."
+     echo ""
+ fi
++if [ -n "$IS_XEN_HYPERVISOR" ]; then
++    echo "For Xen open source/XCP users, if you are reporting a domain issue,"
++    echo "please run: nvidia-bug-report.sh --domain-name <\"domain_name\">"
++    echo ""
++fi
+ usage_bug_report_message
+ echo ""
+ echo -n "Running $(basename $0)...";
+@@ -614,6 +647,74 @@ append_file_or_dir_silent "/etc/nvidia/nvidia-application-profiles-rc"
+ append_file_or_dir_silent "/etc/nvidia/nvidia-application-profiles-rc.d"
+ append_file_or_dir_silent /usr/share/nvidia/nvidia-application-profiles-*-rc
+ 
++# append xl information for XEN debugging
++xl_cmd()
++{
++    (
++        cmd=${1}
++        echo "____________________________________________"
++        echo ""
++        echo "xl $cmd"
++        echo ""
++        xl $cmd 2> /dev/null
++        echo ""
++    ) | $GZIP_CMD >> $LOG_FILENAME
++}
++
++# append vGPU related information for XenServer-6.2
++xe_cmd()
++{
++    (
++        cmd=${1}
++        echo "____________________________________________"
++        echo ""
++        echo "xe $cmd params=all"
++        echo ""
++        xe $cmd params=all 2> /dev/null
++        echo ""
++    ) | $GZIP_CMD >> $LOG_FILENAME
++}
++
++if [ -n "$IS_XEN_HYPERVISOR" ]; then
++    xl_cmd "info"
++    xl_cmd "dmesg"
++    xl_cmd "list"
++
++    append "/var/log/xensource.log"
++    append "/var/log/daemon.log"
++
++    xe_cmd "pgpu-list"
++    xe_cmd "gpu-group-list"
++    xe_cmd "vgpu-type-list"
++    xe_cmd "vgpu-list"
++fi
++
++if [ -n "$IS_KVM_HYPERVISOR" ]; then
++    mdev_devices="/sys/class/mdev_bus"
++    (
++        echo "____________________________________________"
++        echo ""
++        echo "Listing GPUs registered to mdev module"
++        echo ""
++        echo_metadata $mdev_devices
++    ) | $GZIP_CMD >> $LOG_FILENAME
++    for phys_gpu in $mdev_devices/*; do
++        vendor_id=`cat $phys_gpu/vendor`
++        if [ "$vendor_id" == "0x10de" ]; then
++            supported_types="$phys_gpu/mdev_supported_types/*"
++            for i in $supported_types; do
++                append "$i/name"
++                append "$i/description"
++                append "$i/available_instances"
++                vgpu_devices="$i/devices"
++                for j in `ls $vgpu_devices 2> /dev/null`; do
++                    append "$vgpu_devices/$j/nvidia/vgpu_params"
++                    append "$vgpu_devices/$j/nvidia/vm_name"
++                done 2>/dev/null
++            done 2>/dev/null
++        fi
++    done 2>/dev/null
++fi
+ 
+ # append ldd info
+ 
+@@ -989,6 +1090,7 @@ for subdir in $proc_module_dirs; do
+     for GPU in `ls /proc/driver/nvidia/$subdir/gpus/ 2> /dev/null`; do
+         append "/proc/driver/nvidia/$subdir/gpus/$GPU/information"
+         append "/proc/driver/nvidia/$subdir/gpus/$GPU/registry"
++        append "/proc/driver/nvidia/$subdir/gpus/$GPU/unbindLock"
+     done
+     append_glob "/proc/driver/nvidia/$subdir/warnings/*"
+     append "/proc/driver/nvidia/$subdir/params"
+@@ -1072,6 +1174,10 @@ if [ $BUG_REPORT_SAFE_MODE -eq 0 ]; then
+                 fi
+                 append_command "$nvidia_smi --query"
+                 append_command "$nvidia_smi --query --unit"
++                append_command "$nvidia_smi vgpu --supported"
++                append_command "$nvidia_smi vgpu --migrationcap"
++                append_command "$nvidia_smi vgpu --query"
++                append_command "$nvidia_smi --query -x"
+                 unset __RM_MODULE_INSTANCE
+             done
+         else

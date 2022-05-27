@@ -1,0 +1,12 @@
+#!/sbin/openrc-run
+# Copyright 1999-2021 Gentoo Authors
+# Distributed under the terms of the GNU General Public License v2
+
+description="NVIDIA vGPU Manager Daemon"
+command="nvidia-vgpu-mgr"
+command_args="${NVPD_USER:+--user ${NVPD_USER}} ${ARGS}"
+pidfile="/var/run/nvidia-vgpu-mgr/nvidia-vgpu-mgr.pid"
+
+stop_post() {
+	rmdir "${pidfile%/*}" 2>/dev/null || true
+}
