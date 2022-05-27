@@ -9,6 +9,8 @@ inherit desktop flag-o-matic linux-mod multilib readme.gentoo-r1 \
 
 NV_KERNEL_MAX="5.18"
 NV_URI="https://download.nvidia.com/XFree86/"
+
+# Optional, otherwise uses PV
 VGPU_PV="510.73.06"
 
 DESCRIPTION="NVIDIA Accelerated Graphics Driver"
@@ -101,8 +103,10 @@ src_unpack() {
 	# if vgpu use flag not enabled, exit
 	use vgpu || return
 
+	# extract only one -vgpu-kvm.run
 	VGPU_PKG="$(echo $A | tr ' ' '\n' | grep -m 1 "\-vgpu\-kvm\.run$")"
 
+	# make directory for the vgpu-kvm and unpack it
 	(mkdir "${S}/vgpu-kvm" && cd "${S}/vgpu-kvm" && unpacker "${VGPU_PKG}")
 }
 
@@ -176,9 +180,10 @@ src_prepare() {
 	default
 
 	# apply patches for specific kernel
-        [[ ! -f "${FILESDIR}/nvidia-${PV}-${KV_MAJOR}.${KV_MINOR}.patch" ]] || eapply -p1 "${FILESDIR}/nvidia-${PV}-${KV_MAJOR}.${KV_MINOR}.patch" || die
+	[[ ! -f "${FILESDIR}/nvidia-${PV}-${KV_MAJOR}.${KV_MINOR}.patch" ]] || eapply -p1 "${FILESDIR}/nvidia-${PV}-${KV_MAJOR}.${KV_MINOR}.patch" || die
 
 	if use vgpu; then
+		# copy from vgpu-kvm.run file respecting parent directories
 		pushd vgpu-kvm
 		cp -r --parents {GRID_LICENSE,grid-third-party-licenses.txt,vgpuConfig.xml,init-scripts/systemd,sriov-manage,nvidia-vgpud,nvidia-vgpu-mgr,libnvidia-vg*,kernel/{common/inc/nv-vgpu-vfio-interface.h,nvidia/nv-vgpu-vfio-interface.c,nvidia-vgpu-vfio}} ..
 		popd
@@ -186,14 +191,11 @@ src_prepare() {
 		# apply patch to create original files
 		eapply -p1 "${FILESDIR}/nvidia-${PV}.patch" || die
 
-		# copy original binaries
-		#cp -r "${FILESDIR}/${PV}/." . || die
-
 		# apply patch on top of original files
 		eapply -p1 "${FILESDIR}/nvidia-${PV}-vgpu.patch" || die
 
-                # apply vgpu patches for specific kernel
-                [[ ! -f "${FILESDIR}/nvidia-${PV}-vgpu-${KV_MAJOR}.${KV_MINOR}.patch" ]] || eapply -p1 "${FILESDIR}/nvidia-${PV}-vgpu-${KV_MAJOR}.${KV_MINOR}.patch" || die
+		# apply vgpu patches for specific kernel
+		[[ ! -f "${FILESDIR}/nvidia-${PV}-vgpu-${KV_MAJOR}.${KV_MINOR}.patch" ]] || eapply -p1 "${FILESDIR}/nvidia-${PV}-vgpu-${KV_MAJOR}.${KV_MINOR}.patch" || die
 
 		# add library dependency on vgpu_unlock-rs
 		for i in nvidia-vgpud nvidia-vgpu-mgr nvidia-smi; do
@@ -331,8 +333,8 @@ https://wiki.gentoo.org/wiki/NVIDIA/nvidia-drivers"
 		doins "${T}"/nvidia.conf
 
 		# used for gpu verification with binpkgs (not kept, see pkg_preinst)
-                insinto /usr/share/nvidia
-                doins supported-gpus/supported-gpus.json
+		insinto /usr/share/nvidia
+		doins supported-gpus/supported-gpus.json
 	fi
 
 	emake "${NV_ARGS[@]}" -C nvidia-modprobe install
@@ -381,7 +383,7 @@ https://wiki.gentoo.org/wiki/NVIDIA/nvidia-drivers"
 			;;
 			GBM_BACKEND_LIB_SYMLINK) m[4]=../${m[4]};; # missing ../
 			VDPAU_SYMLINK) m[4]=vdpau/; m[5]=${m[5]#vdpau/};; # .so to vdpau/
-                        VGX_LIB_SYMLINK) m[5]=${m[4]}; m[4]=${m[3]};;
+			VGX_LIB_SYMLINK) m[5]=${m[4]}; m[4]=${m[3]};;
 		esac
 
 		if [[ -v paths[${m[2]}] ]]; then
@@ -393,12 +395,12 @@ https://wiki.gentoo.org/wiki/NVIDIA/nvidia-drivers"
 			into=/usr/${libdir32}
 		elif [[ ${m[2]} =~ _LIB$|_SYMLINK$ ]]; then
 			into=/usr/${libdir}
-                else
+		else
 			die "No known installation path for ${m[0]}"
 		fi
 
-                # do not apply on top since is explicit path
-                [[ ${m[3]: -2} == ?/ ]] && into+=/${m[3]%/}
+		# do not apply on top since is explicit path
+		[[ ${m[3]: -2} == ?/ ]] && into+=/${m[3]%/}
 		[[ ${m[4]: -2} == ?/ ]] && into+=/${m[4]%/}
 
 		if [[ ${m[2]} =~ _SYMLINK$ ]]; then
@@ -416,7 +418,7 @@ https://wiki.gentoo.org/wiki/NVIDIA/nvidia-drivers"
 	done < .manifest || die
 
 	# reset insopts
-        insopts -m0644
+	insopts -m0644
 
 	# MODULE:installer non-skipped extras
 	exeinto /lib/systemd/system-sleep
@@ -440,7 +442,6 @@ https://wiki.gentoo.org/wiki/NVIDIA/nvidia-drivers"
 
 		dobin sriov-manage
 	fi
-
 
 	dobin nvidia-bug-report.sh
 
