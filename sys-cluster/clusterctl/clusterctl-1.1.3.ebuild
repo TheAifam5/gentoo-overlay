@@ -3,12 +3,13 @@
 
 EAPI=8
 
-inherit bash-completion-r1 go-module
+inherit git-r3 bash-completion-r1 go-module
 
 DESCRIPTION="The clusterctl CLI tool handles the lifecycle of a Cluster API management cluster."
 HOMEPAGE="https://cluster-api.sigs.k8s.io/"
-SRC_URI="https://github.com/kubernetes-sigs/cluster-api/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
-		 https://github.com/TheAifam5/gentoo-overlay/raw/main/sys-cluster/clusterctl/cluster-api-v${PV}-deps.tar.xz"
+SRC_URI="https://github.com/TheAifam5/gentoo-overlay/raw/main/sys-cluster/clusterctl/cluster-api-v${PV}-deps.tar.xz"
+EGIT_REPO_URI="https://github.com/kubernetes-sigs/cluster-api.git"
+EGIT_COMMIT="v${PV}"
 
 LICENSE="MPL-2.0"
 SLOT="0"
@@ -23,18 +24,22 @@ RDEPEND="
 	bash-completion? ( app-shells/bash-completion )
 "
 RESTRICT+=" test"
-S="${WORKDIR}/cluster-api-${PV}"
+
+src_unpack() {
+	git-r3_src_unpack
+	go-module_src_unpack
+}
 
 src_compile() {
-	 CGO_LDFLAGS="$(usex hardened '-fno-PIC ' '')" ego build ./cmd/${PN}
+	emake -j1 LDFLAGS="-extldflags '$(usex hardened '-fno-PIC' '')' $(hack/version.sh)" ${PN}
 }
 
 src_install() {
-	dobin ${PN}
+	dobin bin/${PN}
 	einstalldocs
 
 	install_completion() {
-		./${PN} completion "$1" > "$1-completion"
+		bin/${PN} completion "$1" > "$1-completion"
 		insinto "$2"
 		newins "$1-completion" "$3"
 	}
