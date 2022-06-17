@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>theaifam5@gmail.com</email>
+    <name>TheAifam5</name>
+  </maintainer>
+  <longdescription lang="en">
+    kind is a tool for running local Kubernetes clusters using Docker container "nodes". kind was primarily designed for testing Kubernetes itself, but may be used for local development or CI.
+  </longdescription>
+  <upstream>
+    <remote-id type="github">kubernetes-sigs/kind</remote-id>
+  </upstream>
+</pkgmetadata>
