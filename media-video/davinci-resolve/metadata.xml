@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>theaifam5@gmail.com</email>
+    <name>TheAifam5</name>
+  </maintainer>
+  <longdescription>
+    Professional A/V post-production software suite from Blackmagic Design
+  </longdescription>
+  <use>
+    <flag name="keyboards"></flag>
+    <flag name="panels"></flag>
+    <flag name="braw"></flag>
+  </use>
+</pkgmetadata>
