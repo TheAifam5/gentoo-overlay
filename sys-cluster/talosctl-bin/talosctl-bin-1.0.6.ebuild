@@ -26,13 +26,13 @@ RDEPEND="
 
 S="${WORKDIR}"
 
-QA_PREBUILD="/usr/bin/talosctl"
+QA_PREBUILD="/usr/bin/${MY_PN}"
 
 src_install() {
 	cp "${DISTDIR}/${MY_P}" .
 	chmod +x "${MY_P}"
 	newbin "${MY_P}" "${MY_PN}"
-	pax-mark -m "${ED}"/usr/bin/talosctl
+	pax-mark -m "${ED}"/usr/bin/${MY_PN}
 
 	install_completion() {
 		./${MY_P} completion "$1" > "$1-completion"
