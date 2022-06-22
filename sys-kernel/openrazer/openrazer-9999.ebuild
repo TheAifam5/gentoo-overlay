@@ -50,11 +50,11 @@ src_install() {
 }
 
 pkg_postinst() {
-	default
+	linux-mod_pkg_postinst
 	use udev && udev_reload
 }
 
 pkg_postrm() {
-	default
+	linux-mod_pkg_postrm
 	use udev && udev_reload
 }
