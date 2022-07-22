@@ -1,0 +1,10 @@
+diff --git a/Makefile b/Makefile
+index 48a9169..3ab19b6 100644
+--- a/Makefile
++++ b/Makefile
+@@ -1,4 +1,4 @@
+-DESTDIR=
++DESTDIR ?=
+ PREFIX=/usr
+ CONFDIR=/etc/zfsbootmenu
+ MODDIR=$(PREFIX)/share
