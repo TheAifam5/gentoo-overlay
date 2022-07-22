@@ -17,13 +17,14 @@ KEYWORDS="amd64"
 
 RESTRICT="mirror strip test bindist"
 
-IUSE="policykit cli"
+IUSE="policykit cli +appindicator"
 
 DEPEND="
     x11-misc/xdg-utils
     acct-group/onepassword
     policykit? ( sys-auth/polkit )
     cli? ( app-admin/op-cli-bin )
+    appindicator? ( dev-libs/libappindicator )
 "
 RDEPEND="${DEPEND}"
 BDEPEND=""
