@@ -1,0 +1,2 @@
+*-deps.tar.xz filter=lfs diff=lfs merge=lfs -text
+*-vendor.tar.xz filter=lfs diff=lfs merge=lfs -text
