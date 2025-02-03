@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<name>Mateusz Paluszkiewicz</name>
+		<email>theaifam5@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<maintainer status="active">
+			<email>oleksandr@natalenko.name</email>
+			<name>Oleksandr Natalenko</name>
+		</maintainer>
+		<remote-id type="codeberg">pf-kernel/linux</remote-id>
+	</upstream>
+</pkgmetadata>
