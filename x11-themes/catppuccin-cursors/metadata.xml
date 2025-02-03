@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<name>Mateusz Paluszkiewicz</name>
+		<email>theaifam5@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">catppuccin/cursors</remote-id>
+	</upstream>
+	<use>
+		<flag name="blue">The blue variant of the cursor theme</flag>
+		<flag name="dark">The dark variant of the cursor theme</flag>
+		<flag name="flamingo">The flamingo variant of the cursor theme</flag>
+		<flag name="frappe">The frappe-flavored cursor theme</flag>
+		<flag name="green">The green variant of the cursor theme</flag>
+		<flag name="latte">The latte-flavored cursor theme</flag>
+		<flag name="lavender">The lavender variant of the cursor theme</flag>
+		<flag name="light">The light variant of the cursor theme</flag>
+		<flag name="macchiato">The macchiato-flavored cursor theme</flag>
+		<flag name="maroon">The maroon variant of the cursor theme</flag>
+		<flag name="mauve">The mauve variant of the cursor theme</flag>
+		<flag name="mocha">The mocha-flavored cursor theme</flag>
+		<flag name="peach">The peach variant of the cursor theme</flag>
+		<flag name="pink">The pink variant of the cursor theme</flag>
+		<flag name="red">The red variant of the cursor theme</flag>
+		<flag name="rosewater">The rosewater variant of the cursor theme</flag>
+		<flag name="sapphire">The sapphire variant of the cursor theme</flag>
+		<flag name="sky">The sky variant of the cursor theme</flag>
+		<flag name="teal">The teal variant of the cursor theme</flag>
+		<flag name="yellow">The yellow variant of the cursor theme</flag>
+	</use>
+</pkgmetadata>
