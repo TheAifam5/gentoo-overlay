@@ -5,14 +5,16 @@ EAPI=8
 
 inherit linux-mod-r1
 
+COMMIT_ID="213db3aa999e9cb14d8b9a7f84d711e15d2619f6"
+
 DESCRIPTION="IT87 sensors module"
 HOMEPAGE="https://github.com/frankcrawford/it87"
-
-inherit git-r3
-EGIT_REPO_URI="${HOMEPAGE}.git"
+SRC_URI="https://github.com/frankcrawford/it87/archive/${COMMIT_ID}.tar.gz -> ${P}.tar.gz"
+S="${WORKDIR}/it87-${COMMIT_ID}"
 
 LICENSE="GPL-2+"
 SLOT="0"
+KEYWORDS="~amd64 ~arm ~arm64 ~ppc64 ~riscv ~x86"
 
 CONFIG_CHECK="HWMON ~!CONFIG_SENSORS_IT87"
 
