@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<name>Mateusz Paluszkiewicz</name>
+		<email>theaifam5@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="github">Vladimir-csp/uwsm</remote-id>
+	</upstream>
+	<use>
+		<flag name="fumon">Install Failed Unit Monitor</flag>
+		<flag name="select">Enable whiptail/libnewt based selection menu to select the default
+			desktop entry from wayland-sessions directories</flag>
+		<flag name="uuctl">Enable dmenu-line support</flag>
+		<flag name="uwsm-app">Enable drop-in replacement for "uwsm app"</flag>
+	</use>
+</pkgmetadata>
