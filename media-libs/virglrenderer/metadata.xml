@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<name>Mateusz Paluszkiewicz</name>
+		<email>theaifam5@gmail.com</email>
+	</maintainer>
+	<upstream>
+		<remote-id type="freedesktop-gitlab">virgl/virglrenderer</remote-id>
+	</upstream>
+	<use>
+		<flag name="check-gl-errors">Treat host-side GL errors as fatal</flag>
+		<flag name="drm-renderer-amdgpu-experimental">Enable support for AMDGPU experimental DRM
+			renderer</flag>
+		<flag name="drm-renderer-msm">Enable support for MSM DRM renderer</flag>
+
+		<flag name="egl">Enable support for EGL platform</flag>
+		<flag name="glx">Enable support for GLX platform</flag>
+
+		<flag name="minigbm-allocation">Enable support for minigbm allocations</flag>
+
+		<flag name="render-server-worker-process">Use a separate process for rendering server worker
+			contexts</flag>
+		<flag name="render-server-worker-thread">Use a thread for rendering server worker contexts</flag>
+		<flag name="render-server-worker-minijail">Use Minijail for rendering server worker contexts</flag>
+		<flag name="tests">Enable unit tests</flag>
+
+		<flag name="tracing-percetto">Enable tracing via Percetto</flag>
+		<flag name="tracing-perfetto">Enable tracing via Perfetto</flag>
+		<flag name="tracing-sysprof">Enable tracing via Sysprof</flag>
+		<flag name="tracing-stderr">Enable tracing via stderr</flag>
+
+		<flag name="unstable-apis">Enable unstable APIs</flag>
+
+		<flag name="venus">Enable support for Venus</flag>
+		<flag name="venus-validate">Enable the validation layer for Venus</flag>
+
+		<flag name="video">Enable support for hardware video acceleration</flag>
+	</use>
+</pkgmetadata>
