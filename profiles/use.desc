@@ -2,4 +2,5 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Keep them sorted
-linguist - Enable support for Qt Linguist, a tool for translating and managing translations of Qt applications.
+linguist - Enable support for Qt Linguist, a tool for translating and managing translations of Qt applications
+qml - Build QML/QtQuick bindings and imports
