@@ -2,6 +2,8 @@
 # Distributed under the terms of the GNU General Public License v2
 
 # Keep them sorted
+aspell - Enable the app-text/aspell spell-checking backend
 designer - Build plugins for dev-qt/designer
+hunspell - Enable the app-text/hunspell spell-checking backend
 linguist - Enable support for Qt Linguist, a tool for translating and managing translations of Qt applications
 qml - Build QML/QtQuick bindings and imports
