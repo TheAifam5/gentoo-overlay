@@ -20,7 +20,7 @@ HOMEPAGE="https://virgil3d.github.io/"
 
 LICENSE="MIT"
 SLOT="0"
-IUSE="static-libs +egl +glx minigbm-allocation venus venus-validate +check-gl-errors drm-renderer-msm drm-renderer-amdgpu-experimental +render-server-worker-process render-server-worker-thread render-server-worker-minijail video tests valgrind tracing-percetto tracing-perfetto tracing-sysprof tracing-stderr unstable-apis"
+IUSE="static-libs +egl glx minigbm-allocation venus venus-validate +check-gl-errors drm-renderer-msm drm-renderer-amdgpu-experimental +render-server-worker-process render-server-worker-thread render-server-worker-minijail video tests valgrind tracing-percetto tracing-perfetto tracing-sysprof tracing-stderr unstable-apis"
 
 RDEPEND="
 	>=x11-libs/libdrm-2.4.50
