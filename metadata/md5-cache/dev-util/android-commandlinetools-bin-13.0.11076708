@@ -1,0 +1,16 @@
+BDEPEND=group-writable? ( acct-group/android )
+DEFINED_PHASES=config install postinst
+DEPEND=group-writable? ( acct-group/android ) !bootstrap? ( dev-util/android-commandlinetools-bin )
+DESCRIPTION=Command-Line Tools for Android
+EAPI=8
+HOMEPAGE=https://developer.android.com/studio
+INHERIT=android
+IUSE=+udev +group-writable +bootstrap
+KEYWORDS=~amd64 ~x86
+LICENSE=android
+RDEPEND=group-writable? ( acct-group/android ) sys-libs/glibc virtual/jdk udev? ( dev-util/android-udev-rules ) group-writable? ( sys-apps/acl )
+RESTRICT=strip
+SLOT=0
+SRC_URI=https://dl.google.com/android/repository/commandlinetools-linux-11076708_latest.zip -> android-commandlinetools-bin-13.0.11076708.zip
+_eclasses_=android	27716e6539e26878ebcc3929203ce534
+_md5_=f6e1e5df62bf25fef55673b374f79483

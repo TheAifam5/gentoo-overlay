@@ -1,0 +1,14 @@
+DEFINED_PHASES=install
+DESCRIPTION=The design and use of the Talos Linux control application.
+EAPI=8
+HOMEPAGE=https://www.talos.dev/
+INHERIT=pax-utils
+IUSE=bash-completion zsh-completion fish-completion
+KEYWORDS=~amd64
+LICENSE=MPL-2.0
+RDEPEND=bash-completion? ( app-shells/bash-completion )
+RESTRICT=bindist mirror
+SLOT=0
+SRC_URI=amd64? ( https://github.com/siderolabs/talos/releases/download/v1.9.1/talosctl-linux-amd64 -> talosctl-1.9.1 )
+_eclasses_=pax-utils	5555f2e75744739fe100ee62c22d28fe
+_md5_=306154b3c49d8da7741efa10c9df069a

@@ -1,0 +1,14 @@
+BDEPEND=X? ( >=x11-apps/mkfontscale-1.2.0 media-fonts/encodings )
+DEFINED_PHASES=install postinst postrm prepare setup
+DESCRIPTION=A monospaced programming font inspired by the Minecraft typeface
+EAPI=8
+HOMEPAGE=https://idreesinc.com/monocraft.html
+INHERIT=font
+IUSE=otf ttf nerdfonts noligatures X
+KEYWORDS=~amd64 ~x86
+LICENSE=OFL-1.1
+REQUIRED_USE=|| ( otf ttf ) ttf? ( ?? ( nerdfonts noligatures ) )
+SLOT=0
+SRC_URI=nerdfonts? ( https://github.com/IdreesInc/monocraft/releases/download/v3.0/Monocraft-nerd-fonts-patched.ttf -> monocraft-nerd-fonts-3.0.ttf ) noligatures? ( https://github.com/IdreesInc/monocraft/releases/download/v3.0/Monocraft-no-ligatures.ttf -> monocraft-no-ligatures-3.0.ttf ) ttf? ( https://github.com/IdreesInc/monocraft/releases/download/v3.0/Monocraft.ttf -> monocraft-3.0.ttf ) otf? ( https://github.com/IdreesInc/monocraft/releases/download/v3.0/Monocraft.otf -> monocraft-3.0.otf )
+_eclasses_=font	aa113a3df9cd0a9693a1c1ee7c34a6eb
+_md5_=65b2c39aa193230b668131fad938ff3c

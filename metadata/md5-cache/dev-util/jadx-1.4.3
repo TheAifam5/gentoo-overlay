@@ -1,0 +1,15 @@
+DEFINED_PHASES=compile install
+DEPEND=>=virtual/jre-1.7:* quark-engine? ( dev-python/quark-engine ) dev-util/android-commandlinetools-bin virtual/gradle
+DESCRIPTION=Android Dex to Java decompiler
+EAPI=8
+HOMEPAGE=https://github.com/skylot/jadx
+INHERIT=desktop java-utils-2 gradle
+IUSE=quark-engine
+KEYWORDS=~amd64 ~x86
+LICENSE=Apache-2.0
+RDEPEND=>=virtual/jre-1.7:* quark-engine? ( dev-python/quark-engine ) dev-util/android-commandlinetools-bin
+RESTRICT=network-sandbox
+SLOT=0
+SRC_URI=https://github.com/skylot/jadx/archive/refs/tags/v1.4.3.tar.gz
+_eclasses_=desktop	3a72ffe0d8e1dd73af3a1c8c15a59fed	gradle	fbfd728e8f6a766df8f72c6a0031806d	java-utils-2	c610b1541a10e37cb26ab5b707a744f1
+_md5_=410673be18e21cf696a1aaaeffbe615c
