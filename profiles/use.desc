@@ -5,6 +5,9 @@
 aspell - Enable the app-text/aspell spell-checking backend
 designer - Build plugins for dev-qt/designer
 docs - Add extra documentation (API, Javadoc, etc). It is recommended to enable per package instead of globally
+elvish-completion - Enable completions for the Elvish shell
+fish-completion - Enable completions for the Fish shell
 hunspell - Enable the app-text/hunspell spell-checking backend
 linguist - Enable support for Qt Linguist, a tool for translating and managing translations of Qt applications
+nushell-completion - Enable completions for the Nushell shell
 qml - Build QML/QtQuick bindings and imports
