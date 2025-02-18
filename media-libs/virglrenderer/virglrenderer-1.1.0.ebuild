@@ -57,7 +57,7 @@ REQUIRED_USE="
 # deal with it for now.
 RESTRICT="test"
 
-src_configure() {
+multilib_src_configure() {
 	local emesonargs=(
 		-Ddefault_library=$(usex static-libs both shared)
 		$(meson_use minigbm-allocation minigbm_allocation)
@@ -130,10 +130,9 @@ src_configure() {
 		emesonargs+=(-Dtracing=none)
 	fi
 
-	meson-multilib_src_configure
+	meson_src_configure
 }
 
-src_install() {
-	meson-multilib_src_install
+multilib_src_install_all() {
 	find "${ED}/usr" -name 'lib*.la' -delete
 }
