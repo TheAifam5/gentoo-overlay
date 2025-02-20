@@ -8,7 +8,8 @@ EAPI=8
 LLVM_COMPAT=( {18..19} )
 RUST_MIN_VER="1.81.0"
 RUST_NEEDS_LLVM=1
-WEBRTC_VER="m114_release_patched"
+WEBRTC_AMD64_VERSION="m114_release_patched"
+WEBRTC_ARM64_VERSION="dac8015-6"
 
 MY_PV="${PV/_/-}"
 
@@ -25,12 +26,16 @@ else
 		${CARGO_CRATE_URIS}
 	"
 	S="${WORKDIR}/${PN}-${MY_PV}"
-	KEYWORDS="~amd64"
+	KEYWORDS="~amd64 ~amd64"
 fi
 SRC_URI+="
 	amd64? (
-		https://github.com/zed-industries/webrtc/releases/download/${WEBRTC_VER}/webrtc-linux-x64-release.zip
-			-> webrtc-${WEBRTC_VER//_/-}-linux-x64-release.zip
+		https://github.com/zed-industries/webrtc/releases/download/${WEBRTC_AMD64_VERSION}/webrtc-linux-x64-release.zip
+			-> webrtc-${WEBRTC_AMD64_VERSION//_/-}-linux-x64-release.zip
+	)
+	arm64? (
+		https://github.com/livekit/client-sdk-rust/releases/download/webrtc-${WEBRTC_ARM64_VERSION}/webrtc-linux-arm64-release.zip
+			-> webrtc-${WEBRTC_ARM64_VERSION}-linux-arm64-release.zip
 	)
 "
 LICENSE="GPL-3+"
