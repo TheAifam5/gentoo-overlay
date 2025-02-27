@@ -28,7 +28,7 @@ CRATES="
 	anstyle-wincon@3.0.6
 	anstyle@1.0.10
 	any_vec@0.14.0
-	anyhow@1.0.95
+	anyhow@1.0.96
 	approx@0.5.1
 	arbitrary@1.4.1
 	arg_enum_proc_macro@0.3.4
@@ -39,7 +39,7 @@ CRATES="
 	ascii@1.1.0
 	ash-window@0.13.0
 	ash@0.38.0+1.3.281
-	ashpd@0.10.2
+	ashpd@0.11.0
 	async-attributes@1.1.2
 	async-broadcast@0.7.2
 	async-channel@1.9.0
@@ -79,12 +79,13 @@ CRATES="
 	aws-lc-rs@1.12.2
 	aws-lc-sys@0.25.0
 	aws-runtime@1.5.5
-	aws-sdk-kinesis@1.60.0
-	aws-sdk-s3@1.73.0
+	aws-sdk-bedrockruntime@1.74.0
+	aws-sdk-kinesis@1.61.0
+	aws-sdk-s3@1.76.0
 	aws-sdk-sso@1.58.0
 	aws-sdk-ssooidc@1.59.0
 	aws-sdk-sts@1.59.0
-	aws-sigv4@1.2.8
+	aws-sigv4@1.2.9
 	aws-smithy-async@1.2.4
 	aws-smithy-checksums@0.62.0
 	aws-smithy-eventstream@0.60.6
@@ -119,7 +120,7 @@ CRATES="
 	bitflags@2.8.0
 	bitstream-io@2.6.0
 	bitvec@1.0.1
-	blake3@1.5.5
+	blake3@1.6.0
 	block-buffer@0.10.4
 	block-padding@0.3.3
 	block2@0.5.1
@@ -172,8 +173,8 @@ CRATES="
 	ciborium@0.2.2
 	cipher@0.4.4
 	clang-sys@1.8.1
-	clap@4.5.28
-	clap_builder@4.5.27
+	clap@4.5.30
+	clap_builder@4.5.30
 	clap_complete@4.5.38
 	clap_derive@4.5.28
 	clap_lex@0.7.4
@@ -210,17 +211,16 @@ CRATES="
 	coreaudio-sys@0.2.16
 	cpp_demangle@0.4.4
 	cpufeatures@0.2.16
-	cranelift-bforest@0.112.3
-	cranelift-bitset@0.112.3
-	cranelift-codegen-meta@0.112.3
-	cranelift-codegen-shared@0.112.3
-	cranelift-codegen@0.112.3
-	cranelift-control@0.112.3
-	cranelift-entity@0.112.3
-	cranelift-frontend@0.112.3
-	cranelift-isle@0.112.3
-	cranelift-native@0.112.3
-	cranelift-wasm@0.112.3
+	cranelift-bforest@0.116.1
+	cranelift-bitset@0.116.1
+	cranelift-codegen-meta@0.116.1
+	cranelift-codegen-shared@0.116.1
+	cranelift-codegen@0.116.1
+	cranelift-control@0.116.1
+	cranelift-entity@0.116.1
+	cranelift-frontend@0.116.1
+	cranelift-isle@0.116.1
+	cranelift-native@0.116.1
 	crc-catalog@2.4.0
 	crc32c@0.6.8
 	crc32fast@1.4.2
@@ -237,7 +237,8 @@ CRATES="
 	crypto-bigint@0.4.9
 	crypto-bigint@0.5.5
 	crypto-common@0.1.6
-	ctor@0.2.9
+	ctor-proc-macro@0.0.4
+	ctor@0.3.6
 	ctrlc@3.4.5
 	cursor-icon@1.1.0
 	cxx-build@1.0.134
@@ -311,7 +312,7 @@ CRATES="
 	fd-lock@4.0.2
 	fdeflate@0.3.7
 	ff@0.12.1
-	filedescriptor@0.8.2
+	filedescriptor@0.8.3
 	filetime@0.2.25
 	fixedbitset@0.4.2
 	flate2@1.0.35
@@ -346,7 +347,7 @@ CRATES="
 	futures-intrusive@0.5.0
 	futures-io@0.3.31
 	futures-lite@1.13.0
-	futures-lite@2.5.0
+	futures-lite@2.6.0
 	futures-macro@0.3.31
 	futures-sink@0.3.31
 	futures-task@0.3.31
@@ -361,7 +362,6 @@ CRATES="
 	getrandom@0.2.15
 	getrandom@0.3.1
 	gif@0.13.1
-	gimli@0.29.0
 	gimli@0.31.1
 	glob@0.3.1
 	globset@0.4.15
@@ -436,6 +436,7 @@ CRATES="
 	image-webp@0.2.0
 	image@0.25.5
 	imagesize@0.13.0
+	imara-diff@0.1.8
 	imgref@1.11.0
 	indexmap@2.7.1
 	indoc@2.0.5
@@ -467,7 +468,7 @@ CRATES="
 	jobserver@0.1.32
 	jpeg-decoder@0.3.1
 	js-sys@0.3.76
-	jsonwebtoken@9.3.0
+	jsonwebtoken@9.3.1
 	jupyter-protocol@0.6.0
 	jupyter-websocket-client@0.9.0
 	khronos-egl@6.0.0
@@ -516,7 +517,7 @@ CRATES="
 	maybe-owned@0.3.4
 	maybe-rayon@0.1.1
 	md-5@0.10.6
-	mdbook@0.4.44
+	mdbook@0.4.45
 	memchr@2.7.4
 	memfd@0.6.4
 	memmap2@0.9.5
@@ -592,6 +593,7 @@ CRATES="
 	oboe-sys@0.6.1
 	oboe@0.6.1
 	once_cell@1.20.3
+	oo7@0.4.0
 	oorandom@11.1.4
 	open@5.3.2
 	opener@0.7.2
@@ -689,6 +691,7 @@ CRATES="
 	pulldown-cmark-escape@0.10.1
 	pulldown-cmark@0.10.3
 	pulldown-cmark@0.12.2
+	pulley-interpreter@29.0.1
 	qoi@0.4.1
 	quick-error@2.0.1
 	quick-xml@0.32.0
@@ -700,10 +703,13 @@ CRATES="
 	radium@0.7.0
 	rand@0.7.3
 	rand@0.8.5
+	rand@0.9.0
 	rand_chacha@0.2.2
 	rand_chacha@0.3.1
+	rand_chacha@0.9.0
 	rand_core@0.5.1
 	rand_core@0.6.4
+	rand_core@0.9.0
 	rand_hc@0.2.0
 	rangemap@1.5.1
 	rav1e@0.7.1
@@ -716,7 +722,7 @@ CRATES="
 	redox_syscall@0.2.16
 	redox_syscall@0.5.8
 	redox_users@0.4.6
-	regalloc2@0.10.2
+	regalloc2@0.11.1
 	regex-automata@0.1.10
 	regex-automata@0.4.9
 	regex-lite@0.1.6
@@ -757,7 +763,7 @@ CRATES="
 	rustls-webpki@0.101.7
 	rustls-webpki@0.102.8
 	rustls@0.21.12
-	rustls@0.23.22
+	rustls@0.23.23
 	rustversion@1.0.18
 	rustybuzz@0.14.1
 	ryu@1.0.18
@@ -772,8 +778,8 @@ CRATES="
 	scrypt@0.11.0
 	sct@0.7.1
 	sea-bae@0.2.1
-	sea-orm-macros@1.1.4
-	sea-orm@1.1.4
+	sea-orm-macros@1.1.5
+	sea-orm@1.1.5
 	sea-query-binder@0.7.0
 	sea-query@0.32.1
 	seahash@4.1.0
@@ -787,7 +793,7 @@ CRATES="
 	serde_derive@1.0.217
 	serde_derive_internals@0.29.1
 	serde_fmt@1.0.3
-	serde_json@1.0.138
+	serde_json@1.0.139
 	serde_json_lenient@0.2.4
 	serde_path_to_error@0.1.16
 	serde_qs@0.10.1
@@ -810,7 +816,6 @@ CRATES="
 	simd-adler32@0.3.7
 	simd_helpers@0.1.0
 	simdutf8@0.1.5
-	similar@1.3.0
 	simple_asn1@0.6.2
 	simplecss@0.2.1
 	simplelog@0.12.2
@@ -818,9 +823,8 @@ CRATES="
 	siphasher@1.0.1
 	skrifa@0.22.3
 	slab@0.4.9
-	slice-group-by@0.3.1
 	slotmap@1.0.7
-	smallvec@1.13.2
+	smallvec@1.14.0
 	smart-default@0.6.0
 	smol@2.0.2
 	smol_str@0.1.24
@@ -879,7 +883,8 @@ CRATES="
 	take-until@0.2.0
 	tap@1.0.1
 	target-lexicon@0.12.16
-	tempfile@3.16.0
+	target-lexicon@0.13.2
+	tempfile@3.17.1
 	tendril@0.4.3
 	termcolor@1.4.1
 	terminal_size@0.4.1
@@ -928,15 +933,16 @@ CRATES="
 	tracing-serde@0.2.0
 	tracing-subscriber@0.3.19
 	tracing@0.1.41
+	trait-variant@0.1.2
 	tree-sitter-bash@0.23.3
 	tree-sitter-c@0.23.4
 	tree-sitter-cpp@0.23.4
 	tree-sitter-css@0.23.2
 	tree-sitter-diff@0.1.0
-	tree-sitter-elixir@0.3.3
+	tree-sitter-elixir@0.3.4
 	tree-sitter-embedded-template@0.23.2
 	tree-sitter-go@0.23.4
-	tree-sitter-html@0.20.4
+	tree-sitter-html@0.23.2
 	tree-sitter-jsdoc@0.23.2
 	tree-sitter-json@0.24.8
 	tree-sitter-language@0.1.3
@@ -945,7 +951,7 @@ CRATES="
 	tree-sitter-ruby@0.23.1
 	tree-sitter-rust@0.23.2
 	tree-sitter-typescript@0.23.2
-	tree-sitter@0.24.7
+	tree-sitter@0.25.2
 	try-lock@0.2.5
 	ttf-parser@0.21.1
 	tungstenite@0.20.1
@@ -977,7 +983,7 @@ CRATES="
 	utf16_iter@1.0.5
 	utf8_iter@1.0.4
 	utf8parse@0.2.2
-	uuid@1.12.1
+	uuid@1.13.2
 	v_frame@0.3.8
 	valuable@0.1.0
 	value-bag-serde1@1.10.0
@@ -990,7 +996,7 @@ CRATES="
 	vsimd@0.8.0
 	vswhom-sys@0.1.2
 	vswhom@0.1.0
-	vte@0.14.1
+	vte@0.15.0
 	waker-fn@1.2.0
 	walkdir@2.5.0
 	want@0.3.1
@@ -1006,28 +1012,29 @@ CRATES="
 	wasm-bindgen-shared@0.2.99
 	wasm-bindgen@0.2.99
 	wasm-encoder@0.201.0
-	wasm-encoder@0.217.1
+	wasm-encoder@0.221.3
 	wasm-metadata@0.201.0
+	wasm-metadata@0.221.3
 	wasm-streams@0.4.2
 	wasmparser@0.201.0
-	wasmparser@0.217.1
-	wasmprinter@0.217.1
-	wasmtime-asm-macros@25.0.3
-	wasmtime-c-api-impl@25.0.3
-	wasmtime-c-api-macros@25.0.3
-	wasmtime-component-macro@25.0.3
-	wasmtime-component-util@25.0.3
-	wasmtime-cranelift@25.0.3
-	wasmtime-environ@25.0.3
-	wasmtime-fiber@25.0.3
-	wasmtime-jit-icache-coherence@25.0.3
-	wasmtime-slab@25.0.3
-	wasmtime-types@25.0.3
-	wasmtime-versioned-export-macros@25.0.3
-	wasmtime-wasi@25.0.3
-	wasmtime-winch@25.0.3
-	wasmtime-wit-bindgen@25.0.3
-	wasmtime@25.0.3
+	wasmparser@0.221.3
+	wasmprinter@0.221.3
+	wasmtime-asm-macros@29.0.1
+	wasmtime-c-api-impl@29.0.1
+	wasmtime-c-api-macros@29.0.1
+	wasmtime-component-macro@29.0.1
+	wasmtime-component-util@29.0.1
+	wasmtime-cranelift@29.0.1
+	wasmtime-environ@29.0.1
+	wasmtime-fiber@29.0.1
+	wasmtime-jit-icache-coherence@29.0.1
+	wasmtime-math@29.0.1
+	wasmtime-slab@29.0.1
+	wasmtime-versioned-export-macros@29.0.1
+	wasmtime-wasi@29.0.1
+	wasmtime-winch@29.0.1
+	wasmtime-wit-bindgen@29.0.1
+	wasmtime@29.0.1
 	wast@35.0.2
 	wayland-backend@0.3.8
 	wayland-client@0.31.8
@@ -1044,14 +1051,14 @@ CRATES="
 	which@4.4.2
 	which@6.0.3
 	whoami@1.5.2
-	wiggle-generate@25.0.3
-	wiggle-macro@25.0.3
-	wiggle@25.0.3
+	wiggle-generate@29.0.1
+	wiggle-macro@29.0.1
+	wiggle@29.0.1
 	winapi-i686-pc-windows-gnu@0.4.0
 	winapi-util@0.1.9
 	winapi-x86_64-pc-windows-gnu@0.4.0
 	winapi@0.3.9
-	winch-codegen@0.23.3
+	winch-codegen@29.0.1
 	windows-core@0.52.0
 	windows-core@0.54.0
 	windows-core@0.57.0
@@ -1111,8 +1118,9 @@ CRATES="
 	wit-bindgen-rust@0.22.0
 	wit-bindgen@0.22.0
 	wit-component@0.201.0
+	wit-component@0.221.3
 	wit-parser@0.201.0
-	wit-parser@0.217.1
+	wit-parser@0.221.3
 	witx@0.9.1
 	write16@1.0.0
 	writeable@0.5.5
@@ -1133,18 +1141,17 @@ CRATES="
 	yeslogic-fontconfig-sys@6.0.0
 	yoke-derive@0.7.5
 	yoke@0.7.5
-	zbus@4.4.0
-	zbus@5.1.1
-	zbus_macros@4.4.0
-	zbus_macros@5.1.1
-	zbus_names@3.0.0
+	zbus@5.5.0
+	zbus_macros@5.5.0
 	zbus_names@4.1.0
 	zed_extension_api@0.1.0
 	zed_extension_api@0.2.0
 	zed_llm_client@0.4.1
 	zeno@0.2.3
 	zerocopy-derive@0.7.35
+	zerocopy-derive@0.8.18
 	zerocopy@0.7.35
+	zerocopy@0.8.18
 	zerofrom-derive@0.1.5
 	zerofrom@0.1.5
 	zeroize@1.8.1
@@ -1159,16 +1166,13 @@ CRATES="
 	zune-core@0.4.12
 	zune-inflate@0.2.54
 	zune-jpeg@0.4.13
-	zvariant@4.2.0
-	zvariant@5.1.0
-	zvariant_derive@4.2.0
-	zvariant_derive@5.1.0
-	zvariant_utils@2.1.0
-	zvariant_utils@3.0.2
+	zvariant@5.4.0
+	zvariant_derive@5.4.0
+	zvariant_utils@3.2.0
 "
 
 declare -A GIT_CRATES=(
-	[alacritty_terminal]='https://github.com/alacritty/alacritty;5e78d20c709cb1ab8d44ca7a8702cc26d779227c;alacritty-%commit%/alacritty_terminal'
+	[alacritty_terminal]='https://github.com/zed-industries/alacritty;03c2907b44b4189aac5fdeaea331f5aab5c7072e;alacritty-%commit%/alacritty_terminal'
 	[async-pipe]='https://github.com/zed-industries/async-pipe-rs;82d00a04211cf4e1236029aa03e6b6ce2a74c553;async-pipe-rs-%commit%'
 	[async-stripe]='https://github.com/zed-industries/async-stripe;3672dd4efb7181aa597bf580bf5a2f5d23db6735;async-stripe-%commit%'
 	[async-tls]='https://github.com/zed-industries/async-tls;1e759a4b5e370f87dc15e40756ac4f8815b61d9d;async-tls-%commit%'
@@ -1187,7 +1191,6 @@ declare -A GIT_CRATES=(
 	[livekit]='https://github.com/zed-industries/livekit-rust-sdks;811ceae29fabee455f110c56cd66b3f49a7e5003;livekit-rust-sdks-%commit%/livekit'
 	[lsp-types]='https://github.com/zed-industries/lsp-types;1fff0dd12e2071c5667327394cfec163d2a466ab;lsp-types-%commit%'
 	[nvim-rs]='https://github.com/KillTheMule/nvim-rs;69500bae73b8b3f02a05b7bee621a0d0e633da6c;nvim-rs-%commit%'
-	[oo7]='https://github.com/zed-industries/oo7;9d5d5fcd7e4e0add9b420ffb58f67661b0b37568;oo7-%commit%/client'
 	[pet-conda]='https://github.com/microsoft/python-environment-tools;1abe5cec5ebfbe97ca71746a4cfc7fe89bddf8e0;python-environment-tools-%commit%/crates/pet-conda'
 	[pet-core]='https://github.com/microsoft/python-environment-tools;1abe5cec5ebfbe97ca71746a4cfc7fe89bddf8e0;python-environment-tools-%commit%/crates/pet-core'
 	[pet-env-var-path]='https://github.com/microsoft/python-environment-tools;1abe5cec5ebfbe97ca71746a4cfc7fe89bddf8e0;python-environment-tools-%commit%/crates/pet-env-var-path'
@@ -1248,7 +1251,7 @@ else
 		${CARGO_CRATE_URIS}
 	"
 	S="${WORKDIR}/${PN}-${MY_PV}"
-	KEYWORDS="amd64 ~arm64"
+	KEYWORDS="~amd64 ~arm64"
 fi
 SRC_URI+="
 	amd64? (
@@ -1266,7 +1269,7 @@ LICENSE+="
 	Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD-2 BSD CC0-1.0 ISC
 	LGPL-3 MIT MPL-2.0 Unicode-3.0 Unicode-DFS-2016 ZLIB
 "
-SLOT="0"
+SLOT="0/preview"
 IUSE="X gles3"
 CHECKREQS_DISK_BUILD="8G"
 CHECKREQS_MEMORY="16G"
