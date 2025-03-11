@@ -13,7 +13,7 @@ K_EXP_GENPATCHES_NOUSE="1"
 # is the wanted value here, but the genpatches patch set can be bumped if it includes some
 # important fixes. src_prepare() will handle deleting the updated vanilla linux patches.
 # See https://archives.gentoo.org/gentoo-kernel/ (or subscribe to the list) to see all patches.
-K_GENPATCHES_VER="5"
+K_GENPATCHES_VER="7"
 
 # -pf patch set already sets EXTRAVERSION to kernel Makefile.
 K_NOSETEXTRAVERSION="1"
@@ -24,6 +24,11 @@ K_SECURITY_UNSUPPORTED="1"
 # Define which parts to use from genpatches - experimental is already included in the -pf patch
 # set.
 K_WANT_GENPATCHES="base extras"
+
+# Ignore patches
+K_IGNORE_GENPATCHES="
+	1740_x86-insn-decoder-test-allow-longer-symbol-names
+"
 
 # Major kernel version, e.g. 5.14.
 SHPV="${PV/_p*/}"
@@ -72,6 +77,11 @@ src_prepare() {
 	if [[ ${K_GENPATCHES_VER} -ne 1 ]]; then
 		find "${WORKDIR}"/ -type f -name '10*linux*patch' -delete ||
 			die "Failed to delete vanilla linux patches in src_prepare."
+
+		for i in ${K_IGNORE_GENPATCHES} ; do
+			find "${WORKDIR}"/ -type f -name "${i}*patch" -delete ||
+				die "Failed to delete ignored genpatches in src_prepare."
+		done
 	fi
 
 	# kernel-2_src_prepare doesn't apply PATCHES(). Chosen genpatches are also applied here.
