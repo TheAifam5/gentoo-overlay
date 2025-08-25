@@ -1,0 +1,87 @@
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 59256fd..fbd4e7b 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -27,7 +27,7 @@ option(DISABLE_DBUS "disable D-Bus support (global menu and D-Bus tray icon impl
+ 
+ ADD_DEFINITIONS(-DQT_DISABLE_DEPRECATED_BEFORE=0x050C00 -DUSE_WIDGETS)
+ 
+-find_package(Qt5 ${QT_MINIMUM_VERSION} COMPONENTS Widgets Concurrent LinguistTools REQUIRED)
++find_package(Qt5 ${QT_MINIMUM_VERSION} COMPONENTS Widgets Concurrent OPTIONAL_COMPONENTS LinguistTools)
+ find_package(Qt5Gui ${QT_MINIMUM_VERSION} CONFIG REQUIRED Private)
+ 
+ if(NOT DISABLE_DBUS)
+@@ -37,28 +37,44 @@ else()
+     message(STATUS "D-Bus support: Disabled")
+ endif()
+ 
+-get_target_property(QT_LRELEASE_EXECUTABLE Qt5::lrelease IMPORTED_LOCATION)
+-
+-if(QT_LRELEASE_EXECUTABLE)
+-    message(STATUS "Found lrelease executable: " ${QT_LRELEASE_EXECUTABLE})
++if(Qt5LinguistTools_FOUND)
++    get_target_property(QT_LRELEASE_EXECUTABLE Qt5::lrelease IMPORTED_LOCATION)
++    get_filename_component(QT_QTPATHS_EXECUTABLE ${QT_LRELEASE_EXECUTABLE} DIRECTORY)
+ else()
+-    message(FATAL_ERROR "Could NOT find lrelease executable")
++    get_target_property(QT_QMAKE_EXECUTABLE Qt5::qmake IMPORTED_LOCATION)
++    get_filename_component(QT_QTPATHS_EXECUTABLE ${QT_QMAKE_EXECUTABLE} DIRECTORY)
+ endif()
+ 
+-get_filename_component(QT_QTPATHS_EXECUTABLE ${QT_LRELEASE_EXECUTABLE} DIRECTORY)
+-set(QT_QTPATHS_EXECUTABLE ${QT_QTPATHS_EXECUTABLE}/qtpaths)
++if(QT_QTPATHS_EXECUTABLE)
++    set(QT_QTPATHS_EXECUTABLE ${QT_QTPATHS_EXECUTABLE}/qtpaths)
++endif()
+ 
+-if(EXISTS ${QT_QTPATHS_EXECUTABLE})
++if(QT_QTPATHS_EXECUTABLE AND EXISTS ${QT_QTPATHS_EXECUTABLE})
+     message(STATUS "Found qtpaths executable: " ${QT_QTPATHS_EXECUTABLE})
+ else()
+     message(FATAL_ERROR "Could NOT find qtpaths executable")
+ endif()
+ 
++if(Qt5LinguistTools_FOUND)
++  if(QT_LRELEASE_EXECUTABLE AND EXISTS ${QT_LRELEASE_EXECUTABLE})
++      message(STATUS "Found lrelease executable: " ${QT_LRELEASE_EXECUTABLE})
++  else()
++      message(FATAL_ERROR "Could NOT find lrelease executable")
++  endif()
++endif()
++
+ execute_process(COMMAND ${QT_QTPATHS_EXECUTABLE} --plugin-dir OUTPUT_VARIABLE PLUGINDIR OUTPUT_STRIP_TRAILING_WHITESPACE)
+-message(STATUS "Plugin path: " ${PLUGINDIR})
+ 
+-message(STATUS "Generating translations ...")
+-execute_process(COMMAND find ${CMAKE_CURRENT_SOURCE_DIR} -name *.ts COMMAND xargs ${QT_LRELEASE_EXECUTABLE} -silent)
++if(PLUGINDIR)
++    message(STATUS "Plugin path: " ${PLUGINDIR})
++else()
++    message(FATAL_ERROR "Could NOT determine plugin path")
++endif()
++
++if(Qt5LinguistTools_FOUND)
++    message(STATUS "Generating translations ...")
++    execute_process(COMMAND find ${CMAKE_CURRENT_SOURCE_DIR} -name *.ts COMMAND xargs ${QT_LRELEASE_EXECUTABLE} -silent)
++endif()
+ 
+ include_directories(${CMAKE_CURRENT_SOURCE_DIR}/src/qt5ct-common)
+ 
+diff --git a/src/qt5ct/CMakeLists.txt b/src/qt5ct/CMakeLists.txt
+index 78535e3..4c73e32 100644
+--- a/src/qt5ct/CMakeLists.txt
++++ b/src/qt5ct/CMakeLists.txt
+@@ -24,9 +24,12 @@ set(app_SRCS
+   qsseditordialog.ui
+   qsspage.ui
+   troubleshootingpage.ui
+-  translations/translations.qrc
+ )
+ 
++if(Qt5LinguistTools_FOUND)
++    list(APPEND app_SRCS translations/translations.qrc)
++endif()
++
+ add_executable(qt5ct ${app_SRCS})
+ target_link_libraries(qt5ct PRIVATE Qt5::Widgets Qt5::Concurrent Qt5::WidgetsPrivate qt5ct-common)
+ install(TARGETS qt5ct DESTINATION ${CMAKE_INSTALL_BINDIR})
