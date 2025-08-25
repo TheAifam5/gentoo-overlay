@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+	<maintainer type="person">
+		<email>theaifam5@gmail.com</email>
+		<name>TheAifam5</name>
+	</maintainer>
+	<use>
+		<flag name="policykit">Enable PolicyKit support</flag>
+		<flag name="cli">Install op cli</flag>
+	</use>
+</pkgmetadata>
