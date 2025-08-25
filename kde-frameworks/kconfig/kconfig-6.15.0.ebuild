@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -10,7 +10,7 @@ inherit ecm frameworks.kde.org
 DESCRIPTION="Framework for reading and writing configuration"
 
 LICENSE="LGPL-2+"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86"
+KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv ~x86"
 IUSE="dbus qml linguist"
 REQUIRED_USE="test? ( qml )"
 
@@ -26,7 +26,7 @@ DEPEND="${RDEPEND}
 "
 BDEPEND=">=dev-qt/qttools-${QTMIN}:6[linguist?]"
 
-DOCS=(DESIGN docs/{DESIGN.kconfig,options.md})
+DOCS=( DESIGN docs/{DESIGN.kconfig,options.md} )
 
 src_configure() {
 	local mycmakeargs=(
