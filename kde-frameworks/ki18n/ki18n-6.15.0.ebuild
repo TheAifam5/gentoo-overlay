@@ -1,17 +1,18 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
 
-PYTHON_COMPAT=(python3_{10..13})
 ECM_QTHELP="false"
+PYTHON_COMPAT=( python3_{10..13} )
 QTMIN=6.7.2
 inherit ecm frameworks.kde.org python-single-r1
 
 DESCRIPTION="Framework based on Gettext for internationalizing user interface text"
 
 LICENSE="LGPL-2+"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86"
+KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv ~x86"
+IUSE=""
 
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
@@ -34,12 +35,9 @@ CMAKE_SKIP_TESTS=(
 	# requires LANG fr_CH. bugs 823816
 	kcountrytest
 	kcountrysubdivisiontest
+	# flaky, bug 948895
+	ki18n-klocalizedstringtest
 )
-
-pkg_setup() {
-	ecm_pkg_setup
-	python-single-r1_pkg_setup
-}
 
 src_configure() {
 	local mycmakeargs=(
