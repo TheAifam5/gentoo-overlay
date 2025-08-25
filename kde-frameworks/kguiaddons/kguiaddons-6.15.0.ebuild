@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +11,7 @@ inherit ecm frameworks.kde.org xdg
 DESCRIPTION="Framework providing assorted high-level user interface components"
 
 LICENSE="LGPL-2+"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86"
+KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv ~x86"
 IUSE="dbus wayland X"
 
 # slot op: includes qpa/qplatformnativeinterface.h
@@ -29,20 +29,24 @@ COMMON_DEPEND="
 	)
 "
 DEPEND="${COMMON_DEPEND}
-	wayland? ( >=dev-libs/plasma-wayland-protocols-1.15.0 )
+	wayland? (
+		>=dev-libs/plasma-wayland-protocols-1.15.0
+		>=dev-libs/wayland-protocols-1.39
+	)
 	X? (
 		x11-base/xorg-proto
 		x11-libs/libxcb
 	)
 "
 RDEPEND="${COMMON_DEPEND}
-	!${CATEGORY}/${PN}:5[-kf6compat(-)]
+	!<kde-frameworks/kguiaddons-5.116.0-r2:5[-kf6compat(-)]
 "
 BDEPEND="
 	wayland? (
 		>=dev-qt/qtwayland-${QTMIN}:6
 		dev-util/wayland-scanner
-	)"
+	)
+"
 
 src_configure() {
 	local mycmakeargs=(
