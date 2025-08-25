@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -11,7 +11,7 @@ inherit ecm frameworks.kde.org
 DESCRIPTION="Framework for providing spell-checking through abstraction of popular backends"
 
 LICENSE="LGPL-2+ LGPL-2.1+"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86"
+KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv ~x86"
 IUSE="aspell +hunspell qml linguist"
 
 DEPEND="
@@ -38,7 +38,7 @@ src_configure() {
 		-DSONNET_USE_QML=$(usex qml)
 	)
 	if ! use aspell && ! use hunspell; then
-		mycmakeargs+=(-DSONNET_NO_BACKENDS=ON)
+		mycmakeargs+=( -DSONNET_NO_BACKENDS=ON )
 	fi
 
 	ecm_src_configure
