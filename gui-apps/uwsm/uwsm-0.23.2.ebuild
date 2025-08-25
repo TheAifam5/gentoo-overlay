@@ -1,6 +1,6 @@
 EAPI=8
 
-PYTHON_COMPAT=(python3_{10..13})
+PYTHON_COMPAT=(python3_{10..14})
 
 inherit meson python-single-r1
 
@@ -59,6 +59,12 @@ src_configure() {
 		-Dlicensedir="/usr/share/licenses/${PF}"
 	)
 	meson_src_configure
+}
+
+src_install() {
+	meson_src_install
+	python_fix_shebang "${ED}/usr/bin"
+	python_optimize "${ED}/usr/share/${PN}"
 }
 
 pkg_postinst() {
