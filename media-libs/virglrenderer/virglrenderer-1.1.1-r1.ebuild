@@ -12,7 +12,7 @@ else
 	SRC_URI="https://gitlab.freedesktop.org/virgl/${PN}/-/archive/${PV}/${P}.tar.bz2"
 	S="${WORKDIR}/${P}"
 
-	KEYWORDS="~amd64"
+	KEYWORDS="~amd64 ~arm64 ~loong ~riscv ~x86"
 fi
 
 DESCRIPTION="VirGL virtual OpenGL renderer."
@@ -44,6 +44,7 @@ DEPEND="${RDEPEND}"
 BDEPEND="
 	glx? ( x11-base/xorg-proto )
 	dev-build/meson-format-array
+	dev-python/pyyaml
 	virtual/pkgconfig
 "
 
