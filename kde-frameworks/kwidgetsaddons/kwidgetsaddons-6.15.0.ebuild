@@ -1,4 +1,4 @@
-# Copyright 1999-2024 Gentoo Authors
+# Copyright 1999-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -12,11 +12,12 @@ inherit ecm frameworks.kde.org
 DESCRIPTION="An assortment of high-level widgets for common tasks"
 
 LICENSE="LGPL-2.1+"
-KEYWORDS="~amd64 ~arm64 ~ppc64 ~riscv ~x86"
+KEYWORDS="~amd64 ~arm64 ~loong ~ppc64 ~riscv ~x86"
+IUSE="linguist"
 
 DEPEND=">=dev-qt/qtbase-${QTMIN}:6[gui,widgets]"
 RDEPEND="${DEPEND}"
-BDEPEND=">=dev-qt/qttools-${QTMIN}:6[linguist]"
+BDEPEND=">=dev-qt/qttools-${QTMIN}:6[linguist?]"
 
 CMAKE_SKIP_TESTS=(
 	# bug 650216
