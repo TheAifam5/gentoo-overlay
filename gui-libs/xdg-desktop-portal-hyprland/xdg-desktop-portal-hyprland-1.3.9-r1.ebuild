@@ -1,4 +1,4 @@
-# Copyright 2022-2024 Gentoo Authors
+# Copyright 2022-2025 Gentoo Authors
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
@@ -22,18 +22,22 @@ IUSE="elogind systemd"
 REQUIRED_USE="?? ( elogind systemd )"
 
 DEPEND="
-	>=media-video/pipewire-1.2.0:=
+	>=media-video/pipewire-1.1.82:=
 	>=dev-cpp/sdbus-c++-2.0.0[systemd?,elogind?]
-	dev-libs/hyprlang:=
+	>=dev-libs/hyprlang-0.2.0:=
+	>=gui-libs/hyprutils-0.2.6:=
 	dev-libs/inih
 	dev-libs/wayland
-	gui-libs/hyprutils
 	dev-qt/qtbase:6[gui,widgets]
 	dev-qt/qtwayland:6
 	media-libs/mesa
 	sys-apps/util-linux
 	x11-libs/libdrm
-	systemd? ( >=sys-apps/systemd-237 )
+	|| (
+		sys-libs/basu
+		elogind? ( >=sys-auth/elogind-237 )
+		systemd? ( >=sys-apps/systemd-237 )
+	)
 "
 
 RDEPEND="
@@ -42,9 +46,9 @@ RDEPEND="
 "
 
 BDEPEND="
-	>=dev-libs/wayland-protocols-1.24
-	>=dev-libs/hyprland-protocols-0.2.0
-	>=dev-util/hyprwayland-scanner-0.4.2
+	>=dev-libs/wayland-protocols-1.24:=
+	>=dev-libs/hyprland-protocols-0.2.0:=
+	>=dev-util/hyprwayland-scanner-0.4.2:=
 	virtual/pkgconfig
 	|| ( >=sys-devel/gcc-14:* >=llvm-core/clang-17:* )
 "
