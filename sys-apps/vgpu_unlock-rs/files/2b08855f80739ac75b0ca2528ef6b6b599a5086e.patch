@@ -1,0 +1,410 @@
+From 2b08855f80739ac75b0ca2528ef6b6b599a5086e Mon Sep 17 00:00:00 2001
+From: Coia Prant <coiaprant@gmail.com>
+Date: Thu, 7 Aug 2025 13:15:47 +0800
+Subject: [PATCH 1/2] feat: Support vGPU 19.x
+
+vGPU 19.0 has large changed, that break backward compatibility
+
+Signed-off-by: Coia Prant <coiaprant@gmail.com>
+---
+ src/lib.rs                 | 65 ++++++++++++++++----------------------
+ src/nvidia/ctrl0000vgpu.rs | 11 +++----
+ src/nvidia/ctrl0080gpu.rs  |  7 ++--
+ src/nvidia/ctrl2080bus.rs  |  2 +-
+ src/nvidia/ctrl2080gpu.rs  |  2 +-
+ src/nvidia/ctrla081.rs     | 30 +++++++-----------
+ src/nvidia/ctrla082.rs     | 28 ++++++++++------
+ 7 files changed, 65 insertions(+), 80 deletions(-)
+
+diff --git a/src/lib.rs b/src/lib.rs
+index ece6372..3e6d968 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -95,8 +95,8 @@ const DEFAULT_PROFILE_OVERRIDE_CONFIG_PATH: &str = "/etc/vgpu_unlock/profile_ove
+ 
+ trait VgpuConfigLike {
+     fn vgpu_type(&mut self) -> &mut u32;
+-    fn vgpu_name(&mut self) -> &mut [u8; 32];
+-    fn vgpu_class(&mut self) -> &mut [u8; 32];
++    fn vgpu_name(&mut self) -> &mut [u8; 64];
++    fn vgpu_class(&mut self) -> &mut [u8; 64];
+     //fn vgpu_signature(&mut self) -> &mut [u8; 128];
+     fn license(&mut self) -> &mut [u8; 128];
+     fn max_instance(&mut self) -> &mut u32;
+@@ -107,7 +107,7 @@ trait VgpuConfigLike {
+     fn frl_config(&mut self) -> &mut u32;
+     fn cuda_enabled(&mut self) -> &mut u32;
+     fn ecc_supported(&mut self) -> &mut u32;
+-    fn mig_instance_size(&mut self) -> &mut u32;
++    fn gpu_instance_size(&mut self) -> &mut u32;
+     fn multi_vgpu_supported(&mut self) -> &mut u32;
+     fn vdev_id(&mut self) -> &mut u64;
+     fn pdev_id(&mut self) -> &mut u64;
+@@ -147,8 +147,8 @@ macro_rules! impl_trait_fn_aligned {
+ 
+ impl VgpuConfigLike for NvA082CtrlCmdHostVgpuDeviceGetVgpuTypeInfoParams {
+     impl_trait_fn!(vgpu_type, u32);
+-    impl_trait_fn!(vgpu_name, [u8; 32]);
+-    impl_trait_fn!(vgpu_class, [u8; 32]);
++    impl_trait_fn!(vgpu_name, [u8; 64]);
++    impl_trait_fn!(vgpu_class, [u8; 64]);
+     //impl_trait_fn!(vgpu_signature, [u8; 128]);
+     impl_trait_fn!(license, [u8; 128]);
+     impl_trait_fn!(max_instance, u32);
+@@ -159,7 +159,7 @@ impl VgpuConfigLike for NvA082CtrlCmdHostVgpuDeviceGetVgpuTypeInfoParams {
+     impl_trait_fn!(frl_config, u32);
+     impl_trait_fn!(cuda_enabled, u32);
+     impl_trait_fn!(ecc_supported, u32);
+-    impl_trait_fn!(mig_instance_size, u32);
++    impl_trait_fn!(gpu_instance_size, u32);
+     impl_trait_fn!(multi_vgpu_supported, u32);
+     impl_trait_fn!(vdev_id, u64);
+     impl_trait_fn!(pdev_id, u64);
+@@ -185,8 +185,8 @@ impl VgpuConfigLike for NvA082CtrlCmdHostVgpuDeviceGetVgpuTypeInfoParams {
+ 
+ impl VgpuConfigLike for NvA081CtrlVgpuInfo {
+     impl_trait_fn!(vgpu_type, u32);
+-    impl_trait_fn!(vgpu_name, [u8; 32]);
+-    impl_trait_fn!(vgpu_class, [u8; 32]);
++    impl_trait_fn!(vgpu_name, [u8; 64]);
++    impl_trait_fn!(vgpu_class, [u8; 64]);
+     //impl_trait_fn!(vgpu_signature, [u8; 128]);
+     impl_trait_fn!(license, [u8; 128]);
+     impl_trait_fn!(max_instance, u32);
+@@ -197,7 +197,7 @@ impl VgpuConfigLike for NvA081CtrlVgpuInfo {
+     impl_trait_fn!(frl_config, u32);
+     impl_trait_fn!(cuda_enabled, u32);
+     impl_trait_fn!(ecc_supported, u32);
+-    impl_trait_fn!(gpu_instance_size => mig_instance_size, u32);
++    impl_trait_fn!(gpu_instance_size, u32);
+     impl_trait_fn!(multi_vgpu_supported, u32);
+     impl_trait_fn_aligned!(vdev_id, u64);
+     impl_trait_fn_aligned!(pdev_id, u64);
+@@ -394,10 +394,7 @@ pub unsafe extern "C" fn ioctl(fd: RawFd, request: c_ulong, argp: *mut c_void) -
+             params.pci_sub_system_id = (orig_sub_system_id & 0xffff) | (spoofed_subsysid << 16);
+         }
+         NV0080_CTRL_CMD_GPU_GET_VIRTUALIZATION_MODE
+-        // 18.0 driver sends larger struct with size 8 bytes. Only extra members added at the end,
+-        // nothing in between or changed, so accessing the larger struct is "safe"
+-        if io_data.params_size == 8
+-            || check_size!(
++            if check_size!(
+                 NV0080_CTRL_CMD_GPU_GET_VIRTUALIZATION_MODE,
+                 Nv0080CtrlGpuGetVirtualizationModeParams
+             ) && CONFIG.unlock =>
+@@ -435,13 +432,10 @@ pub unsafe extern "C" fn ioctl(fd: RawFd, request: c_ulong, argp: *mut c_void) -
+                 *LAST_MDEV_UUID.lock() = Some(config.mdev_uuid);
+             }
+             NV0000_CTRL_CMD_VGPU_CREATE_DEVICE
+-                // 18.0 driver sends larger struct with size 40 bytes. Only extra members added at the end,
+-                // nothing in between or changed, so accessing the larger struct is "safe"
+-                if io_data.params_size == 40
+-                    || check_size!(
+-                        NV0000_CTRL_CMD_VGPU_CREATE_DEVICE,
+-                        Nv0000CtrlVgpuCreateDeviceParams
+-                    ) =>
++                if check_size!(
++                    NV0000_CTRL_CMD_VGPU_CREATE_DEVICE,
++                    Nv0000CtrlVgpuCreateDeviceParams
++                ) =>
+             {
+                 // 17.0 driver provides mdev uuid as vgpu_name in this command
+                 let params: &mut Nv0000CtrlVgpuCreateDeviceParams = &mut *io_data.params.cast();
+@@ -449,24 +443,19 @@ pub unsafe extern "C" fn ioctl(fd: RawFd, request: c_ulong, argp: *mut c_void) -
+ 
+                 *LAST_MDEV_UUID.lock() = Some(params.vgpu_name);
+             }
+-            NVA081_CTRL_CMD_VGPU_CONFIG_GET_VGPU_TYPE_INFO => {
+-                // 18.0 driver sends larger struct with size 5232 bytes, 17.0 driver sends larger struct with size 5096 bytes. Only extra members added at the end,
+-                // nothing in between or changed, so accessing the larger struct is "safe"
+-                if io_data.params_size == 5232
+-                    || io_data.params_size == 5096
+-                    || check_size!(
+-                        NVA081_CTRL_CMD_VGPU_CONFIG_GET_VGPU_TYPE_INFO,
+-                        NvA081CtrlVgpuConfigGetVgpuTypeInfoParams
+-                    )
+-                {
+-                    let params: &mut NvA081CtrlVgpuConfigGetVgpuTypeInfoParams =
+-                        &mut *io_data.params.cast();
+-                    info!("{:#?}", params);
++            NVA081_CTRL_CMD_VGPU_CONFIG_GET_VGPU_TYPE_INFO
++                if check_size!(
++                    NVA081_CTRL_CMD_VGPU_CONFIG_GET_VGPU_TYPE_INFO,
++                    NvA081CtrlVgpuConfigGetVgpuTypeInfoParams
++                ) =>
++            {
++                let params: &mut NvA081CtrlVgpuConfigGetVgpuTypeInfoParams =
++                    &mut *io_data.params.cast();
++                info!("{:#?}", params);
+ 
+-                    if !handle_profile_override(&mut params.vgpu_type_info) {
+-                        error!("Failed to apply profile override");
+-                        return -1;
+-                    }
++                if !handle_profile_override(&mut params.vgpu_type_info) {
++                    error!("Failed to apply profile override");
++                    return -1;
+                 }
+             }
+             NVA082_CTRL_CMD_HOST_VGPU_DEVICE_GET_VGPU_TYPE_INFO
+@@ -767,7 +756,7 @@ fn apply_profile_override<C: VgpuConfigLike>(
+             ecc_supported,
+         ],
+         copy: [
+-            mig_instance_size,
++            mig_instance_size => gpu_instance_size,
+         ],
+         bool: [
+             multi_vgpu_supported,
+diff --git a/src/nvidia/ctrl0000vgpu.rs b/src/nvidia/ctrl0000vgpu.rs
+index 3eb820c..8a0dfab 100644
+--- a/src/nvidia/ctrl0000vgpu.rs
++++ b/src/nvidia/ctrl0000vgpu.rs
+@@ -1,4 +1,4 @@
+-///! Sourced from https://github.com/NVIDIA/open-gpu-kernel-modules/blob/758b4ee8189c5198504cb1c3c5bc29027a9118a3/src/common/sdk/nvidia/inc/ctrl/ctrl0000/ctrl0000vgpu.h
++///! Sourced from https://github.com/NVIDIA/open-gpu-kernel-modules/blob/307159f2623d3bf45feb9177bd2da52ffbc5ddf9/src/common/sdk/nvidia/inc/ctrl/ctrl0000/ctrl0000vgpu.h
+ use std::fmt;
+ 
+ use crate::format::{CStrFormat, HexFormat};
+@@ -40,11 +40,8 @@ pub struct Nv0000CtrlVgpuCreateDeviceParams {
+     pub gpu_pci_bdf: u32,
+     pub vgpu_type_id: u32,
+     pub vgpu_id: u16,
+-    // R570 adds additional fields, leave them out for now for backwards compat with 16.x and 17.x
+-    // https://github.com/NVIDIA/open-gpu-kernel-modules/blob/570/src/common/sdk/nvidia/inc/ctrl/ctrl0000/ctrl0000vgpu.h#L94-L95
+-    //
+-    // pub gpuInstanceId: u32,
+-    // pub placementId: u32,
++    pub gpu_instance_id: u32,
++    pub placement_id: u32,
+ }
+ 
+ impl fmt::Debug for Nv0000CtrlVgpuCreateDeviceParams {
+@@ -68,6 +65,6 @@ mod test {
+     #[test]
+     fn verify_sizes() {
+         assert_eq!(mem::size_of::<Nv0000CtrlVgpuGetStartDataParams>(), 0x420);
+-        assert_eq!(mem::size_of::<Nv0000CtrlVgpuCreateDeviceParams>(), 0x20);
++        assert_eq!(mem::size_of::<Nv0000CtrlVgpuCreateDeviceParams>(), 0x28);
+     }
+ }
+diff --git a/src/nvidia/ctrl0080gpu.rs b/src/nvidia/ctrl0080gpu.rs
+index b64a834..f241b50 100644
+--- a/src/nvidia/ctrl0080gpu.rs
++++ b/src/nvidia/ctrl0080gpu.rs
+@@ -1,4 +1,4 @@
+-///! Sourced from https://github.com/NVIDIA/open-gpu-kernel-modules/blob/758b4ee8189c5198504cb1c3c5bc29027a9118a3/src/common/sdk/nvidia/inc/ctrl/ctrl0080/ctrl0080gpu.h
++///! Sourced from https://github.com/NVIDIA/open-gpu-kernel-modules/blob/307159f2623d3bf45feb9177bd2da52ffbc5ddf9/src/common/sdk/nvidia/inc/ctrl/ctrl0080/ctrl0080gpu.h
+ 
+ pub const NV0080_CTRL_CMD_GPU_GET_VIRTUALIZATION_MODE: u32 = 0x800289;
+ 
+@@ -9,8 +9,5 @@ pub const NV0080_CTRL_GPU_VIRTUALIZATION_MODE_HOST: u32 = 0x00000003;
+ #[repr(C)]
+ pub struct Nv0080CtrlGpuGetVirtualizationModeParams {
+     pub virtualization_mode: u32,
+-    // R570 adds additional fields, leave them out for now for backwards compat with 16.x and 17.x
+-    // https://github.com/NVIDIA/open-gpu-kernel-modules/blob/570/src/common/sdk/nvidia/inc/ctrl/ctrl0080/ctrl0080gpu.h#L313
+-    //
+-    // pub isGridBuild: bool,
++    pub is_grid_build: bool,
+ }
+diff --git a/src/nvidia/ctrl2080bus.rs b/src/nvidia/ctrl2080bus.rs
+index a478607..9b67137 100644
+--- a/src/nvidia/ctrl2080bus.rs
++++ b/src/nvidia/ctrl2080bus.rs
+@@ -1,4 +1,4 @@
+-///! Sourced from https://github.com/NVIDIA/open-gpu-kernel-modules/blob/5f40a5aee5ef9c92085836bf5b5a9056174f07f1/src/common/sdk/nvidia/inc/ctrl/ctrl2080/ctrl2080bus.h
++///! Sourced from https://github.com/NVIDIA/open-gpu-kernel-modules/blob/307159f2623d3bf45feb9177bd2da52ffbc5ddf9/src/common/sdk/nvidia/inc/ctrl/ctrl2080/ctrl2080bus.h
+ 
+ pub const NV2080_CTRL_CMD_BUS_GET_PCI_INFO: u32 = 0x20801801;
+ 
+diff --git a/src/nvidia/ctrl2080gpu.rs b/src/nvidia/ctrl2080gpu.rs
+index 1025893..07a5afc 100644
+--- a/src/nvidia/ctrl2080gpu.rs
++++ b/src/nvidia/ctrl2080gpu.rs
+@@ -1,4 +1,4 @@
+-///! Sourced from https://github.com/NVIDIA/open-gpu-kernel-modules/blob/5f40a5aee5ef9c92085836bf5b5a9056174f07f1/src/common/sdk/nvidia/inc/ctrl/ctrl2080/ctrl2080gpu.h
++///! Sourced from https://github.com/NVIDIA/open-gpu-kernel-modules/blob/307159f2623d3bf45feb9177bd2da52ffbc5ddf9/src/common/sdk/nvidia/inc/ctrl/ctrl2080/ctrl2080gpu.h
+ 
+ pub const NV_GRID_LICENSE_INFO_MAX_LENGTH: usize = 128;
+ 
+diff --git a/src/nvidia/ctrla081.rs b/src/nvidia/ctrla081.rs
+index 2548cbf..ec9ba54 100644
+--- a/src/nvidia/ctrla081.rs
++++ b/src/nvidia/ctrla081.rs
+@@ -1,16 +1,16 @@
+-///! Sourced from https://github.com/NVIDIA/open-gpu-kernel-modules/blob/758b4ee8189c5198504cb1c3c5bc29027a9118a3/src/common/sdk/nvidia/inc/ctrl/ctrla081.h
++///! Sourced from https://github.com/NVIDIA/open-gpu-kernel-modules/blob/307159f2623d3bf45feb9177bd2da52ffbc5ddf9/src/common/sdk/nvidia/inc/ctrl/ctrla081.h
+ use std::fmt;
+ 
+ use super::ctrl2080gpu::{NV2080_GPU_MAX_NAME_STRING_LENGTH, NV_GRID_LICENSE_INFO_MAX_LENGTH};
+ use crate::format::{CStrFormat, HexFormat, HexFormatSlice, WideCharFormat};
+ use crate::utils::AlignedU64;
+ 
+-pub const NVA081_VGPU_STRING_BUFFER_SIZE: usize = 32;
++pub const NVA081_VGPU_STRING_BUFFER_SIZE: usize = 64;
+ pub const NVA081_VGPU_SIGNATURE_SIZE: usize = 128;
+ 
+ pub const NVA081_EXTRA_PARAMETERS_SIZE: usize = 1024;
+ 
+-// pub const NVA081_MAX_VGPU_PER_PGPU: usize = 32;
++pub const NVA081_MAX_VGPU_PER_PGPU: usize = 48;
+ 
+ /// See `NVA081_CTRL_VGPU_CONFIG_INFO`
+ // Set `align(8)` for `NVA081_CTRL_VGPU_CONFIG_GET_VGPU_TYPE_INFO_PARAMS`
+@@ -49,24 +49,16 @@ pub struct NvA081CtrlVgpuInfo {
+     pub ftrace_enable: u32,
+     pub gpu_direct_supported: u32,
+     pub nvlink_p2p_supported: u32,
++    pub max_instance_per_gi: u32,
+     pub multi_vgpu_exclusive: u32,
+     pub exclusive_type: u32,
+     pub exclusive_size: u32,
+     pub gpu_instance_profile_id: u32,
+-    // R550 adds additional fields, leave them out for now for backwards compat with 16.x
+-    // https://github.com/NVIDIA/open-gpu-kernel-modules/blob/550/src/common/sdk/nvidia/inc/ctrl/ctrla081.h#L126-L128
+-    // R570 rename these fields
+-    // https://github.com/NVIDIA/open-gpu-kernel-modules/blob/570/src/common/sdk/nvidia/inc/ctrl/ctrla081.h#L126-L128
+-    //
+-    // pub placement_size: u32,
+-    // pub homogeneousPlacementCount: u32, // pub placement_count: u32,
+-    // pub homogeneousPlacementIds: [u32; NVA081_MAX_VGPU_PER_PGPU], // pub placement_ids: [u32; NVA081_MAX_VGPU_PER_PGPU],
+-    //
+-    // R570 adds additional fields, leave them out for now for backwards compat with 16.x and 17.x
+-    // https://github.com/NVIDIA/open-gpu-kernel-modules/blob/570/src/common/sdk/nvidia/inc/ctrl/ctrla081.h#L129-L130
+-    //
+-    // pub heterogeneousPlacementCount: u32,
+-    // pub heterogeneousPlacementIds: [u32; NVA081_MAX_VGPU_PER_PGPU],
++    pub placement_size: u32,
++    pub homogeneous_placement_count: u32,
++    pub homogeneous_placement_ids: [u32; NVA081_MAX_VGPU_PER_PGPU],
++    pub heterogeneous_placemen_count: u32,
++    pub heterogeneous_placement_ids: [u32; NVA081_MAX_VGPU_PER_PGPU],
+ }
+ 
+ pub const NVA081_CTRL_CMD_VGPU_CONFIG_GET_VGPU_TYPE_INFO: u32 = 0xa0810103;
+@@ -169,10 +161,10 @@ mod test {
+ 
+     #[test]
+     fn verify_sizes() {
+-        assert_eq!(mem::size_of::<NvA081CtrlVgpuInfo>(), 0x1358);
++        assert_eq!(mem::size_of::<NvA081CtrlVgpuInfo>(), 0x1528);
+         assert_eq!(
+             mem::size_of::<NvA081CtrlVgpuConfigGetVgpuTypeInfoParams>(),
+-            0x1360
++            0x1530
+         );
+     }
+ }
+diff --git a/src/nvidia/ctrla082.rs b/src/nvidia/ctrla082.rs
+index eb0d9c9..840aace 100644
+--- a/src/nvidia/ctrla082.rs
++++ b/src/nvidia/ctrla082.rs
+@@ -5,12 +5,12 @@ use crate::format::{CStrFormat, HexFormat, HexFormatSlice, WideCharFormat};
+ /// Inferred based on `NVA082_CTRL_CMD_HOST_VGPU_DEVICE_GET_VGPU_TYPE_INFO_PARAMS`
+ pub const NVA082_CTRL_CMD_HOST_VGPU_DEVICE_GET_VGPU_TYPE_INFO: u32 = 0xa0820102;
+ 
+-/// Pulled from a comment in [`NVA081_CTRL_VGPU_INFO`](https://github.com/NVIDIA/open-gpu-kernel-modules/blob/758b4ee8189c5198504cb1c3c5bc29027a9118a3/src/common/sdk/nvidia/inc/ctrl/ctrla081.h#L82)
++/// Pulled from a comment in [`NVA081_CTRL_VGPU_INFO`](https://github.com/NVIDIA/open-gpu-kernel-modules/blob/307159f2623d3bf45feb9177bd2da52ffbc5ddf9/src/common/sdk/nvidia/inc/ctrl/ctrla081.h#L89)
+ #[repr(C)]
+ pub struct NvA082CtrlCmdHostVgpuDeviceGetVgpuTypeInfoParams {
+     pub vgpu_type: u32,
+-    pub vgpu_name: [u8; 32],
+-    pub vgpu_class: [u8; 32],
++    pub vgpu_name: [u8; 64],
++    pub vgpu_class: [u8; 64],
+     pub vgpu_signature: [u8; 128],
+     pub license: [u8; 128],
+     pub max_instance: u32,
+@@ -21,9 +21,7 @@ pub struct NvA082CtrlCmdHostVgpuDeviceGetVgpuTypeInfoParams {
+     pub frl_config: u32,
+     pub cuda_enabled: u32,
+     pub ecc_supported: u32,
+-    // This field might not exist anymore and instead the space became padding as
+-    // `NVA081_CTRL_VGPU_INFO` forces the alignment of `vdevId` to `8`.
+-    pub mig_instance_size: u32,
++    pub gpu_instance_size: u32,
+     pub multi_vgpu_supported: u32,
+     pub vdev_id: u64,
+     pub pdev_id: u64,
+@@ -38,7 +36,19 @@ pub struct NvA082CtrlCmdHostVgpuDeviceGetVgpuTypeInfoParams {
+     pub short_gpu_name_string: [u8; 64],
+     pub licensed_product_name: [u8; 128],
+     pub vgpu_extra_params: [u8; 1024],
+-    unknown_end: [u8; 8],
++    pub ftrace_enable: u32,
++    pub gpu_direct_supported: u32,
++    pub nvlink_p2p_supported: u32,
++    pub max_instance_per_gi: u32,
++    pub multi_vgpu_exclusive: u32,
++    pub exclusive_type: u32,
++    pub exclusive_size: u32,
++    pub gpu_instance_profile_id: u32,
++    pub placement_size: u32,
++    pub homogeneous_placement_count: u32,
++    pub homogeneous_placement_ids: [u32; 48],
++    pub heterogeneous_placemen_count: u32,
++    pub heterogeneous_placement_ids: [u32; 48],
+ }
+ 
+ impl fmt::Debug for NvA082CtrlCmdHostVgpuDeviceGetVgpuTypeInfoParams {
+@@ -68,7 +78,7 @@ impl fmt::Debug for NvA082CtrlCmdHostVgpuDeviceGetVgpuTypeInfoParams {
+             .field("frl_config", &self.frl_config)
+             .field("cuda_enabled", &self.cuda_enabled)
+             .field("ecc_supported", &self.ecc_supported)
+-            .field("mig_instance_size", &self.mig_instance_size)
++            .field("gpu_instance_size", &self.gpu_instance_size)
+             .field("multi_vgpu_supported", &self.multi_vgpu_supported)
+             .field("vdev_id", &HexFormat(self.vdev_id))
+             .field("pdev_id", &HexFormat(self.pdev_id))
+@@ -106,7 +116,7 @@ mod test {
+     fn verify_sizes() {
+         assert_eq!(
+             mem::size_of::<NvA082CtrlCmdHostVgpuDeviceGetVgpuTypeInfoParams>(),
+-            0x738
++            0x918
+         );
+     }
+ }
+
+From 1fcaae9ad8748f7c435632c327e683d642ecaa93 Mon Sep 17 00:00:00 2001
+From: Coia Prant <coiaprant@gmail.com>
+Date: Thu, 7 Aug 2025 13:27:16 +0800
+Subject: [PATCH 2/2] fix: spoof Maxwell 2.0 and Pascal cards to T4
+
+For next vGPU release, only Tesla T4 are supported.
+
+- Maxwell 2.0 and Pascal supports end in vGPU 16.x
+- Maxwell and Volta supports end in vGPU 19.x
+- RTX 6000, 8000 supports end in vGPU 19.x
+
+Signed-off-by: Coia Prant <coiaprant@gmail.com>
+---
+ src/lib.rs | 10 ++++++++--
+ 1 file changed, 8 insertions(+), 2 deletions(-)
+
+diff --git a/src/lib.rs b/src/lib.rs
+index 3e6d968..b44b3b7 100644
+--- a/src/lib.rs
++++ b/src/lib.rs
+@@ -362,12 +362,18 @@ pub unsafe extern "C" fn ioctl(fd: RawFd, request: c_ulong, argp: *mut c_void) -
+                 // Maxwell 2.0
+                 0x13c0..=0x1436 | 0x1617..=0x1667 | 0x17c2..=0x17fd => {
+                     // Tesla M60
+-                    (0x13f2, actual_sub_system_id)
++                    // (0x13f2, actual_sub_system_id)
++                    
++                    // Tesla T4
++                    (0x1eb8, 0x12a2)
+                 }
+                 // Pascal
+                 0x15f0 | 0x15f1 | 0x1b00..=0x1d56 | 0x1725..=0x172f => {
+                     // Tesla P40
+-                    (0x1b38, actual_sub_system_id)
++                    // (0x1b38, actual_sub_system_id)
++
++                    // Tesla T4
++                    (0x1eb8, 0x12a2)
+                 }
+                 // GV100 Volta
+                 //

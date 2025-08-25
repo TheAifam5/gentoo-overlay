@@ -42,24 +42,27 @@ CRATES="
 	winnow@0.7.13
 "
 
-inherit systemd cargo
+inherit cargo
 
 DESCRIPTION="Unlock vGPU functionality for consumer-grade GPUs on Linux"
-HOMEPAGE="https://github.com/mbilker/${PN}"
+HOMEPAGE="https://github.com/mbilker/vgpu_unlock-rs"
 
 if [ ${PV} == "9999" ]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/mbilker/${PN}.git"
 else
 	SRC_URI="https://github.com/mbilker/${PN}/archive/refs/tags/v${PV}.tar.gz -> ${P}.tar.gz
-		$(cargo_crate_uris)"
-	KEYWORDS="~amd64 ~x86"
+		${CARGO_CRATE_URIS}"
+	KEYWORDS="-* ~amd64"
 fi
 
-LICENSE=""
-# Dependent crate licenses
-LICENSE+=" MIT Unicode-DFS-2016"
+LICENSE="MIT Unicode-DFS-2016"
 SLOT="0"
+
+PATCHES=(
+	"${FILESDIR}"/ba66a6c6eeb16eb8e2d2ec368d6605b974070d4b.patch # Support vGPU 18.x
+	"${FILESDIR}"/2b08855f80739ac75b0ca2528ef6b6b599a5086e.patch # Support vGPU 19.x
+)
 
 src_unpack() {
 	default
