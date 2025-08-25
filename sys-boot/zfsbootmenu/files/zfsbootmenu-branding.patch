@@ -1,0 +1,22 @@
+diff --git a/etc/zfsbootmenu/config.yaml b/etc/zfsbootmenu/config.yaml
+index 9e66865..4ebb8c6 100644
+--- a/etc/zfsbootmenu/config.yaml
++++ b/etc/zfsbootmenu/config.yaml
+@@ -7,14 +7,15 @@ Global:
+   InitCPIO: false
+   InitCPIOConfig: /etc/zfsbootmenu/mkinitcpio.conf
+ Components:
+-  ImageDir: /boot/efi/EFI/void
++  ImageDir: /boot/efi/EFI/gentoo
+   Versions: 3
+   Enabled: true
+   syslinux:
+     Config: /boot/syslinux/syslinux.cfg
+     Enabled: false
+ EFI:
+-  ImageDir: /boot/efi/EFI/void
++  ImageDir: /boot/efi/EFI/gentoo
++  Stub: /usr/lib/systemd/boot/efi/linuxx64.elf.stub
+   Versions: false
+   Enabled: false
+ Kernel:
