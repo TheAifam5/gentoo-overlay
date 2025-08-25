@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>theaifam5@gmail.com</email>
+    <name>TheAifam5</name>
+  </maintainer>
+  <longdescription>
+    This tool is meant to provide a really quick way to setup various memflow connectors, OS layers, utilities, and more.
+  </longdescription>
+  <upstream>
+    <remote-id type="github">memflow/memflowup</remote-id>
+  </upstream>
+</pkgmetadata>
