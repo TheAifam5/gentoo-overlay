@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>theaifam5@gmail.com</email>
+    <name>TheAifam5</name>
+  </maintainer>
+  <longdescription lang="en">
+    The talosctl tool packs a lot of power into a small package. It acts as a reference implementation for the Talos API, but it also handles a lot of conveniences for the use of Talos and its clusters.
+  </longdescription>
+  <upstream>
+    <remote-id type="github">siderolabs/talos</remote-id>
+  </upstream>
+</pkgmetadata>
