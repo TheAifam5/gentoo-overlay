@@ -1,0 +1,18 @@
+[Desktop Entry]
+Name=Kui
+Comment=Framework for Enhancing CLIs with Graphics
+GenericName=Utility
+Exec=/usr/bin/kui %F
+Icon=kui
+Type=Application
+StartupNotify=false
+StartupWMClass=Kui
+Categories=Utility;Development;
+MimeType=text/plain;
+Actions=new-empty-window;
+Keywords=kui;
+
+[Desktop Action new-empty-window]
+Name=New Empty Window
+Exec=/usr/bin/kui --new-window %F
+Icon=kui
