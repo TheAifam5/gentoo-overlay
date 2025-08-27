@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>theaifam5@gmail.com</email>
+    <name>TheAifam5</name>
+  </maintainer>
+  <longdescription lang="en">
+    Open source collection of Linux drivers for Razer devices to control Razer lighting and other features.
+  </longdescription>
+  <upstream>
+    <remote-id type="github">openrazer/openrazer</remote-id>
+  </upstream>
+</pkgmetadata>
