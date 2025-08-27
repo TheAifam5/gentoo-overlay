@@ -77,6 +77,7 @@ src_prepare() {
 	# kernel-2_src_prepare doesn't apply PATCHES(). Chosen genpatches are also applied here.
 	eapply "${WORKDIR}"/*.patch
 	default
+	rm "${S}/tools/testing/selftests/tc-testing/action-ebpf"
 }
 
 pkg_postinst() {
