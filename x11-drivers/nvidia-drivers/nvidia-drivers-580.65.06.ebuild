@@ -96,6 +96,7 @@ BDEPEND="
 	vgpu? (
 		dev-util/xxd
 		dev-util/patchelf
+		app-misc/jq
 	)
 "
 
