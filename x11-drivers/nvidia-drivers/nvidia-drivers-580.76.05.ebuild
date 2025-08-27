@@ -365,18 +365,18 @@ EOF
 			sed -i "s|${NV_GRID_VER_ESCAPED}|${PV_ESCAPED}|g" libnvidia-vg{pu,xcfg}.so.${PV} nvidia-{xid-logd,vgpu{d,-mgr}} || die
 		fi
 
-		# MOV EAX, 1
+		# MOV EAX, 1 (offset 0)
 		# RET
-		patch_file "kernel/nvidia/nv-kernel.o_binary" 0xEB624 "B8 01 00 00 00 C3" || die
-		patch_file "kernel-open/nvidia/nv-kernel.o_binary" 0xEB624 "B8 01 00 00 00 C3" || die
+		patch_file "kernel/nvidia/nv-kernel.o_binary" 0xEB694 "B8 01 00 00 00 C3" || die
+		patch_file "kernel-open/nvidia/nv-kernel.o_binary" 0xEB694 "B8 01 00 00 00 C3" || die
 
-		# override to JMP
-		patch_file "kernel/nvidia/nv-kernel.o_binary" 0x5F58DB "E9 A0 00 00 00" || die
-		patch_file "kernel-open/nvidia/nv-kernel.o_binary" 0x5F58DB "E9 A0 00 00 00" || die
+		# override to JMP (offset 0)
+		patch_file "kernel/nvidia/nv-kernel.o_binary" 0x5F645B "E9 A0 00 00 00" || die
+		patch_file "kernel-open/nvidia/nv-kernel.o_binary" 0x5F645B "E9 A0 00 00 00" || die
 
-		# set value to 1
-		patch_file "kernel/nvidia/nv-kernel.o_binary" 0x5F5983 "01" || die
-		patch_file "kernel-open/nvidia/nv-kernel.o_binary" 0x5F5983 "01" || die
+		# set value to 1 (offset 3)
+		patch_file "kernel/nvidia/nv-kernel.o_binary" 0x5F6503 "01" || die
+		patch_file "kernel-open/nvidia/nv-kernel.o_binary" 0x5F6503 "01" || die
 
 		# Make libvgpu_unlock.so required
 		patchelf --add-needed libvgpu_unlock.so nvidia-{xid-logd,vgpu{d,-mgr},smi} || die
