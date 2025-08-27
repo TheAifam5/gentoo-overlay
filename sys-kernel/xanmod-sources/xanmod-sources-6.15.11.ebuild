@@ -44,9 +44,8 @@ src_unpack() {
 }
 
 pkg_postinst() {
-	elog "MICROCODES"
 	elog "Use xanmod-sources with microcodes"
-	elog "Read https://wiki.gentoo.org/wiki/Intel_microcode"
+	elog "Read https://wiki.gentoo.org/wiki/Microcode"
 }
 
 pkg_postrm() {
