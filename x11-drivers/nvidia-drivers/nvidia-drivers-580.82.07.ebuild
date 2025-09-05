@@ -10,7 +10,7 @@ inherit readme.gentoo-r1 systemd toolchain-funcs unpacker user-info
 MODULES_KERNEL_MAX=6.16
 NV_URI="https://download.nvidia.com/XFree86/"
 
-NV_GRID_VER="580.65.05"
+NV_GRID_VER="580.82.02"
 
 DESCRIPTION="NVIDIA Accelerated Graphics Driver"
 HOMEPAGE="https://www.nvidia.com/"
@@ -32,7 +32,10 @@ LICENSE="
 SLOT="0/${PV%%.*}"
 KEYWORDS="-* ~amd64 ~arm64"
 IUSE="+X abi_x86_32 abi_x86_64 kernel-open persistenced powerd +static-libs +tools wayland vgpu"
-REQUIRED_USE="kernel-open? ( modules )"
+REQUIRED_USE="
+	kernel-open? ( modules !vgpu )
+	vgpu? ( abi_x86_64 )
+"
 
 COMMON_DEPEND="
 	acct-group/video
@@ -137,7 +140,7 @@ patch_file() {
     # Convert replacement to binary safely
     printf "%s" "$replacement_nospace" | xxd -r -p | dd of="$file" bs=1 seek="$offset" count=$((${#replacement_nospace}/2)) conv=notrunc status=none
 
-    echo "File patched successfully at offset $offset!"
+    echo "File $file patched successfully at offset $offset!"
 }
 
 pkg_setup() {
@@ -367,16 +370,16 @@ EOF
 
 		# MOV EAX, 1 (offset 0)
 		# RET
-		patch_file "kernel/nvidia/nv-kernel.o_binary" 0xEB694 "B8 01 00 00 00 C3" || die
-		patch_file "kernel-open/nvidia/nv-kernel.o_binary" 0xEB694 "B8 01 00 00 00 C3" || die
+		patch_file "kernel/nvidia/nv-kernel.o_binary" 0xEB6A4 "B8 01 00 00 00 C3" || die
+		# patch_file "kernel-open/nvidia/nv-kernel.o_binary" 0xEB6A4 "B8 01 00 00 00 C3" || die
 
 		# override to JMP (offset 0)
-		patch_file "kernel/nvidia/nv-kernel.o_binary" 0x5F645B "E9 A0 00 00 00" || die
-		patch_file "kernel-open/nvidia/nv-kernel.o_binary" 0x5F645B "E9 A0 00 00 00" || die
+		patch_file "kernel/nvidia/nv-kernel.o_binary" 0x5F6DBB "E9 A0 00 00 00" || die
+		# patch_file "kernel-open/nvidia/nv-kernel.o_binary" 0x5F6DBB "E9 A0 00 00 00" || die
 
 		# set value to 1 (offset 3)
-		patch_file "kernel/nvidia/nv-kernel.o_binary" 0x5F6503 "01" || die
-		patch_file "kernel-open/nvidia/nv-kernel.o_binary" 0x5F6503 "01" || die
+		patch_file "kernel/nvidia/nv-kernel.o_binary" 0x5F6E63 "01" || die
+		# patch_file "kernel-open/nvidia/nv-kernel.o_binary" 0x5F6E63 "01" || die
 
 		# Make libvgpu_unlock.so required
 		patchelf --add-needed libvgpu_unlock.so nvidia-{xid-logd,vgpu{d,-mgr},smi} || die
