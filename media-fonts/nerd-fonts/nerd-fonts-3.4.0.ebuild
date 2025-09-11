@@ -190,7 +190,7 @@ CHECKREQS_DISK_BUILD="3G"
 CHECKREQS_DISK_USR="4G"
 
 FONT_CONF=( "${S}/10-nerd-font-symbols.conf" )
-FONT_S=${S}
+FONT_S="${S}"
 
 pkg_pretend() {
 	check-reqs_pkg_setup
@@ -211,13 +211,16 @@ src_install() {
 	otf_file_number="$(find "${S}" -regex '.*\.otf' | wc -l)"
 	ttf_file_number="$(find "${S}" -regex '.*\.ttf' | wc -l)"
 
-	if [[ ${otf_file_number} -eq 0 ]]; then
+	if [[ ${otf_file_number} -gt 0 ]]; then
 		font_filetypes[otf]=
 	fi
 
-	if [[ ${ttf_file_number} -eq 0 ]]; then
+	if [[ ${ttf_file_number} -gt 0 ]]; then
 		font_filetypes[ttf]=
 	fi
+
+	einfo "OTF files found: ${otf_file_number}"
+	einfo "TTF files found: ${ttf_file_number}"
 
 	FONT_SUFFIX="${!font_filetypes[@]}"
 
