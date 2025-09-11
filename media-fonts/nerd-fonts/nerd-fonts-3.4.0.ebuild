@@ -3,34 +3,18 @@
 
 EAPI=8
 
-inherit font check-reqs
-
-DESCRIPTION="Iconic font aggregator, and collection"
-HOMEPAGE="https://nerdfonts.com https://github.com/ryanoasis/nerd-fonts"
-RESTRICT="mirror"
-
-LICENSE="
-	MIT
-	OFL-1.1
-	Apache-2.0
-	CC-BY-SA-4.0
-	BitstreamVera
-	BSD
-	WTFPL-2
-	Vic-Fieger-License
-	UbuntuFontLicense-1.0
-"
-SLOT="0"
-KEYWORDS="~amd64 ~x86"
+MY_URI="https://github.com/ryanoasis/${PN}/releases/download/v${PV}"
 
 # curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest \
 #   | jq -r '.assets[].name | select(endswith(".tar.xz")) | split(".") | .[0] | select(test("(?i)symbolsonly") | not)'
 FONTS=(
 	0xProto
 	3270
+	AdwaitaMono
 	Agave
 	AnonymousPro
 	Arimo
+	AtkinsonHyperlegibleMono
 	AurulentSansMono
 	BigBlueTerminal
 	BitstreamVeraSansMono
@@ -43,6 +27,7 @@ FONTS=(
 	D2Coding
 	DaddyTimeMono
 	DejaVuSansMono
+	DepartureMono
 	DroidSansMono
 	EnvyCodeR
 	FantasqueSansMono
@@ -94,20 +79,23 @@ FONTS=(
 	VictorMono
 	ZedMono
 )
-
 IUSE_FLAGS=(${FONTS[*],,})
-IUSE="${IUSE_FLAGS[*]}"
-REQUIRED_USE="|| ( ${IUSE_FLAGS[*]} )"
+
+inherit font check-reqs
+
+DESCRIPTION="Iconic font aggregator, and collection"
+HOMEPAGE="https://nerdfonts.com https://github.com/ryanoasis/nerd-fonts"
 
 # curl -s https://api.github.com/repos/ryanoasis/nerd-fonts/releases/latest
 #  | jq -r '.assets[] | select(.name | endswith(".tar.xz")) | (.name | split(".") | .[0] | ascii_downcase) + "? ( \"${MY_URI}/" + .name + "\" -> \"${PN}-" + (.name | split(".") | .[0] | ascii_downcase) + "-${PV}.tar.xz\" )"'
-MY_URI="https://github.com/ryanoasis/${PN}/releases/download/v${PV}"
 SRC_URI="
 	0xproto? ( "${MY_URI}/0xProto.tar.xz" -> "${PN}-0xproto-${PV}.tar.xz" )
 	3270? ( "${MY_URI}/3270.tar.xz" -> "${PN}-3270-${PV}.tar.xz" )
+	adwaitamono? ( "${MY_URI}/AdwaitaMono.tar.xz" -> "${PN}-adwaitamono-${PV}.tar.xz" )
 	agave? ( "${MY_URI}/Agave.tar.xz" -> "${PN}-agave-${PV}.tar.xz" )
 	anonymouspro? ( "${MY_URI}/AnonymousPro.tar.xz" -> "${PN}-anonymouspro-${PV}.tar.xz" )
 	arimo? ( "${MY_URI}/Arimo.tar.xz" -> "${PN}-arimo-${PV}.tar.xz" )
+	atkinsonhyperlegiblemono? ( "${MY_URI}/AtkinsonHyperlegibleMono.tar.xz" -> "${PN}-atkinsonhyperlegiblemono-${PV}.tar.xz" )
 	aurulentsansmono? ( "${MY_URI}/AurulentSansMono.tar.xz" -> "${PN}-aurulentsansmono-${PV}.tar.xz" )
 	bigblueterminal? ( "${MY_URI}/BigBlueTerminal.tar.xz" -> "${PN}-bigblueterminal-${PV}.tar.xz" )
 	bitstreamverasansmono? ( "${MY_URI}/BitstreamVeraSansMono.tar.xz" -> "${PN}-bitstreamverasansmono-${PV}.tar.xz" )
@@ -120,6 +108,7 @@ SRC_URI="
 	d2coding? ( "${MY_URI}/D2Coding.tar.xz" -> "${PN}-d2coding-${PV}.tar.xz" )
 	daddytimemono? ( "${MY_URI}/DaddyTimeMono.tar.xz" -> "${PN}-daddytimemono-${PV}.tar.xz" )
 	dejavusansmono? ( "${MY_URI}/DejaVuSansMono.tar.xz" -> "${PN}-dejavusansmono-${PV}.tar.xz" )
+	departuremono? ( "${MY_URI}/DepartureMono.tar.xz" -> "${PN}-departuremono-${PV}.tar.xz" )
 	droidsansmono? ( "${MY_URI}/DroidSansMono.tar.xz" -> "${PN}-droidsansmono-${PV}.tar.xz" )
 	envycoder? ( "${MY_URI}/EnvyCodeR.tar.xz" -> "${PN}-envycoder-${PV}.tar.xz" )
 	fantasquesansmono? ( "${MY_URI}/FantasqueSansMono.tar.xz" -> "${PN}-fantasquesansmono-${PV}.tar.xz" )
@@ -174,6 +163,25 @@ SRC_URI="
 	victormono? ( "${MY_URI}/VictorMono.tar.xz" -> "${PN}-victormono-${PV}.tar.xz" )
 	zedmono? ( "${MY_URI}/ZedMono.tar.xz" -> "${PN}-zedmono-${PV}.tar.xz" )
 "
+S="${WORKDIR}"
+LICENSE="
+	MIT
+	OFL-1.1
+	Apache-2.0
+	CC-BY-SA-4.0
+	BitstreamVera
+	BSD
+	WTFPL-2
+	Vic-Fieger-License
+	UbuntuFontLicense-1.0
+"
+
+SLOT="0"
+KEYWORDS="~amd64 ~x86"
+IUSE="${IUSE_FLAGS[*]}"
+REQUIRED_USE="|| ( ${IUSE_FLAGS[*]} )"
+
+RESTRICT="mirror"
 
 DEPEND="app-arch/xz-utils"
 RDEPEND="media-libs/fontconfig"
@@ -181,7 +189,6 @@ RDEPEND="media-libs/fontconfig"
 CHECKREQS_DISK_BUILD="3G"
 CHECKREQS_DISK_USR="4G"
 
-S="${WORKDIR}"
 FONT_CONF=( "${S}/10-nerd-font-symbols.conf" )
 FONT_S=${S}
 
@@ -201,14 +208,14 @@ src_install() {
 	declare -A font_filetypes
 	local otf_file_number ttf_file_number
 
-	otf_file_number=$(find ${S} -regex '.*\.otf' | wc -l)
-	ttf_file_number=$(find ${S} -regex '.*\.ttf' | wc -l)
+	otf_file_number="$(find "${S}" -regex '.*\.otf' | wc -l)"
+	ttf_file_number="$(find "${S}" -regex '.*\.ttf' | wc -l)"
 
-	if [[ ${otf_file_number} != 0 ]]; then
+	if [[ ${otf_file_number} -eq 0 ]]; then
 		font_filetypes[otf]=
 	fi
 
-	if [[ ${ttf_file_number} != 0 ]]; then
+	if [[ ${ttf_file_number} -eq 0 ]]; then
 		font_filetypes[ttf]=
 	fi
 
