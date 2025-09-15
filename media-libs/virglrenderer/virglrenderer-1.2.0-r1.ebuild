@@ -21,7 +21,7 @@ HOMEPAGE="https://virgil3d.github.io/"
 
 LICENSE="MIT"
 SLOT="0"
-IUSE="static-libs test +egl glx minigbm-allocation venus venus-validate vulkan-dload vulkan-preload +check-gl-errors video_cards_asahi video_cards_freedreno video_cards_amdgpu +render-server-worker-process render-server-worker-thread render-server-worker-minijail vaapi tests valgrind tracing-percetto tracing-perfetto tracing-sysprof tracing-stderr unstable-apis"
+IUSE="static-libs test +egl glx minigbm-allocation venus venus-validate vulkan-dload vulkan-preload +check-gl-errors video_cards_asahi video_cards_freedreno video_cards_amdgpu +render-server-worker-process render-server-worker-thread render-server-worker-minijail vaapi valgrind tracing-percetto tracing-perfetto tracing-sysprof tracing-stderr unstable-apis"
 
 RDEPEND="
 	>=x11-libs/libdrm-2.4.50
@@ -76,7 +76,7 @@ src_configure() {
 		$(meson_use vulkan-preload)
 		$(meson_use check-gl-errors)
 		$(meson_use vaapi video)
-		$(meson_use tests)
+		$(meson_use test tests)
 		$(meson_use valgrind)
 		$(meson_use unstable-apis)
 	)

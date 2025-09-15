@@ -20,7 +20,6 @@
 			contexts</flag>
 		<flag name="render-server-worker-thread">Use a thread for rendering server worker contexts</flag>
 		<flag name="render-server-worker-minijail">Use Minijail for rendering server worker contexts</flag>
-		<flag name="tests">Enable unit tests</flag>
 
 		<flag name="tracing-percetto">Enable tracing via Percetto</flag>
 		<flag name="tracing-perfetto">Enable tracing via Perfetto</flag>
