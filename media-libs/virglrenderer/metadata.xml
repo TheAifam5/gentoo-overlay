@@ -10,9 +10,6 @@
 	</upstream>
 	<use>
 		<flag name="check-gl-errors">Treat host-side GL errors as fatal</flag>
-		<flag name="drm-renderer-amdgpu-experimental">Enable support for AMDGPU experimental DRM
-			renderer</flag>
-		<flag name="drm-renderer-msm">Enable support for MSM DRM renderer</flag>
 
 		<flag name="egl">Enable support for EGL platform</flag>
 		<flag name="glx">Enable support for GLX platform</flag>
@@ -35,6 +32,13 @@
 		<flag name="venus">Enable support for Venus</flag>
 		<flag name="venus-validate">Enable the validation layer for Venus</flag>
 
-		<flag name="video">Enable support for hardware video acceleration</flag>
+		<flag name="vulkan-dload">Enable support for dynamic loading of Vulkan</flag>
+		<flag name="vulkan-preload">
+			Enable Vulkan ICD preload inside the render server process.
+
+			WARNING! Enable with caution, because not all ICDs support being preloaded that is safe to fork. e.g. NV proprietary driver is not (see virglrenderer issue #630 for details)
+		</flag>
+
+		<flag name="vaapi">Enable support for hardware video acceleration</flag>
 	</use>
 </pkgmetadata>

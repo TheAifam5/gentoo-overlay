@@ -3,7 +3,8 @@
 
 EAPI=8
 
-inherit meson-multilib
+PYTHON_COMPAT=( python3_{11..14} )
+inherit meson python-any-r1
 
 if [[ ${PV} == "9999" ]]; then
 	EGIT_REPO_URI="https://anongit.freedesktop.org/git/virglrenderer.git"
@@ -20,7 +21,7 @@ HOMEPAGE="https://virgil3d.github.io/"
 
 LICENSE="MIT"
 SLOT="0"
-IUSE="static-libs +egl glx minigbm-allocation venus venus-validate +check-gl-errors drm-renderer-msm drm-renderer-amdgpu-experimental +render-server-worker-process render-server-worker-thread render-server-worker-minijail video tests valgrind tracing-percetto tracing-perfetto tracing-sysprof tracing-stderr unstable-apis"
+IUSE="static-libs test +egl glx minigbm-allocation venus venus-validate vulkan-dload vulkan-preload +check-gl-errors video_cards_asahi video_cards_freedreno video_cards_amdgpu +render-server-worker-process render-server-worker-thread render-server-worker-minijail vaapi tests valgrind tracing-percetto tracing-perfetto tracing-sysprof tracing-stderr unstable-apis"
 
 RDEPEND="
 	>=x11-libs/libdrm-2.4.50
@@ -28,11 +29,11 @@ RDEPEND="
 	render-server-worker-minijail? ( sys-apps/minijail )
 	venus? (
 		media-libs/vulkan-loader
-		gui-libs/egl-gbm[${MULTILIB_USEDEP}]
+		gui-libs/egl-gbm
 	)
 	minigbm-allocation? ( gui-libs/egl-gbm )
-	video? (
-		media-libs/libva
+	vaapi? (
+		media-libs/libva:=
 		media-libs/libva-compat[drm,egl?]
 		glx? ( media-libs/libva-compat[opengl] )
 	)
@@ -43,9 +44,15 @@ DEPEND="${RDEPEND}"
 
 BDEPEND="
 	glx? ( x11-base/xorg-proto )
+	venus? (
+		!vulkan-dload? ( media-libs/vulkan-loader )
+	)
 	dev-build/meson-format-array
-	dev-python/pyyaml
 	virtual/pkgconfig
+	${PYTHON_DEPS}
+	$(python_gen_any_dep "
+		dev-python/pyyaml[\${PYTHON_USEDEP}]
+	")
 "
 
 REQUIRED_USE="
@@ -54,23 +61,27 @@ REQUIRED_USE="
 	?? ( render-server-worker-process render-server-worker-thread render-server-worker-minijail )
 "
 
-# Most of the testsuite cannot run in our sandboxed environment, just don't
-# deal with it for now.
-RESTRICT="test"
+RESTRICT="!test? ( test )"
 
-multilib_src_configure() {
+python_check_deps() {
+	python_has_version -b "dev-python/pyyaml[${PYTHON_USEDEP}]" || return 1
+}
+
+src_configure() {
 	local emesonargs=(
 		-Ddefault_library=$(usex static-libs both shared)
 		$(meson_use minigbm-allocation minigbm_allocation)
 		$(meson_use venus)
+		$(meson_use vulkan-dload)
+		$(meson_use vulkan-preload)
 		$(meson_use check-gl-errors)
-		$(meson_use video)
+		$(meson_use vaapi video)
 		$(meson_use tests)
 		$(meson_use valgrind)
 		$(meson_use unstable-apis)
 	)
 
-	local platforms=()
+	local -a platforms=()
 	if use glx; then
 		platforms+=(glx)
 	fi
@@ -79,10 +90,7 @@ multilib_src_configure() {
 	fi
 
 	if [ ${#platforms[@]} -gt 0 ]; then
-		emesonargs+=(-Dplatforms="$(
-			IFS=,
-			echo "${platforms[*]}"
-		)")
+		emesonargs+=(-Dplatforms="$(IFS=,; echo "${platforms[*]}")")
 	else
 		die "No platform selected"
 	fi
@@ -94,19 +102,20 @@ multilib_src_configure() {
 	fi
 
 	local drm_renderers=()
-	if use drm-renderer-msm; then
+	if use video_cards_freedreno; then
 		drm_renderers+=(msm)
 	fi
 
-	if use drm-renderer-amdgpu-experimental; then
+	if use video_cards_amdgpu; then
 		drm_renderers+=(amdgpu-experimental)
 	fi
 
+	if use video_cards_asahi; then
+		drm_renderers+=(asahi)
+	fi
+
 	if [ ${#drm_renderers[@]} -gt 0 ]; then
-		emesonargs+=(-Ddrm-renderers="$(
-			IFS=,
-			echo "${drm_renderers[*]}"
-		)")
+		emesonargs+=(-Ddrm-renderers="$(IFS=,; echo "${drm_renderers[*]}")")
 	fi
 
 	if use render-server-worker-minijail; then
@@ -134,6 +143,8 @@ multilib_src_configure() {
 	meson_src_configure
 }
 
-multilib_src_install_all() {
-	find "${ED}/usr" -name 'lib*.la' -delete
+src_test() {
+	# Most of the testsuite cannot run in our sandboxed environment, just don't
+	# deal with it for now.  Instead lets run a subset of tests atleast.
+	meson_src_test test_virgl_gbm_resources test_fuzzer_formats
 }
