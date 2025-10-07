@@ -2,7 +2,7 @@
 # Distributed under the terms of the GNU General Public License v2
 
 EAPI=8
-inherit go-module bash-completion-r1 shell-completion
+inherit go-module shell-completion
 
 DESCRIPTION="The Multiple Runtime Version Manager"
 HOMEPAGE="https://asdf-vm.com/"
