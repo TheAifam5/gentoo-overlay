@@ -1,0 +1,28 @@
+From dcb1cd0ccb03c4d4960c1b1e1521c5eb09aa8374 Mon Sep 17 00:00:00 2001
+From: Robert Buchberger <robert@buchberger.cc>
+Date: Mon, 28 Jul 2025 11:02:24 +0200
+Subject: [PATCH] fix: nushell completions --ignore-errors deprecation
+
+---
+ internal/completions/asdf.nushell | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/internal/completions/asdf.nushell b/internal/completions/asdf.nushell
+index 52239f003..c8afdae94 100644
+--- a/internal/completions/asdf.nushell
++++ b/internal/completions/asdf.nushell
+@@ -95,12 +95,12 @@ module asdf {
+         let template = '(?P<name>.+)' + (
+                             $params |
+                             where enabled |
+-                            get --ignore-errors template |
++                            get --optional template |
+                             str join '' |
+                             str trim
+                         )
+ 
+-        let flags = ($params | where enabled | get --ignore-errors flag | default '' )
++        let flags = ($params | where enabled | get --optional flag | default '' )
+ 
+         ^asdf plugin list ...$flags | lines | parse -r $template | str trim
+     }

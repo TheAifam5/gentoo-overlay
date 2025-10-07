@@ -40,6 +40,11 @@ BDEPEND="
 
 RESTRICT="!test? ( test )"
 
+PATCHES=(
+	# fix: nushell completions --ignore-errors deprecation
+	"${FILESDIR}/dcb1cd0ccb03c4d4960c1b1e1521c5eb09aa8374.patch"
+)
+
 src_compile() {
 	local version
 
