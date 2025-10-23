@@ -24,7 +24,7 @@ fi
 RESTRICT="mirror"
 LICENSE="(MIT Apache-2.0 Apache-2.0) Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 CC0-1.0 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
 SLOT="0"
-IUSE="bash-completion elvish-completion fish-completion nushell-completion zsh-completion"
+IUSE="bash-completion elvish-completion fish-completion nushell-completion zsh-completion man"
 RDEPEND="
 	=dev-libs/libgit2-1.9*:=
 	sys-libs/zlib
@@ -54,6 +54,10 @@ src_configure() {
 src_install() {
 	default
 	cargo_src_install
+
+	if use man; then
+		./target/$(usex debug debug release)/cog generate-manpages "${ED}/usr/share/man/man1" || die "Failed to generate man pages"
+	fi
 
 	generate_completion() {
 		./target/$(usex debug debug release)/cog generate-completions "${1}" &> "cog.${1}" || die "Failed to generate $1 completion"
