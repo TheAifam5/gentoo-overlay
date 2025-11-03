@@ -10,19 +10,18 @@ CRATES="
 inherit shell-completion cargo
 
 DESCRIPTION="Cocogitto is a set of cli tools for the conventional commit and semver specifications."
-HOMEPAGE="https://github.com/${PN}/${PN}"
+HOMEPAGE="https://docs.cocogitto.io/"
 
 if [[ "${PV}" == *9999* ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/${PN}/${PN}.git"
 else
 	SRC_URI="https://github.com/${PN}/${PN}/archive/refs/tags/${PV}.tar.gz -> ${P}.tar.gz
-		$(cargo_crate_uris)"
+		${CARGO_CRATE_URIS}"
 	KEYWORDS="~amd64 ~x86"
 fi
 
-RESTRICT="mirror"
-LICENSE="(MIT Apache-2.0 Apache-2.0) Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 CC0-1.0 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
+LICENSE="MIT Apache-2.0 Apache-2.0-with-LLVM-exceptions BSD Boost-1.0 CC0-1.0 ISC MIT MPL-2.0 Unicode-DFS-2016 Unlicense ZLIB"
 SLOT="0"
 IUSE="bash-completion elvish-completion fish-completion nushell-completion zsh-completion man"
 RDEPEND="
@@ -34,6 +33,7 @@ RDEPEND="
 	zsh-completion? ( app-shells/zsh )
 	elvish-completion? ( app-shells/elvish )
 "
+RESTRICT="mirror"
 
 src_unpack() {
 	if [[ "${PV}" == *9999* ]]; then
