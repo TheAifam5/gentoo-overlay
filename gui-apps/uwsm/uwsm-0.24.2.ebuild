@@ -34,7 +34,7 @@ RDEPEND="
 			gui-apps/walker
 			gui-apps/fuzzel
 			gui-apps/wofi
-			|| ( x11-misc/rofi gui-apps/rofi-wayland )
+			|| ( x11-misc/rofi gui-apps/rofi-wayland gui-apps/rofi )
 			gui-apps/tofi
 			dev-libs/bemenu
 			gui-apps/wmenu
