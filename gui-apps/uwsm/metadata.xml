@@ -14,5 +14,6 @@
 			desktop entry from wayland-sessions directories</flag>
 		<flag name="uuctl">Enable dmenu-line support</flag>
 		<flag name="uwsm-app">Enable drop-in replacement for "uwsm app"</flag>
+		<flag name="wait-tray">Enable wait-tray hack</flag>
 	</use>
 </pkgmetadata>

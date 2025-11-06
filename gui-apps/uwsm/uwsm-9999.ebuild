@@ -17,7 +17,7 @@ fi
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="uuctl uwsm-app fumon select docs"
+IUSE="uuctl uwsm-app fumon select wait-tray docs"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="
@@ -54,6 +54,7 @@ src_configure() {
 		$(meson_feature uuctl)
 		$(meson_feature uwsm-app)
 		$(meson_feature fumon)
+		$(meson_feature wait-tray)
 		$(meson_feature docs man-pages)
 		-Ddocdir="/usr/share/doc/${PF}"
 		-Dlicensedir="/usr/share/licenses/${PF}"
