@@ -1537,7 +1537,7 @@ else
 		${CARGO_CRATE_URIS}
 	"
 	S="${WORKDIR}/${PN}-${MY_PV}"
-	KEYWORDS="~amd64 ~amd64"
+	KEYWORDS="~amd64 ~arm64"
 fi
 SRC_URI+="
 	amd64? (
@@ -1578,7 +1578,7 @@ DEPEND="
 	media-libs/vulkan-loader[X?]
 	net-analyzer/openbsd-netcat
 	net-misc/curl
-	sys-libs/zlib
+	virtual/zlib
 	x11-libs/libxcb:=
 	x11-libs/libxkbcommon[X?]
 "
