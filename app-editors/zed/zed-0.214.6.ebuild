@@ -3,8 +3,8 @@
 
 EAPI=8
 
-LLVM_COMPAT=( 20 )
-RUST_MIN_VER="1.90.0"
+LLVM_COMPAT=( 21 )
+RUST_MIN_VER="1.91.1"
 RUST_NEEDS_LLVM=1
 WEBRTC_VERSION="b99fd2c-6"
 
@@ -76,7 +76,7 @@ CRATES="
 	async-task@4.7.1
 	async-trait@0.1.89
 	async-tungstenite@0.31.0
-	async_zip@0.0.17
+	async_zip@0.0.18
 	asynchronous-codec@0.7.0
 	atoi@2.0.0
 	atoi_simd@0.16.1
@@ -579,6 +579,8 @@ CRATES="
 	json_dotpath@1.1.0
 	jsonschema@0.30.0
 	jsonwebtoken@9.3.1
+	jupyter-protocol@0.10.0
+	jupyter-websocket-client@0.15.0
 	khronos-egl@6.0.0
 	kqueue-sys@1.0.4
 	kqueue@1.1.1
@@ -664,6 +666,7 @@ CRATES="
 	nanoid@0.4.0
 	nanorand@0.7.0
 	native-tls@0.2.14
+	nbformat@0.15.0
 	ndk-context@0.1.1
 	ndk-sys@0.6.0+11769913
 	ndk@0.9.0
@@ -680,7 +683,7 @@ CRATES="
 	now@0.1.3
 	ntapi@0.4.1
 	nu-ansi-term@0.50.3
-	num-bigint-dig@0.8.4
+	num-bigint-dig@0.8.6
 	num-bigint@0.4.6
 	num-cmp@0.1.0
 	num-complex@0.4.6
@@ -914,8 +917,9 @@ CRATES="
 	rmp@0.8.14
 	rmpv@1.3.0
 	roxmltree@0.20.0
-	rsa@0.9.8
+	rsa@0.9.9
 	rtrb@0.3.2
+	runtimelib@0.30.0
 	rust-embed-impl@8.7.2
 	rust-embed-utils@8.7.2
 	rust-embed@8.7.2
@@ -1215,6 +1219,7 @@ CRATES="
 	unicode_categories@0.1.1
 	unindent@0.2.4
 	unsafe-libyaml@0.2.11
+	untrusted@0.7.1
 	untrusted@0.9.0
 	unty@0.0.4
 	url@2.5.7
@@ -1466,15 +1471,12 @@ declare -A GIT_CRATES=(
 	[dap-types]='https://github.com/zed-industries/dap-types;1b461b310481d01e02b2603c16d7144b926339f8;dap-types-%commit%/dap-types'
 	[gh-workflow-macros]='https://github.com/zed-industries/gh-workflow;3eaa84abca0778eb54272f45a312cb24f9a0b435;gh-workflow-%commit%/crates/gh-workflow-macros'
 	[gh-workflow]='https://github.com/zed-industries/gh-workflow;3eaa84abca0778eb54272f45a312cb24f9a0b435;gh-workflow-%commit%/crates/gh-workflow'
-	[jupyter-protocol]='https://github.com/ConradIrwin/runtimed;7130c804216b6914355d15d0b91ea91f6babd734;runtimed-%commit%/crates/jupyter-protocol'
-	[jupyter-websocket-client]='https://github.com/ConradIrwin/runtimed;7130c804216b6914355d15d0b91ea91f6babd734;runtimed-%commit%/crates/jupyter-websocket-client'
 	[libwebrtc]='https://github.com/zed-industries/livekit-rust-sdks;5f04705ac3f356350ae31534ffbc476abc9ea83d;livekit-rust-sdks-%commit%/libwebrtc'
 	[livekit-api]='https://github.com/zed-industries/livekit-rust-sdks;5f04705ac3f356350ae31534ffbc476abc9ea83d;livekit-rust-sdks-%commit%/livekit-api'
 	[livekit-protocol]='https://github.com/zed-industries/livekit-rust-sdks;5f04705ac3f356350ae31534ffbc476abc9ea83d;livekit-rust-sdks-%commit%/livekit-protocol'
 	[livekit-runtime]='https://github.com/zed-industries/livekit-rust-sdks;5f04705ac3f356350ae31534ffbc476abc9ea83d;livekit-rust-sdks-%commit%/livekit-runtime'
 	[livekit]='https://github.com/zed-industries/livekit-rust-sdks;5f04705ac3f356350ae31534ffbc476abc9ea83d;livekit-rust-sdks-%commit%/livekit'
 	[lsp-types]='https://github.com/zed-industries/lsp-types;b71ab4eeb27d9758be8092020a46fe33fbca4e33;lsp-types-%commit%'
-	[nbformat]='https://github.com/ConradIrwin/runtimed;7130c804216b6914355d15d0b91ea91f6babd734;runtimed-%commit%/crates/nbformat'
 	[notify-types]='https://github.com/zed-industries/notify;b4588b2e5aee68f4c0e100f140e808cbce7b1419;notify-%commit%/notify-types'
 	[notify]='https://github.com/zed-industries/notify;b4588b2e5aee68f4c0e100f140e808cbce7b1419;notify-%commit%/notify'
 	[nvim-rs]='https://github.com/KillTheMule/nvim-rs;764dd270c642f77f10f3e19d05cc178a6cbe69f3;nvim-rs-%commit%'
@@ -1503,7 +1505,6 @@ declare -A GIT_CRATES=(
 	[pet-windows-store]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-windows-store'
 	[pet]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet'
 	[rodio]='https://github.com/RustAudio/rodio;e2074c6c2acf07b57cf717e076bdda7a9ac6e70b;rodio-%commit%'
-	[runtimelib]='https://github.com/ConradIrwin/runtimed;7130c804216b6914355d15d0b91ea91f6babd734;runtimed-%commit%/crates/runtimelib'
 	[tiktoken-rs]='https://github.com/zed-industries/tiktoken-rs;30c32a4522751699adeda0d5840c71c3b75ae73d;tiktoken-rs-%commit%/tiktoken-rs'
 	[tree-sitter-cpp]='https://github.com/tree-sitter/tree-sitter-cpp;5cb9b693cfd7bfacab1d9ff4acac1a4150700609;tree-sitter-cpp-%commit%'
 	[tree-sitter-gitcommit]='https://github.com/zed-industries/tree-sitter-git-commit;88309716a69dd13ab83443721ba6e0b491d37ee9;tree-sitter-git-commit-%commit%'
