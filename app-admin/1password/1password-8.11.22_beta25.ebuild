@@ -22,7 +22,7 @@ S="${WORKDIR}"
 
 LICENSE="all-rights-reserved"
 SLOT="0"
-KEYWORDS="amd64 arm64"
+KEYWORDS="~amd64 ~arm64"
 IUSE="policykit cli"
 RESTRICT="mirror strip test bindist"
 
@@ -45,7 +45,7 @@ RDEPEND="
 	media-libs/mesa
 	net-misc/curl
 	sys-apps/dbus
-	sys-libs/zlib
+	virtual/zlib
 	sys-process/lsof
 	x11-libs/cairo
 	x11-libs/gtk+:3
