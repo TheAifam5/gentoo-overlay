@@ -1660,6 +1660,9 @@ src_prepare() {
 	sed -i "/^notify-types =/s/git = \".*\", rev = \"/path = \"${WORKDIR//\//\\/}\\/notify-/" Cargo.toml || die
 	sed -i "/^notify-types =/s/\" }$/\\/notify-types\" }/" Cargo.toml || die
 	sed -i "/^windows-capture =/s/git = \".*\", rev = \"/path = \"${WORKDIR//\//\\/}\\/windows-capture-/" Cargo.toml || die
+	
+	IFS=';' read -r calloop_crate_uri calloop_commit calloop_crate_dir calloop_host <<< "${GIT_CRATES["calloop"]}"
+	sed -i "/^calloop =/s/git = \".*\"/path = \"${WORKDIR//\//\\/}\\/calloop-${calloop_commit}\"/" Cargo.toml || die
 }
 
 src_configure() {
