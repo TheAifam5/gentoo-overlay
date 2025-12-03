@@ -4,7 +4,7 @@
 EAPI=8
 
 LLVM_COMPAT=( 21 )
-RUST_MIN_VER="1.91.1"
+RUST_MIN_VER="1.91.0"
 RUST_NEEDS_LLVM=1
 WEBRTC_VERSION="b99fd2c-6"
 
@@ -170,8 +170,7 @@ CRATES="
 	cached@0.56.0
 	cached_proc_macro@0.25.0
 	cached_proc_macro_types@0.1.1
-	calloop-wayland-source@0.3.0
-	calloop@0.13.0
+	calloop-wayland-source@0.4.1
 	camino@1.2.1
 	cap-fs-ext@3.4.4
 	cap-net-ext@3.4.4
@@ -229,6 +228,8 @@ CRATES="
 	const-oid@0.9.6
 	const-random-macro@0.1.16
 	const-random@0.1.18
+	const_format@0.2.35
+	const_format_proc_macros@0.2.34
 	constant_time_eq@0.1.5
 	constant_time_eq@0.3.1
 	convert_case@0.4.0
@@ -295,11 +296,8 @@ CRATES="
 	cxxbridge-flags@1.0.187
 	cxxbridge-macro@1.0.187
 	darling@0.20.11
-	darling@0.21.3
 	darling_core@0.20.11
-	darling_core@0.21.3
 	darling_macro@0.20.11
-	darling_macro@0.21.3
 	dashmap@5.5.3
 	dashmap@6.1.0
 	dasp_sample@0.11.0
@@ -543,7 +541,6 @@ CRATES="
 	imagesize@0.13.0
 	imara-diff@0.1.8
 	imgref@1.12.0
-	indexmap@1.9.3
 	indexmap@2.11.4
 	indoc@2.0.6
 	inherent@1.0.13
@@ -564,6 +561,7 @@ CRATES="
 	is-docker@0.2.0
 	is-terminal@0.4.16
 	is-wsl@0.4.0
+	is_executable@1.0.5
 	is_terminal_polyfill@1.70.1
 	itertools@0.10.5
 	itertools@0.11.0
@@ -816,6 +814,7 @@ CRATES="
 	polars@0.51.0
 	polling@3.11.0
 	pollster@0.2.5
+	pori@0.0.0
 	portable-atomic-util@0.2.4
 	portable-atomic@1.11.1
 	portable-pty@0.9.0
@@ -953,7 +952,6 @@ CRATES="
 	salsa20@0.10.2
 	same-file@1.0.6
 	schannel@0.1.28
-	schemars@0.9.0
 	schemars@1.0.4
 	schemars_derive@1.0.4
 	scoped-tls@1.0.1
@@ -991,8 +989,6 @@ CRATES="
 	serde_spanned@1.0.3
 	serde_stacker@0.1.14
 	serde_urlencoded@0.7.1
-	serde_with@3.15.0
-	serde_with_macros@3.15.0
 	serde_yaml@0.9.34+deprecated
 	serial2@0.2.33
 	sha1@0.10.6
@@ -1284,6 +1280,7 @@ CRATES="
 	wasmtime-wit-bindgen@29.0.1
 	wasmtime@29.0.1
 	wast@35.0.2
+	wax@0.6.0
 	wayland-backend@0.3.11
 	wayland-client@0.31.11
 	wayland-cursor@0.31.11
@@ -1465,6 +1462,7 @@ CRATES="
 
 declare -A GIT_CRATES=(
 	[async-pipe]='https://github.com/zed-industries/async-pipe-rs;82d00a04211cf4e1236029aa03e6b6ce2a74c553;async-pipe-rs-%commit%'
+	[calloop]='https://github.com/zed-industries/calloop;eb6b4fd17b9af5ecc226546bdd04185391b3e265;calloop-%commit%'
 	[candle-core]='https://github.com/zed-industries/candle;724d75eb3deebefe83f2a7381a45d4fac6eda383;candle-%commit%/candle-core'
 	[candle-nn]='https://github.com/zed-industries/candle;724d75eb3deebefe83f2a7381a45d4fac6eda383;candle-%commit%/candle-nn'
 	[candle-onnx]='https://github.com/zed-industries/candle;724d75eb3deebefe83f2a7381a45d4fac6eda383;candle-%commit%/candle-onnx'
@@ -1480,32 +1478,33 @@ declare -A GIT_CRATES=(
 	[notify-types]='https://github.com/zed-industries/notify;b4588b2e5aee68f4c0e100f140e808cbce7b1419;notify-%commit%/notify-types'
 	[notify]='https://github.com/zed-industries/notify;b4588b2e5aee68f4c0e100f140e808cbce7b1419;notify-%commit%/notify'
 	[nvim-rs]='https://github.com/KillTheMule/nvim-rs;764dd270c642f77f10f3e19d05cc178a6cbe69f3;nvim-rs-%commit%'
-	[pet-conda]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-conda'
-	[pet-core]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-core'
-	[pet-env-var-path]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-env-var-path'
-	[pet-fs]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-fs'
-	[pet-global-virtualenvs]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-global-virtualenvs'
-	[pet-homebrew]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-homebrew'
-	[pet-jsonrpc]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-jsonrpc'
-	[pet-linux-global-python]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-linux-global-python'
-	[pet-mac-commandlinetools]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-mac-commandlinetools'
-	[pet-mac-python-org]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-mac-python-org'
-	[pet-mac-xcode]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-mac-xcode'
-	[pet-pipenv]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-pipenv'
-	[pet-pixi]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-pixi'
-	[pet-poetry]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-poetry'
-	[pet-pyenv]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-pyenv'
-	[pet-python-utils]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-python-utils'
-	[pet-reporter]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-reporter'
-	[pet-telemetry]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-telemetry'
-	[pet-venv]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-venv'
-	[pet-virtualenv]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-virtualenv'
-	[pet-virtualenvwrapper]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-virtualenvwrapper'
-	[pet-windows-registry]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-windows-registry'
-	[pet-windows-store]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet-windows-store'
-	[pet]='https://github.com/microsoft/python-environment-tools;e97b9508befa0062929da65a01054d25c4be861c;python-environment-tools-%commit%/crates/pet'
+	[pet-conda]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-conda'
+	[pet-core]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-core'
+	[pet-env-var-path]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-env-var-path'
+	[pet-fs]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-fs'
+	[pet-global-virtualenvs]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-global-virtualenvs'
+	[pet-homebrew]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-homebrew'
+	[pet-jsonrpc]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-jsonrpc'
+	[pet-linux-global-python]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-linux-global-python'
+	[pet-mac-commandlinetools]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-mac-commandlinetools'
+	[pet-mac-python-org]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-mac-python-org'
+	[pet-mac-xcode]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-mac-xcode'
+	[pet-pipenv]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-pipenv'
+	[pet-pixi]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-pixi'
+	[pet-poetry]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-poetry'
+	[pet-pyenv]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-pyenv'
+	[pet-python-utils]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-python-utils'
+	[pet-reporter]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-reporter'
+	[pet-telemetry]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-telemetry'
+	[pet-uv]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-uv'
+	[pet-venv]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-venv'
+	[pet-virtualenv]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-virtualenv'
+	[pet-virtualenvwrapper]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-virtualenvwrapper'
+	[pet-windows-registry]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-windows-registry'
+	[pet-windows-store]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-windows-store'
+	[pet]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet'
 	[rodio]='https://github.com/RustAudio/rodio;e2074c6c2acf07b57cf717e076bdda7a9ac6e70b;rodio-%commit%'
-	[tiktoken-rs]='https://github.com/zed-industries/tiktoken-rs;30c32a4522751699adeda0d5840c71c3b75ae73d;tiktoken-rs-%commit%/tiktoken-rs'
+	[tiktoken-rs]='https://github.com/zed-industries/tiktoken-rs;7249f999c5fdf9bf3cc5c288c964454e4dac0c00;tiktoken-rs-%commit%/tiktoken-rs'
 	[tree-sitter-cpp]='https://github.com/tree-sitter/tree-sitter-cpp;5cb9b693cfd7bfacab1d9ff4acac1a4150700609;tree-sitter-cpp-%commit%'
 	[tree-sitter-gitcommit]='https://github.com/zed-industries/tree-sitter-git-commit;88309716a69dd13ab83443721ba6e0b491d37ee9;tree-sitter-git-commit-%commit%'
 	[tree-sitter-gomod]='https://github.com/camdencheek/tree-sitter-go-mod;2e886870578eeba1927a2dc4bd2e2b3f598c5f9a;tree-sitter-go-mod-%commit%'
