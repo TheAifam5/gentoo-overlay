@@ -14,8 +14,8 @@ CRATES="
 	addr2line@0.25.1
 	adler2@2.0.1
 	aes@0.8.4
-	agent-client-protocol-schema@0.6.2
-	agent-client-protocol@0.7.0
+	agent-client-protocol-schema@0.9.1
+	agent-client-protocol@0.8.0
 	ahash@0.7.8
 	ahash@0.8.12
 	aho-corasick@1.1.3
@@ -1165,7 +1165,7 @@ CRATES="
 	tracing@0.1.41
 	trait-variant@0.1.2
 	transpose@0.2.3
-	tree-sitter-bash@0.25.0
+	tree-sitter-bash@0.25.1
 	tree-sitter-c@0.23.4
 	tree-sitter-css@0.23.2
 	tree-sitter-diff@0.1.0
@@ -1467,8 +1467,8 @@ declare -A GIT_CRATES=(
 	[candle-nn]='https://github.com/zed-industries/candle;724d75eb3deebefe83f2a7381a45d4fac6eda383;candle-%commit%/candle-nn'
 	[candle-onnx]='https://github.com/zed-industries/candle;724d75eb3deebefe83f2a7381a45d4fac6eda383;candle-%commit%/candle-onnx'
 	[dap-types]='https://github.com/zed-industries/dap-types;1b461b310481d01e02b2603c16d7144b926339f8;dap-types-%commit%/dap-types'
-	[gh-workflow-macros]='https://github.com/zed-industries/gh-workflow;3eaa84abca0778eb54272f45a312cb24f9a0b435;gh-workflow-%commit%/crates/gh-workflow-macros'
-	[gh-workflow]='https://github.com/zed-industries/gh-workflow;3eaa84abca0778eb54272f45a312cb24f9a0b435;gh-workflow-%commit%/crates/gh-workflow'
+	[gh-workflow-macros]='https://github.com/zed-industries/gh-workflow;09acfdf2bd5c1d6254abefd609c808ff73547b2c;gh-workflow-%commit%/crates/gh-workflow-macros'
+	[gh-workflow]='https://github.com/zed-industries/gh-workflow;09acfdf2bd5c1d6254abefd609c808ff73547b2c;gh-workflow-%commit%/crates/gh-workflow'
 	[libwebrtc]='https://github.com/zed-industries/livekit-rust-sdks;5f04705ac3f356350ae31534ffbc476abc9ea83d;livekit-rust-sdks-%commit%/libwebrtc'
 	[livekit-api]='https://github.com/zed-industries/livekit-rust-sdks;5f04705ac3f356350ae31534ffbc476abc9ea83d;livekit-rust-sdks-%commit%/livekit-api'
 	[livekit-protocol]='https://github.com/zed-industries/livekit-rust-sdks;5f04705ac3f356350ae31534ffbc476abc9ea83d;livekit-rust-sdks-%commit%/livekit-protocol'
