@@ -4,7 +4,7 @@
 EAPI=8
 
 LLVM_COMPAT=( 21 )
-RUST_MIN_VER="1.91.0"
+RUST_MIN_VER="1.91.1"
 RUST_NEEDS_LLVM=1
 WEBRTC_VERSION="b99fd2c-6"
 
@@ -14,8 +14,8 @@ CRATES="
 	addr2line@0.25.1
 	adler2@2.0.1
 	aes@0.8.4
-	agent-client-protocol-schema@0.9.1
-	agent-client-protocol@0.8.0
+	agent-client-protocol-schema@0.10.0
+	agent-client-protocol@0.9.0
 	ahash@0.7.8
 	ahash@0.8.12
 	aho-corasick@1.1.3
@@ -41,8 +41,6 @@ CRATES="
 	approx@0.5.1
 	arbitrary@1.4.2
 	arg_enum_proc_macro@0.3.4
-	argminmax@0.6.3
-	array-init-cursor@0.2.1
 	arraydeque@0.5.1
 	arrayref@0.3.9
 	arrayvec@0.7.6
@@ -79,7 +77,6 @@ CRATES="
 	async_zip@0.0.18
 	asynchronous-codec@0.7.0
 	atoi@2.0.0
-	atoi_simd@0.16.1
 	atomic-waker@1.1.2
 	atomic@0.5.3
 	auditable-serde@0.8.0
@@ -122,13 +119,9 @@ CRATES="
 	base64ct@1.8.0
 	bigdecimal@0.4.8
 	bincode@1.3.3
-	bincode@2.0.1
-	bincode_derive@2.0.1
 	bindgen@0.71.1
 	bindgen@0.72.1
-	bit-set@0.5.3
 	bit-set@0.8.0
-	bit-vec@0.6.3
 	bit-vec@0.8.0
 	bit_field@0.10.3
 	bitflags@1.3.2
@@ -138,17 +131,15 @@ CRATES="
 	blade-graphics@0.7.0
 	blade-macros@0.3.0
 	blade-util@0.3.0
-	blake3@1.8.2
 	block-buffer@0.10.4
 	block-padding@0.3.3
 	block2@0.6.2
 	block@0.1.6
 	blocking@1.6.2
 	bm25@2.3.2
-	borrow-or-share@0.2.2
+	borrow-or-share@0.2.4
 	borsh-derive@1.5.7
 	borsh@1.5.7
-	boxcar@0.2.14
 	brotli-decompressor@5.0.0
 	brotli@8.0.2
 	bstr@1.12.0
@@ -182,7 +173,6 @@ CRATES="
 	cargo_metadata@0.19.2
 	cargo_toml@0.21.0
 	cast@0.3.0
-	castaway@0.2.4
 	cbc@0.1.2
 	cbindgen@0.28.0
 	cc@1.2.41
@@ -193,7 +183,6 @@ CRATES="
 	cfg_aliases@0.1.1
 	cfg_aliases@0.2.1
 	cgl@0.3.2
-	chrono-tz@0.10.4
 	chrono@0.4.42
 	chunked_transfer@1.5.0
 	ciborium-io@0.2.2
@@ -218,9 +207,7 @@ CRATES="
 	color_quant@1.1.0
 	colorchoice@1.0.4
 	combine@4.6.7
-	comfy-table@7.2.1
 	command-fds@0.3.2
-	compact_str@0.9.0
 	compression-codecs@0.4.31
 	compression-core@0.4.29
 	concurrent-queue@2.5.0
@@ -231,7 +218,6 @@ CRATES="
 	const_format@0.2.35
 	const_format_proc_macros@0.2.34
 	constant_time_eq@0.1.5
-	constant_time_eq@0.3.1
 	convert_case@0.4.0
 	convert_case@0.8.0
 	core-foundation-sys@0.8.7
@@ -278,8 +264,6 @@ CRATES="
 	crossbeam-queue@0.3.12
 	crossbeam-utils@0.8.21
 	crossbeam@0.8.4
-	crossterm@0.29.0
-	crossterm_winapi@0.9.1
 	crunchy@0.2.4
 	crypto-bigint@0.4.9
 	crypto-bigint@0.5.5
@@ -304,7 +288,6 @@ CRATES="
 	data-encoding@2.9.0
 	data-url@0.3.2
 	dbus@0.9.9
-	debug_unsafe@0.1.3
 	debugid@0.8.0
 	deflate64@0.1.10
 	der@0.6.1
@@ -330,7 +313,6 @@ CRATES="
 	dispatch@0.2.0
 	displaydoc@0.2.5
 	dlib@0.5.2
-	document-features@0.2.11
 	documented-macros@0.9.2
 	documented@0.9.2
 	dotenvy@0.15.7
@@ -375,7 +357,6 @@ CRATES="
 	errno@0.3.14
 	etagere@0.2.15
 	etcetera@0.8.0
-	ethnum@1.5.2
 	euclid@0.22.11
 	event-listener-strategy@0.5.4
 	event-listener@2.5.3
@@ -384,10 +365,7 @@ CRATES="
 	exr@1.73.0
 	extended@0.1.0
 	fallible-iterator@0.3.0
-	fallible-streaming-iterator@0.1.9
-	fancy-regex@0.13.0
-	fancy-regex@0.14.0
-	fast-float2@0.2.3
+	fancy-regex@0.16.2
 	fast-srgb8@1.0.0
 	fastrand@1.9.0
 	fastrand@2.3.0
@@ -405,7 +383,7 @@ CRATES="
 	float-ord@0.3.2
 	float8@0.4.2
 	float_next_after@1.0.0
-	fluent-uri@0.3.2
+	fluent-uri@0.4.1
 	flume@0.11.1
 	fnv@1.0.7
 	foldhash@0.1.5
@@ -425,7 +403,6 @@ CRATES="
 	freetype-sys@0.20.1
 	fs-set-times@0.20.3
 	fs2@0.4.3
-	fs4@0.13.1
 	fs_extra@1.3.0
 	fsevent-sys@3.1.0
 	fsevent-sys@4.1.0
@@ -460,6 +437,7 @@ CRATES="
 	gemm-f64@0.18.2
 	gemm@0.17.1
 	gemm@0.18.2
+	generator@0.8.7
 	generic-array@0.14.7
 	gethostname@1.1.0
 	getrandom@0.2.16
@@ -486,6 +464,7 @@ CRATES="
 	hashbrown@0.12.3
 	hashbrown@0.14.5
 	hashbrown@0.15.5
+	hashbrown@0.16.1
 	hashlink@0.10.0
 	hashlink@0.8.4
 	headers-core@0.2.0
@@ -575,7 +554,7 @@ CRATES="
 	jobserver@0.1.34
 	js-sys@0.3.81
 	json_dotpath@1.1.0
-	jsonschema@0.30.0
+	jsonschema@0.37.4
 	jsonwebtoken@9.3.1
 	jupyter-protocol@0.10.0
 	jupyter-websocket-client@0.15.0
@@ -599,17 +578,16 @@ CRATES="
 	libmimalloc-sys@0.1.44
 	libredox@0.1.10
 	libsqlite3-sys@0.30.1
-	libz-rs-sys@0.5.2
 	libz-sys@1.1.22
 	link-cplusplus@1.0.12
 	linkify@0.10.0
 	linux-raw-sys@0.11.0
 	linux-raw-sys@0.4.15
 	litemap@0.8.0
-	litrs@0.4.2
 	lmdb-master-sys@0.2.5
 	lock_api@0.4.14
 	log@0.4.28
+	loom@0.7.2
 	loop9@0.1.5
 	lru-slab@0.1.2
 	lru@0.12.5
@@ -619,8 +597,6 @@ CRATES="
 	lyon_geom@1.0.17
 	lyon_path@1.0.16
 	lyon_tessellation@1.0.16
-	lz4-sys@1.11.1+lz4-1.10.0
-	lz4@1.28.1
 	mac@0.1.1
 	mach2@0.4.3
 	mach2@0.5.0
@@ -678,7 +654,6 @@ CRATES="
 	normpath@1.5.0
 	notify-debouncer-mini@0.4.1
 	notify@6.1.1
-	now@0.1.3
 	ntapi@0.4.1
 	nu-ansi-term@0.50.3
 	num-bigint-dig@0.8.6
@@ -715,7 +690,6 @@ CRATES="
 	objc_id@0.1.1
 	object@0.36.7
 	object@0.37.3
-	object_store@0.12.4
 	once_cell@1.21.3
 	once_cell_polyfill@1.70.1
 	oo7@0.5.0
@@ -784,34 +758,12 @@ CRATES="
 	pkcs8@0.9.0
 	pkg-config@0.3.32
 	plain@0.2.3
-	planus@1.1.1
 	plist@1.8.0
 	plotters-backend@0.3.7
 	plotters-svg@0.3.7
 	plotters@0.3.7
 	png@0.17.16
 	png@0.18.0
-	polars-arrow-format@0.2.1
-	polars-arrow@0.51.0
-	polars-compute@0.51.0
-	polars-core@0.51.0
-	polars-dtype@0.51.0
-	polars-error@0.51.0
-	polars-expr@0.51.0
-	polars-io@0.51.0
-	polars-lazy@0.51.0
-	polars-mem-engine@0.51.0
-	polars-ops@0.51.0
-	polars-parquet-format@0.1.0
-	polars-parquet@0.51.0
-	polars-plan@0.51.0
-	polars-row@0.51.0
-	polars-schema@0.51.0
-	polars-sql@0.51.0
-	polars-stream@0.51.0
-	polars-time@0.51.0
-	polars-utils@0.51.0
-	polars@0.51.0
 	polling@3.11.0
 	pollster@0.2.5
 	pori@0.0.0
@@ -889,15 +841,13 @@ CRATES="
 	read-fonts@0.35.0
 	realfft@3.5.0
 	reborrow@0.5.5
-	recursive-proc-macro-impl@0.1.1
-	recursive@0.1.1
 	redox_syscall@0.2.16
 	redox_syscall@0.5.18
 	redox_users@0.4.6
 	redox_users@0.5.2
 	ref-cast-impl@1.0.25
 	ref-cast@1.0.25
-	referencing@0.30.0
+	referencing@0.37.4
 	regalloc2@0.11.2
 	regex-automata@0.4.13
 	regex-lite@0.1.8
@@ -912,7 +862,6 @@ CRATES="
 	ring@0.17.14
 	rkyv@0.7.45
 	rkyv_derive@0.7.45
-	rmp-serde@1.3.0
 	rmp@0.8.14
 	rmpv@1.3.0
 	roxmltree@0.20.0
@@ -987,7 +936,6 @@ CRATES="
 	serde_repr@0.1.20
 	serde_spanned@0.6.9
 	serde_spanned@1.0.3
-	serde_stacker@0.1.14
 	serde_urlencoded@0.7.1
 	serde_yaml@0.9.34+deprecated
 	serial2@0.2.33
@@ -1011,7 +959,6 @@ CRATES="
 	simplecss@0.2.2
 	simplelog@0.12.2
 	siphasher@1.0.1
-	skiplist@0.6.0
 	skrifa@0.37.0
 	slab@0.4.11
 	slotmap@1.0.7
@@ -1019,9 +966,6 @@ CRATES="
 	smart-default@0.7.1
 	smol@2.0.2
 	smol_str@0.2.2
-	snap@1.1.1
-	soa-rs-derive@0.8.0
-	soa-rs@0.8.1
 	socket2@0.5.10
 	socket2@0.6.1
 	spdx@0.10.9
@@ -1032,7 +976,6 @@ CRATES="
 	spki@0.7.3
 	sptr@0.3.2
 	sqlformat@0.2.6
-	sqlparser@0.53.0
 	sqlx-core@0.8.6
 	sqlx-macros-core@0.8.6
 	sqlx-macros@0.8.6
@@ -1046,7 +989,6 @@ CRATES="
 	stacksafe@0.1.4
 	static_assertions@1.1.0
 	stop-words@0.9.0
-	streaming-decompression@0.1.2
 	streaming-iterator@0.1.9
 	strength_reduce@0.2.4
 	strict-num@0.1.1
@@ -1157,12 +1099,15 @@ CRATES="
 	tower-service@0.3.3
 	tower@0.4.13
 	tower@0.5.2
-	tracing-attributes@0.1.30
-	tracing-core@0.1.34
+	tracing-attributes@0.1.31
+	tracing-core@0.1.35
 	tracing-log@0.2.0
 	tracing-serde@0.2.0
-	tracing-subscriber@0.3.20
-	tracing@0.1.41
+	tracing-subscriber@0.3.22
+	tracing-tracy@0.11.4
+	tracing@0.1.43
+	tracy-client-sys@0.27.0
+	tracy-client@0.18.3
 	trait-variant@0.1.2
 	transpose@0.2.3
 	tree-sitter-bash@0.25.1
@@ -1202,11 +1147,11 @@ CRATES="
 	unicode-bidi@0.3.18
 	unicode-ccc@0.2.0
 	unicode-ccc@0.4.0
+	unicode-general-category@1.1.0
 	unicode-ident@1.0.19
 	unicode-linebreak@0.1.5
 	unicode-normalization@0.1.24
 	unicode-properties@0.1.3
-	unicode-reverse@1.0.9
 	unicode-script@0.5.7
 	unicode-segmentation@1.12.0
 	unicode-vo@0.1.0
@@ -1217,7 +1162,6 @@ CRATES="
 	unsafe-libyaml@0.2.11
 	untrusted@0.7.1
 	untrusted@0.9.0
-	unty@0.0.4
 	url@2.5.7
 	urlencoding@2.1.3
 	usvg@0.45.1
@@ -1234,7 +1178,6 @@ CRATES="
 	vcpkg@0.2.15
 	version-compare@0.2.0
 	version_check@0.9.5
-	virtue@0.0.18
 	vscode_theme@0.2.0
 	vsimd@0.8.0
 	vswhom-sys@0.1.3
@@ -1418,7 +1361,6 @@ CRATES="
 	xml5ever@0.18.1
 	xmlparser@0.13.6
 	xmlwriter@0.1.0
-	xxhash-rust@0.8.15
 	yaml-rust2@0.8.1
 	yansi@1.0.1
 	yawc@0.2.5
@@ -1446,12 +1388,9 @@ CRATES="
 	zerovec@0.11.4
 	zip@0.6.6
 	zip@1.1.4
-	zlib-rs@0.5.2
 	zstd-safe@5.0.2+zstd.1.5.2
-	zstd-safe@7.2.4
 	zstd-sys@2.0.16+zstd.1.5.7
 	zstd@0.11.2+zstd.1.5.2
-	zstd@0.13.3
 	zune-core@0.4.12
 	zune-inflate@0.2.54
 	zune-jpeg@0.4.21
@@ -1504,7 +1443,7 @@ declare -A GIT_CRATES=(
 	[pet-windows-store]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet-windows-store'
 	[pet]='https://github.com/microsoft/python-environment-tools;1e86914c3ce2f3a08c0cedbcb0615a7f9fa7a5da;python-environment-tools-%commit%/crates/pet'
 	[rodio]='https://github.com/RustAudio/rodio;e2074c6c2acf07b57cf717e076bdda7a9ac6e70b;rodio-%commit%'
-	[tiktoken-rs]='https://github.com/zed-industries/tiktoken-rs;7249f999c5fdf9bf3cc5c288c964454e4dac0c00;tiktoken-rs-%commit%/tiktoken-rs'
+	[tiktoken-rs]='https://github.com/zed-industries/tiktoken-rs;2570c4387a8505fb8f1d3f3557454b474f1e8271;tiktoken-rs-%commit%/tiktoken-rs'
 	[tree-sitter-cpp]='https://github.com/tree-sitter/tree-sitter-cpp;5cb9b693cfd7bfacab1d9ff4acac1a4150700609;tree-sitter-cpp-%commit%'
 	[tree-sitter-gitcommit]='https://github.com/zed-industries/tree-sitter-git-commit;88309716a69dd13ab83443721ba6e0b491d37ee9;tree-sitter-git-commit-%commit%'
 	[tree-sitter-gomod]='https://github.com/camdencheek/tree-sitter-go-mod;2e886870578eeba1927a2dc4bd2e2b3f598c5f9a;tree-sitter-go-mod-%commit%'
