@@ -13,7 +13,7 @@ K_EXP_GENPATCHES_NOUSE="1"
 # is the wanted value here, but the genpatches patch set can be bumped if it includes some
 # important fixes. src_prepare() will handle deleting the updated vanilla linux patches.
 # See https://archives.gentoo.org/gentoo-kernel/ (or subscribe to the list) to see all patches.
-K_GENPATCHES_VER="13"
+K_GENPATCHES_VER="2"
 
 # -pf patch set already sets EXTRAVERSION to kernel Makefile.
 K_NOSETEXTRAVERSION="1"
@@ -77,7 +77,6 @@ src_prepare() {
 	# kernel-2_src_prepare doesn't apply PATCHES(). Chosen genpatches are also applied here.
 	eapply "${WORKDIR}"/*.patch
 	default
-	rm "${S}/tools/testing/selftests/tc-testing/action-ebpf"
 }
 
 pkg_postinst() {
