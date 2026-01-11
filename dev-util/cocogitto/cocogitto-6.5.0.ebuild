@@ -282,7 +282,7 @@ SLOT="0"
 IUSE="bash-completion elvish-completion fish-completion nushell-completion zsh-completion man"
 RDEPEND="
 	=dev-libs/libgit2-1.9*:=
-	sys-libs/zlib
+	virtual/zlib
 	bash-completion? ( app-shells/bash-completion )
 	fish-completion? ( app-shells/fish )
 	nushell-completion? ( app-shells/nushell )
@@ -308,7 +308,6 @@ src_configure() {
 }
 
 src_install() {
-	default
 	cargo_src_install
 
 	if use man; then
