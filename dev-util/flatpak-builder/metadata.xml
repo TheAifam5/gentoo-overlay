@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE pkgmetadata SYSTEM "https://www.gentoo.org/dtd/metadata.dtd">
+<pkgmetadata>
+  <maintainer type="person">
+    <email>theaifam5@gmail.com</email>
+    <name>TheAifam5</name>
+  </maintainer>
+  <upstream>
+    <remote-id type="github">flatpak/flatpak-builder</remote-id>
+  </upstream>
+  <use>
+    <flag name="yaml">Use libyaml for YAML support</flag>
+    <flag name="debugedit">Use debugedit instead of bundled one</flag>
+    <flag name="fuse">Enable FUSE support</flag>
+  </use>
+</pkgmetadata>
