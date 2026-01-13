@@ -37,7 +37,7 @@ CRATES="
 	assert-json-diff@2.0.2
 	async-backtrace-attributes@0.2.7
 	async-backtrace@0.2.7
-	async-compression@0.4.36
+	async-compression@0.4.37
 	async-recursion@1.1.1
 	async-trait@0.1.89
 	atomic-waker@1.1.2
@@ -50,7 +50,7 @@ CRATES="
 	base64@0.13.1
 	base64@0.21.7
 	base64@0.22.1
-	base64ct@1.8.2
+	base64ct@1.8.3
 	basic-toml@0.1.10
 	bcrypt-pbkdf@0.10.0
 	bech32@0.9.1
@@ -60,7 +60,7 @@ CRATES="
 	bit-set@0.6.0
 	bit-vec@0.7.0
 	bitflags@2.10.0
-	blake3@1.8.2
+	blake3@1.8.3
 	block-buffer@0.10.4
 	block-padding@0.3.3
 	blowfish@0.9.1
@@ -77,7 +77,7 @@ CRATES="
 	calm_io@0.1.1
 	calmio_filters@0.1.0
 	cbc@0.1.2
-	cc@1.2.51
+	cc@1.2.52
 	cesu8@1.1.0
 	cexpr@0.6.0
 	cfg-if@1.0.4
@@ -105,7 +105,7 @@ CRATES="
 	colored@3.0.0
 	combine@4.6.7
 	comfy-table@7.2.1
-	compression-codecs@0.4.35
+	compression-codecs@0.4.36
 	compression-core@0.4.31
 	confique-macro@0.0.12
 	confique@0.3.1
@@ -115,6 +115,7 @@ CRATES="
 	const_format@0.2.35
 	const_format_proc_macros@0.2.34
 	constant_time_eq@0.3.1
+	constant_time_eq@0.4.2
 	contracts@0.6.7
 	convert_case@0.10.0
 	cookie-factory@0.3.3
@@ -148,7 +149,7 @@ CRATES="
 	darling_macro@0.21.3
 	dashmap@5.5.3
 	dashmap@6.1.0
-	data-encoding@2.9.0
+	data-encoding@2.10.0
 	deadpool-runtime@0.1.4
 	deadpool@0.12.3
 	decoded-char@0.1.1
@@ -204,7 +205,7 @@ CRATES="
 	filetime@0.2.26
 	filetime_creation@0.2.0
 	find-crate@0.6.3
-	find-msvc-tools@0.1.6
+	find-msvc-tools@0.1.7
 	fixedbitset@0.5.7
 	flagset@0.4.7
 	flate2@1.1.5
@@ -233,40 +234,40 @@ CRATES="
 	fuzzy-matcher@0.3.7
 	generator@0.7.5
 	generic-array@0.14.7
-	getrandom@0.2.16
+	getrandom@0.2.17
 	getrandom@0.3.4
 	getset@0.1.6
 	ghash@0.5.1
 	gimli@0.32.3
-	gix-actor@0.37.0
+	gix-actor@0.37.1
 	gix-archive@0.26.0
 	gix-attributes@0.29.0
 	gix-bitmap@0.2.15
 	gix-blame@0.7.0
 	gix-chunk@0.4.12
-	gix-command@0.6.4
+	gix-command@0.6.5
 	gix-commitgraph@0.31.0
 	gix-config-value@0.16.0
 	gix-config@0.50.0
 	gix-credentials@0.34.1
-	gix-date@0.12.0
-	gix-diff@0.57.0
+	gix-date@0.12.1
+	gix-diff@0.57.1
 	gix-dir@0.19.0
 	gix-discover@0.45.0
-	gix-features@0.45.1
-	gix-filter@0.24.0
-	gix-fs@0.18.1
+	gix-features@0.45.2
+	gix-filter@0.24.1
+	gix-fs@0.18.2
 	gix-glob@0.23.0
-	gix-hash@0.21.1
+	gix-hash@0.21.2
 	gix-hashtable@0.11.0
 	gix-ignore@0.18.0
-	gix-index@0.45.0
-	gix-lock@20.0.0
+	gix-index@0.45.1
+	gix-lock@20.0.1
 	gix-mailmap@0.29.0
 	gix-negotiate@0.25.0
-	gix-object@0.54.0
+	gix-object@0.54.1
 	gix-odb@0.74.0
-	gix-pack@0.64.0
+	gix-pack@0.64.1
 	gix-packetline@0.20.0
 	gix-path@0.10.22
 	gix-pathspec@0.14.0
@@ -281,10 +282,10 @@ CRATES="
 	gix-shallow@0.7.0
 	gix-status@0.24.0
 	gix-submodule@0.24.0
-	gix-tempfile@20.0.0
-	gix-trace@0.1.16
+	gix-tempfile@20.0.1
+	gix-trace@0.1.17
 	gix-transport@0.52.1
-	gix-traverse@0.51.0
+	gix-traverse@0.51.1
 	gix-url@0.34.0
 	gix-utils@0.3.1
 	gix-validate@0.10.1
@@ -296,7 +297,7 @@ CRATES="
 	globset@0.4.18
 	globwalk@0.9.1
 	group@0.13.0
-	h2@0.4.12
+	h2@0.4.13
 	hash32@0.3.1
 	hashbrown@0.12.3
 	hashbrown@0.14.5
@@ -343,7 +344,7 @@ CRATES="
 	impl-tools@0.11.4
 	indenter@0.3.4
 	indexmap@1.9.3
-	indexmap@2.12.1
+	indexmap@2.13.0
 	indicatif@0.17.11
 	indicatif@0.18.3
 	indoc@2.0.7
@@ -360,10 +361,10 @@ CRATES="
 	itertools@0.13.0
 	itertools@0.14.0
 	itoa@1.0.17
-	jiff-static@0.2.17
+	jiff-static@0.2.18
 	jiff-tzdb-platform@0.1.3
 	jiff-tzdb@0.1.5
-	jiff@0.2.17
+	jiff@0.2.18
 	jni-sys@0.3.0
 	jni@0.21.1
 	jobserver@0.1.34
@@ -385,7 +386,7 @@ CRATES="
 	lexical-write-integer@1.0.6
 	lexical@7.0.5
 	libbz2-rs-sys@0.2.2
-	libc@0.2.179
+	libc@0.2.180
 	libloading@0.8.9
 	libm@0.2.15
 	libredox@0.1.12
@@ -405,7 +406,7 @@ CRATES="
 	luajit-src@210.6.5+7152e15
 	lzma-rs@0.3.0
 	lzma-rust2@0.13.0
-	lzma-rust2@0.15.5
+	lzma-rust2@0.15.6
 	lzma-rust@0.1.7
 	lzma-sys@0.1.20
 	matchers@0.2.0
@@ -517,7 +518,7 @@ CRATES="
 	proc-macro-error-attr@1.0.4
 	proc-macro-error2@2.0.1
 	proc-macro-error@1.0.4
-	proc-macro2@1.0.104
+	proc-macro2@1.0.105
 	prodash@30.0.1
 	prost-build@0.13.5
 	prost-derive@0.13.5
@@ -532,7 +533,7 @@ CRATES="
 	quinn-proto@0.11.13
 	quinn-udp@0.5.14
 	quinn@0.11.9
-	quote@1.0.42
+	quote@1.0.43
 	r-efi@5.3.0
 	rand@0.8.5
 	rand@0.9.2
@@ -560,7 +561,7 @@ CRATES="
 	roff@0.2.2
 	rops@0.1.6
 	rowan@0.15.17
-	rsa@0.9.9
+	rsa@0.9.10
 	rust-embed-impl@8.9.0
 	rust-embed-utils@8.9.0
 	rust-embed@8.9.0
@@ -575,7 +576,7 @@ CRATES="
 	rustls-platform-verifier-android@0.1.1
 	rustls-platform-verifier@0.6.2
 	rustls-webpki@0.103.8
-	rustls@0.23.35
+	rustls@0.23.36
 	rustversion@1.0.22
 	ryu-js@0.2.2
 	ryu@1.0.22
@@ -606,7 +607,7 @@ CRATES="
 	serde_derive@1.0.228
 	serde_derive_internals@0.29.1
 	serde_ignored@0.1.14
-	serde_json@1.0.148
+	serde_json@1.0.149
 	serde_path_to_error@0.1.20
 	serde_plain@1.0.2
 	serde_regex@1.1.0
@@ -632,6 +633,7 @@ CRATES="
 	sigchld@0.2.4
 	signal-hook-registry@1.4.8
 	signal-hook@0.3.18
+	signal-hook@0.4.1
 	signature@2.2.0
 	sigstore-protobuf-specs-derive@0.0.1
 	sigstore-verification@0.1.8
@@ -656,7 +658,7 @@ CRATES="
 	strum_macros@0.27.2
 	subtle@2.6.1
 	syn@1.0.109
-	syn@2.0.113
+	syn@2.0.114
 	sync_wrapper@1.0.2
 	synstructure@0.13.2
 	sys-info@0.9.1
@@ -719,7 +721,7 @@ CRATES="
 	uluru@3.1.0
 	unic-langid-impl@0.9.6
 	unic-langid@0.9.6
-	unicase@2.8.1
+	unicase@2.9.0
 	unicode-bom@2.0.3
 	unicode-ident@1.0.22
 	unicode-normalization@0.1.25
@@ -732,7 +734,7 @@ CRATES="
 	unsafe-libyaml@0.2.11
 	untrusted@0.7.1
 	untrusted@0.9.0
-	url@2.5.7
+	url@2.5.8
 	urlencoding@2.1.3
 	usage-lib@2.11.0
 	utf8-decode@1.0.1
@@ -837,8 +839,8 @@ CRATES="
 	yansi@1.0.1
 	yoke-derive@0.8.1
 	yoke@0.8.1
-	zerocopy-derive@0.8.31
-	zerocopy@0.8.31
+	zerocopy-derive@0.8.33
+	zerocopy@0.8.33
 	zerofrom-derive@0.1.6
 	zerofrom@0.1.6
 	zeroize@1.8.2
@@ -851,7 +853,7 @@ CRATES="
 	zip@6.0.0
 	zipsign-api@0.1.5
 	zlib-rs@0.5.5
-	zmij@1.0.10
+	zmij@1.0.13
 	zopfli@0.8.3
 	zstd-safe@7.2.4
 	zstd-sys@2.0.16+zstd.1.5.7
