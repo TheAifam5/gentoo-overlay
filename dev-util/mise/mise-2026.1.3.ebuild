@@ -42,11 +42,31 @@ CRATES="
 	async-trait@0.1.89
 	atomic-waker@1.1.2
 	autocfg@1.5.0
+	aws-config@1.8.12
+	aws-credential-types@1.2.11
 	aws-lc-fips-sys@0.13.10
 	aws-lc-rs@1.15.2
 	aws-lc-sys@0.35.0
+	aws-runtime@1.5.17
+	aws-sdk-s3@1.119.0
+	aws-sdk-sts@1.95.0
+	aws-sigv4@1.3.7
+	aws-smithy-async@1.2.7
+	aws-smithy-checksums@0.63.12
+	aws-smithy-eventstream@0.60.14
+	aws-smithy-http-client@1.1.5
+	aws-smithy-http@0.62.6
+	aws-smithy-json@0.61.9
+	aws-smithy-observability@0.1.5
+	aws-smithy-query@0.60.9
+	aws-smithy-runtime-api@1.9.3
+	aws-smithy-runtime@1.9.5
+	aws-smithy-types@1.3.5
+	aws-smithy-xml@0.60.13
+	aws-types@1.3.11
 	backtrace@0.3.76
 	base16ct@0.2.0
+	base64-simd@0.8.0
 	base64@0.13.1
 	base64@0.21.7
 	base64@0.22.1
@@ -69,6 +89,7 @@ CRATES="
 	bumpalo@3.19.1
 	bytecount@0.6.9
 	byteorder@1.5.0
+	bytes-utils@0.1.4
 	bytes@1.11.0
 	bytesize@2.3.1
 	bzip2-sys@0.1.13+1.0.8
@@ -125,6 +146,7 @@ CRATES="
 	countme@3.0.1
 	cpufeatures@0.2.17
 	crc-catalog@2.4.0
+	crc-fast@1.6.0
 	crc32fast@1.5.0
 	crc@3.4.0
 	crossbeam-channel@0.5.15
@@ -297,6 +319,7 @@ CRATES="
 	globset@0.4.18
 	globwalk@0.9.1
 	group@0.13.0
+	h2@0.3.27
 	h2@0.4.13
 	hash32@0.3.1
 	hashbrown@0.12.3
@@ -312,15 +335,19 @@ CRATES="
 	homedir@0.3.6
 	http-auth@0.1.10
 	http-body-util@0.1.3
+	http-body@0.4.6
 	http-body@1.0.1
+	http@0.2.12
 	http@1.4.0
 	httparse@1.10.1
 	httpdate@1.0.3
 	human_format@1.2.0
 	humansize@2.1.3
+	hyper-rustls@0.24.2
 	hyper-rustls@0.27.7
 	hyper-tls@0.6.0
 	hyper-util@0.1.19
+	hyper@0.14.32
 	hyper@1.8.1
 	i18n-config@0.4.8
 	i18n-embed-fl@0.9.4
@@ -402,6 +429,7 @@ CRATES="
 	logos@0.12.1
 	loom@0.5.6
 	lru-slab@0.1.2
+	lru@0.12.5
 	lua-src@548.1.2
 	luajit-src@210.6.5+7152e15
 	lzma-rs@0.3.0
@@ -469,6 +497,7 @@ CRATES="
 	ordered-float@2.10.1
 	os-release@0.1.0
 	os_pipe@1.2.3
+	outref@0.5.2
 	owo-colors@4.2.3
 	p256@0.13.2
 	p384@0.13.1
@@ -547,6 +576,7 @@ CRATES="
 	ref-cast-impl@1.0.25
 	ref-cast@1.0.25
 	regex-automata@0.4.13
+	regex-lite@0.1.8
 	regex-syntax@0.6.29
 	regex-syntax@0.8.8
 	regex@1.12.2
@@ -575,7 +605,9 @@ CRATES="
 	rustls-pki-types@1.13.2
 	rustls-platform-verifier-android@0.1.1
 	rustls-platform-verifier@0.6.2
+	rustls-webpki@0.101.7
 	rustls-webpki@0.103.8
+	rustls@0.21.12
 	rustls@0.23.36
 	rustversion@1.0.22
 	ryu-js@0.2.2
@@ -590,6 +622,7 @@ CRATES="
 	scoped-tls@1.0.1
 	scopeguard@1.2.0
 	scrypt@0.11.0
+	sct@0.7.1
 	sdd@3.0.10
 	sec1@0.7.3
 	secrecy@0.10.3
@@ -648,6 +681,7 @@ CRATES="
 	smallvec@1.15.1
 	snafu-derive@0.8.9
 	snafu@0.8.9
+	socket2@0.5.10
 	socket2@0.6.1
 	spin@0.9.8
 	spki@0.7.3
@@ -692,6 +726,7 @@ CRATES="
 	tokio-macros@2.6.0
 	tokio-native-tls@0.3.1
 	tokio-retry@0.3.0
+	tokio-rustls@0.24.1
 	tokio-rustls@0.26.4
 	tokio-util@0.7.18
 	tokio@1.49.0
@@ -740,11 +775,13 @@ CRATES="
 	utf8-decode@1.0.1
 	utf8_iter@1.0.4
 	utf8parse@0.2.2
+	uuid@1.19.0
 	valuable@0.1.1
 	vcpkg@0.2.15
 	version_check@0.9.5
 	versions@6.3.2
 	versions@7.0.0
+	vsimd@0.8.0
 	vte@0.14.1
 	walkdir@2.5.0
 	want@0.3.1
@@ -834,6 +871,7 @@ CRATES="
 	x509-cert@0.2.5
 	x509-parser@0.18.0
 	xattr@1.6.1
+	xmlparser@0.13.6
 	xx@2.3.0
 	xz2@0.1.7
 	yansi@1.0.1
