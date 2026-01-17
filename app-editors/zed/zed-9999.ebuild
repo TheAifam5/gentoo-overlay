@@ -4,7 +4,7 @@
 EAPI=8
 
 LLVM_COMPAT=( 21 )
-RUST_MIN_VER="1.91.1"
+RUST_MIN_VER="1.92.0"
 RUST_NEEDS_LLVM=1
 WEBRTC_VERSION="b99fd2c-6"
 
@@ -43,7 +43,7 @@ LICENSE+="
 "
 SLOT="0"
 IUSE="X gles3"
-CHECKREQS_DISK_BUILD="14G"
+CHECKREQS_DISK_BUILD="16G"
 CHECKREQS_MEMORY="8G"
 
 DEPEND="
@@ -58,13 +58,18 @@ DEPEND="
 	dev-libs/wayland-protocols
 	dev-util/wayland-scanner
 	dev-util/vulkan-tools
-	media-fonts/noto
+	|| (
+		media-fonts/dejavu
+		media-fonts/cantarell
+		media-fonts/noto
+		media-fonts/ubuntu-font-family
+	)
 	media-libs/alsa-lib
 	media-libs/fontconfig
 	media-libs/vulkan-loader[X?]
-	net-analyzer/openbsd-netcat
 	net-misc/curl
 	virtual/zlib
+	x11-libs/libX11
 	x11-libs/libxcb:=
 	x11-libs/libxkbcommon[X?]
 "
@@ -140,6 +145,17 @@ src_prepare() {
 	fi
 
 	envsubst < "crates/zed/resources/zed.desktop.in" > zed.desktop || die
+
+	if [[ "${PV}" != "9999" ]]; then
+		sed -i "/^notify =/s/git = \".*\", rev = \"/path = \"${WORKDIR//\//\\/}\\/notify-/" Cargo.toml || die
+		sed -i "/^notify =/s/\" }$/\\/notify\" }/" Cargo.toml || die
+		sed -i "/^notify-types =/s/git = \".*\", rev = \"/path = \"${WORKDIR//\//\\/}\\/notify-/" Cargo.toml || die
+		sed -i "/^notify-types =/s/\" }$/\\/notify-types\" }/" Cargo.toml || die
+		sed -i "/^windows-capture =/s/git = \".*\", rev = \"/path = \"${WORKDIR//\//\\/}\\/windows-capture-/" Cargo.toml || die
+		
+		IFS=';' read -r calloop_crate_uri calloop_commit calloop_crate_dir calloop_host <<< "${GIT_CRATES["calloop"]}"
+		sed -i "/^calloop =/s/git = \".*\"/path = \"${WORKDIR//\//\\/}\\/calloop-${calloop_commit}\"/" Cargo.toml || die
+	fi
 }
 
 src_configure() {

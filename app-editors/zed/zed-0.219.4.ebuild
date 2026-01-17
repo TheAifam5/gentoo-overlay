@@ -4,18 +4,19 @@
 EAPI=8
 
 LLVM_COMPAT=( 21 )
-RUST_MIN_VER="1.91.1"
+RUST_MIN_VER="1.92.0"
 RUST_NEEDS_LLVM=1
 WEBRTC_VERSION="b99fd2c-6"
 
 MY_PV="${PV/_/-}"
 
 CRATES="
+	addr2line@0.24.2
 	addr2line@0.25.1
 	adler2@2.0.1
 	aes@0.8.4
-	agent-client-protocol-schema@0.10.0
-	agent-client-protocol@0.9.0
+	agent-client-protocol-schema@0.10.5
+	agent-client-protocol@0.9.2
 	ahash@0.7.8
 	ahash@0.8.12
 	aho-corasick@1.1.3
@@ -83,31 +84,31 @@ CRATES="
 	autocfg@1.5.0
 	av1-grain@0.2.4
 	avif-serialize@0.8.6
-	aws-config@1.8.8
+	aws-config@1.8.10
 	aws-credential-types@1.2.8
 	aws-lc-rs@1.14.1
 	aws-lc-sys@0.32.3
-	aws-runtime@1.5.12
-	aws-sdk-bedrockruntime@1.109.0
+	aws-runtime@1.5.13
+	aws-sdk-bedrockruntime@1.112.0
 	aws-sdk-kinesis@1.91.0
 	aws-sdk-s3@1.108.0
-	aws-sdk-sso@1.86.0
-	aws-sdk-ssooidc@1.88.0
-	aws-sdk-sts@1.88.0
-	aws-sigv4@1.3.5
+	aws-sdk-sso@1.88.0
+	aws-sdk-ssooidc@1.90.0
+	aws-sdk-sts@1.90.0
+	aws-sigv4@1.3.6
 	aws-smithy-async@1.2.6
 	aws-smithy-checksums@0.63.9
-	aws-smithy-eventstream@0.60.12
-	aws-smithy-http-client@1.1.3
-	aws-smithy-http@0.62.4
-	aws-smithy-json@0.61.6
+	aws-smithy-eventstream@0.60.13
+	aws-smithy-http-client@1.1.4
+	aws-smithy-http@0.62.5
+	aws-smithy-json@0.61.7
 	aws-smithy-observability@0.1.4
 	aws-smithy-query@0.60.8
-	aws-smithy-runtime-api@1.9.1
-	aws-smithy-runtime@1.9.3
-	aws-smithy-types@1.3.3
-	aws-smithy-xml@0.60.11
-	aws-types@1.3.9
+	aws-smithy-runtime-api@1.9.2
+	aws-smithy-runtime@1.9.4
+	aws-smithy-types@1.3.4
+	aws-smithy-xml@0.60.12
+	aws-types@1.3.10
 	axum-core@0.3.4
 	axum-extra@0.4.2
 	axum@0.6.20
@@ -128,9 +129,6 @@ CRATES="
 	bitflags@2.9.4
 	bitstream-io@2.6.0
 	bitvec@1.0.1
-	blade-graphics@0.7.0
-	blade-macros@0.3.0
-	blade-util@0.3.0
 	block-buffer@0.10.4
 	block-padding@0.3.3
 	block2@0.6.2
@@ -175,7 +173,7 @@ CRATES="
 	cast@0.3.0
 	cbc@0.1.2
 	cbindgen@0.28.0
-	cc@1.2.41
+	cc@1.2.49
 	cesu8@1.1.0
 	cexpr@0.6.0
 	cfg-expr@0.15.8
@@ -183,6 +181,7 @@ CRATES="
 	cfg_aliases@0.1.1
 	cfg_aliases@0.2.1
 	cgl@0.3.2
+	chardetng@0.1.17
 	chrono@0.4.42
 	chunked_transfer@1.5.0
 	ciborium-io@0.2.2
@@ -196,7 +195,7 @@ CRATES="
 	clap_complete@4.5.59
 	clap_derive@4.5.49
 	clap_lex@0.7.6
-	cmake@0.1.54
+	cmake@0.1.56
 	cobs@0.3.0
 	cocoa-foundation@0.1.2
 	cocoa-foundation@0.2.0
@@ -240,16 +239,19 @@ CRATES="
 	cpal@0.16.0
 	cpp_demangle@0.4.5
 	cpufeatures@0.2.17
-	cranelift-bforest@0.116.1
-	cranelift-bitset@0.116.1
-	cranelift-codegen-meta@0.116.1
-	cranelift-codegen-shared@0.116.1
-	cranelift-codegen@0.116.1
-	cranelift-control@0.116.1
-	cranelift-entity@0.116.1
-	cranelift-frontend@0.116.1
-	cranelift-isle@0.116.1
-	cranelift-native@0.116.1
+	cranelift-assembler-x64-meta@0.120.2
+	cranelift-assembler-x64@0.120.2
+	cranelift-bforest@0.120.2
+	cranelift-bitset@0.120.2
+	cranelift-codegen-meta@0.120.2
+	cranelift-codegen-shared@0.120.2
+	cranelift-codegen@0.120.2
+	cranelift-control@0.120.2
+	cranelift-entity@0.120.2
+	cranelift-frontend@0.120.2
+	cranelift-isle@0.120.2
+	cranelift-native@0.120.2
+	cranelift-srcgen@0.120.2
 	crash-context@0.6.3
 	crash-handler@0.6.3
 	crc-catalog@2.4.0
@@ -376,7 +378,7 @@ CRATES="
 	ff@0.12.1
 	filedescriptor@0.8.3
 	filetime@0.2.26
-	find-msvc-tools@0.1.4
+	find-msvc-tools@0.1.5
 	fixedbitset@0.4.2
 	flate2@1.1.4
 	float-cmp@0.9.0
@@ -805,8 +807,8 @@ CRATES="
 	ptr_meta_derive@0.1.4
 	pulldown-cmark-escape@0.10.1
 	pulldown-cmark@0.10.3
-	pulldown-cmark@0.12.2
-	pulley-interpreter@29.0.1
+	pulldown-cmark@0.13.0
+	pulley-interpreter@33.0.2
 	pulp@0.18.22
 	pulp@0.21.5
 	pxfm@0.1.25
@@ -848,7 +850,7 @@ CRATES="
 	ref-cast-impl@1.0.25
 	ref-cast@1.0.25
 	referencing@0.37.4
-	regalloc2@0.11.2
+	regalloc2@0.12.2
 	regex-automata@0.4.13
 	regex-lite@0.1.8
 	regex-syntax@0.8.8
@@ -865,7 +867,7 @@ CRATES="
 	rmp@0.8.14
 	rmpv@1.3.0
 	roxmltree@0.20.0
-	rsa@0.9.9
+	rsa@0.9.10
 	rtrb@0.3.2
 	runtimelib@0.30.0
 	rust-embed-impl@8.7.2
@@ -955,6 +957,7 @@ CRATES="
 	simd-adler32@0.3.7
 	simd_helpers@0.1.0
 	simdutf8@0.1.5
+	similar@2.7.0
 	simple_asn1@0.6.3
 	simplecss@0.2.2
 	simplelog@0.12.2
@@ -1125,7 +1128,7 @@ CRATES="
 	tree-sitter-regex@0.24.3
 	tree-sitter-ruby@0.23.1
 	tree-sitter-rust@0.24.0
-	tree-sitter@0.25.10
+	tree-sitter@0.26.3
 	try-lock@0.2.5
 	ttf-parser@0.20.0
 	ttf-parser@0.21.1
@@ -1199,37 +1202,39 @@ CRATES="
 	wasm-encoder@0.201.0
 	wasm-encoder@0.221.3
 	wasm-encoder@0.227.1
+	wasm-encoder@0.229.0
 	wasm-metadata@0.201.0
 	wasm-metadata@0.227.1
 	wasm-streams@0.4.2
 	wasmparser@0.201.0
 	wasmparser@0.221.3
 	wasmparser@0.227.1
-	wasmprinter@0.221.3
-	wasmtime-asm-macros@29.0.1
-	wasmtime-c-api-impl@29.0.1
-	wasmtime-c-api-macros@29.0.1
-	wasmtime-component-macro@29.0.1
-	wasmtime-component-util@29.0.1
-	wasmtime-cranelift@29.0.1
-	wasmtime-environ@29.0.1
-	wasmtime-fiber@29.0.1
-	wasmtime-jit-icache-coherence@29.0.1
-	wasmtime-math@29.0.1
-	wasmtime-slab@29.0.1
-	wasmtime-versioned-export-macros@29.0.1
-	wasmtime-wasi@29.0.1
-	wasmtime-winch@29.0.1
-	wasmtime-wit-bindgen@29.0.1
-	wasmtime@29.0.1
+	wasmparser@0.229.0
+	wasmprinter@0.229.0
+	wasmtime-asm-macros@33.0.2
+	wasmtime-c-api-impl@33.0.2
+	wasmtime-c-api-macros@33.0.2
+	wasmtime-component-macro@33.0.2
+	wasmtime-component-util@33.0.2
+	wasmtime-cranelift@33.0.2
+	wasmtime-environ@33.0.2
+	wasmtime-fiber@33.0.2
+	wasmtime-jit-icache-coherence@33.0.2
+	wasmtime-math@33.0.2
+	wasmtime-slab@33.0.2
+	wasmtime-versioned-export-macros@33.0.2
+	wasmtime-wasi-io@33.0.2
+	wasmtime-wasi@33.0.2
+	wasmtime-winch@33.0.2
+	wasmtime-wit-bindgen@33.0.2
+	wasmtime@33.0.2
 	wast@35.0.2
 	wax@0.6.0
 	wayland-backend@0.3.11
 	wayland-client@0.31.11
 	wayland-cursor@0.31.11
-	wayland-protocols-plasma@0.2.0
+	wayland-protocols-plasma@0.3.9
 	wayland-protocols-wlr@0.3.9
-	wayland-protocols@0.31.2
 	wayland-protocols@0.32.9
 	wayland-scanner@0.31.7
 	wayland-sys@0.31.7
@@ -1242,14 +1247,14 @@ CRATES="
 	which@4.4.2
 	which@6.0.3
 	whoami@1.6.1
-	wiggle-generate@29.0.1
-	wiggle-macro@29.0.1
-	wiggle@29.0.1
+	wiggle-generate@33.0.2
+	wiggle-macro@33.0.2
+	wiggle@33.0.2
 	winapi-i686-pc-windows-gnu@0.4.0
 	winapi-util@0.1.11
 	winapi-x86_64-pc-windows-gnu@0.4.0
 	winapi@0.3.9
-	winch-codegen@29.0.1
+	winch-codegen@33.0.2
 	windows-collections@0.2.0
 	windows-core@0.54.0
 	windows-core@0.57.0
@@ -1344,8 +1349,8 @@ CRATES="
 	wit-component@0.201.0
 	wit-component@0.227.1
 	wit-parser@0.201.0
-	wit-parser@0.221.3
 	wit-parser@0.227.1
+	wit-parser@0.229.0
 	witx@0.9.1
 	writeable@0.6.1
 	wyz@0.5.1
@@ -1401,6 +1406,9 @@ CRATES="
 
 declare -A GIT_CRATES=(
 	[async-pipe]='https://github.com/zed-industries/async-pipe-rs;82d00a04211cf4e1236029aa03e6b6ce2a74c553;async-pipe-rs-%commit%'
+	[blade-graphics]='https://github.com/kvark/blade;e3cf011ca18a6dfd907d1dedd93e85e21f005fe3;blade-%commit%/blade-graphics'
+	[blade-macros]='https://github.com/kvark/blade;e3cf011ca18a6dfd907d1dedd93e85e21f005fe3;blade-%commit%/blade-macros'
+	[blade-util]='https://github.com/kvark/blade;e3cf011ca18a6dfd907d1dedd93e85e21f005fe3;blade-%commit%/blade-util'
 	[calloop]='https://github.com/zed-industries/calloop;eb6b4fd17b9af5ecc226546bdd04185391b3e265;calloop-%commit%'
 	[candle-core]='https://github.com/zed-industries/candle;724d75eb3deebefe83f2a7381a45d4fac6eda383;candle-%commit%/candle-core'
 	[candle-nn]='https://github.com/zed-industries/candle;724d75eb3deebefe83f2a7381a45d4fac6eda383;candle-%commit%/candle-nn'
@@ -1496,7 +1504,7 @@ LICENSE+="
 "
 SLOT="0"
 IUSE="X gles3"
-CHECKREQS_DISK_BUILD="14G"
+CHECKREQS_DISK_BUILD="16G"
 CHECKREQS_MEMORY="8G"
 
 DEPEND="
@@ -1511,13 +1519,18 @@ DEPEND="
 	dev-libs/wayland-protocols
 	dev-util/wayland-scanner
 	dev-util/vulkan-tools
-	media-fonts/noto
+	|| (
+		media-fonts/dejavu
+		media-fonts/cantarell
+		media-fonts/noto
+		media-fonts/ubuntu-font-family
+	)
 	media-libs/alsa-lib
 	media-libs/fontconfig
 	media-libs/vulkan-loader[X?]
-	net-analyzer/openbsd-netcat
 	net-misc/curl
 	virtual/zlib
+	x11-libs/libX11
 	x11-libs/libxcb:=
 	x11-libs/libxkbcommon[X?]
 "
@@ -1594,14 +1607,16 @@ src_prepare() {
 
 	envsubst < "crates/zed/resources/zed.desktop.in" > zed.desktop || die
 
-	sed -i "/^notify =/s/git = \".*\", rev = \"/path = \"${WORKDIR//\//\\/}\\/notify-/" Cargo.toml || die
-	sed -i "/^notify =/s/\" }$/\\/notify\" }/" Cargo.toml || die
-	sed -i "/^notify-types =/s/git = \".*\", rev = \"/path = \"${WORKDIR//\//\\/}\\/notify-/" Cargo.toml || die
-	sed -i "/^notify-types =/s/\" }$/\\/notify-types\" }/" Cargo.toml || die
-	sed -i "/^windows-capture =/s/git = \".*\", rev = \"/path = \"${WORKDIR//\//\\/}\\/windows-capture-/" Cargo.toml || die
-	
-	IFS=';' read -r calloop_crate_uri calloop_commit calloop_crate_dir calloop_host <<< "${GIT_CRATES["calloop"]}"
-	sed -i "/^calloop =/s/git = \".*\"/path = \"${WORKDIR//\//\\/}\\/calloop-${calloop_commit}\"/" Cargo.toml || die
+	if [[ "${PV}" != "9999" ]]; then
+		sed -i "/^notify =/s/git = \".*\", rev = \"/path = \"${WORKDIR//\//\\/}\\/notify-/" Cargo.toml || die
+		sed -i "/^notify =/s/\" }$/\\/notify\" }/" Cargo.toml || die
+		sed -i "/^notify-types =/s/git = \".*\", rev = \"/path = \"${WORKDIR//\//\\/}\\/notify-/" Cargo.toml || die
+		sed -i "/^notify-types =/s/\" }$/\\/notify-types\" }/" Cargo.toml || die
+		sed -i "/^windows-capture =/s/git = \".*\", rev = \"/path = \"${WORKDIR//\//\\/}\\/windows-capture-/" Cargo.toml || die
+		
+		IFS=';' read -r calloop_crate_uri calloop_commit calloop_crate_dir calloop_host <<< "${GIT_CRATES["calloop"]}"
+		sed -i "/^calloop =/s/git = \".*\"/path = \"${WORKDIR//\//\\/}\\/calloop-${calloop_commit}\"/" Cargo.toml || die
+	fi
 }
 
 src_configure() {
