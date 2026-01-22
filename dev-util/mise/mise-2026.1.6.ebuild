@@ -64,6 +64,7 @@ CRATES="
 	aws-smithy-types@1.3.6
 	aws-smithy-xml@0.60.13
 	aws-types@1.3.11
+	backtrace-ext@0.2.1
 	backtrace@0.3.76
 	base16ct@0.2.0
 	base64-simd@0.8.0
@@ -383,6 +384,7 @@ CRATES="
 	io_tee@0.1.1
 	ipnet@2.11.0
 	iri-string@0.7.10
+	is_ci@1.2.0
 	is_terminal_polyfill@1.70.2
 	itertools@0.10.5
 	itertools@0.13.0
@@ -691,6 +693,9 @@ CRATES="
 	strum@0.27.2
 	strum_macros@0.27.2
 	subtle@2.6.1
+	supports-color@3.0.2
+	supports-hyperlinks@3.2.0
+	supports-unicode@3.0.0
 	syn@1.0.109
 	syn@2.0.114
 	sync_wrapper@1.0.2
@@ -710,6 +715,7 @@ CRATES="
 	test-log@0.2.19
 	testing_table@0.3.0
 	text-size@1.1.1
+	textwrap@0.16.2
 	thiserror-impl@1.0.69
 	thiserror-impl@2.0.18
 	thiserror@1.0.69
@@ -759,6 +765,7 @@ CRATES="
 	unicase@2.9.0
 	unicode-bom@2.0.3
 	unicode-ident@1.0.22
+	unicode-linebreak@0.1.5
 	unicode-normalization@0.1.25
 	unicode-segmentation@1.12.0
 	unicode-width@0.1.14
