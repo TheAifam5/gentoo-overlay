@@ -5,16 +5,13 @@
 
 EAPI=8
 
+LUA_COMPAT=( lua5-1 )
 RUST_MIN_VER="1.92.0"
-CRATES=""
 
-inherit shell-completion cargo
+inherit lua-single shell-completion cargo
 
 DESCRIPTION="The front-end to your dev env"
 HOMEPAGE="https://mise.jdx.dev"
-SRC_URI="
-	${CARGO_CRATE_URIS}
-"
 if [[ "${PV}" == *9999* ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/jdx/mise.git"
@@ -33,7 +30,7 @@ LICENSE+="
 SLOT="0"
 IUSE="bash-completion fish-completion zsh-completion man"
 DEPEND="
-	dev-lang/lua:5.1=
+	${LUA_DEPS}
 	app-arch/bzip2
 	app-arch/zstd
 	dev-libs/openssl
@@ -49,6 +46,7 @@ BDEPEND="
 	${DEPEND}
 	virtual/pkgconfig
 "
+REQUIRED_USE="${LUA_REQUIRED_USE}"
 RESTRICT="mirror"
 
 src_unpack() {

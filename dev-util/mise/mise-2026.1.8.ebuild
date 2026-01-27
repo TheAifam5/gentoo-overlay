@@ -5,6 +5,7 @@
 
 EAPI=8
 
+LUA_COMPAT=( lua5-1 )
 RUST_MIN_VER="1.92.0"
 CRATES="
 	addr2line@0.25.1
@@ -45,14 +46,14 @@ CRATES="
 	aws-config@1.8.12
 	aws-credential-types@1.2.11
 	aws-lc-fips-sys@0.13.11
-	aws-lc-rs@1.15.3
-	aws-lc-sys@0.36.0
+	aws-lc-rs@1.15.4
+	aws-lc-sys@0.37.0
 	aws-runtime@1.5.18
-	aws-sdk-s3@1.120.0
+	aws-sdk-s3@1.119.0
 	aws-sdk-sts@1.96.0
 	aws-sigv4@1.3.7
 	aws-smithy-async@1.2.7
-	aws-smithy-checksums@0.63.13
+	aws-smithy-checksums@0.63.12
 	aws-smithy-eventstream@0.60.14
 	aws-smithy-http-client@1.1.5
 	aws-smithy-http@0.62.6
@@ -99,7 +100,7 @@ CRATES="
 	calm_io@0.1.1
 	calmio_filters@0.1.0
 	cbc@0.1.2
-	cc@1.2.53
+	cc@1.2.54
 	cesu8@1.1.0
 	cexpr@0.6.0
 	cfg-if@1.0.4
@@ -147,9 +148,9 @@ CRATES="
 	countme@3.0.1
 	cpufeatures@0.2.17
 	crc-catalog@2.4.0
-	crc-fast@1.9.0
+	crc-fast@1.6.0
 	crc32fast@1.5.0
-	crc@3.3.0
+	crc@3.4.0
 	crossbeam-channel@0.5.15
 	crossbeam-deque@0.8.6
 	crossbeam-epoch@0.9.18
@@ -219,13 +220,13 @@ CRATES="
 	errno@0.2.8
 	errno@0.3.14
 	exec@0.3.1
-	expr-lang@0.3.2
+	expr-lang@1.1.0
 	eyre@0.6.12
 	faster-hex@0.10.0
 	fastrand@2.3.0
 	ff@0.13.1
 	fiat-crypto@0.2.9
-	filetime@0.2.26
+	filetime@0.2.27
 	filetime_creation@0.2.0
 	find-crate@0.6.3
 	find-msvc-tools@0.1.8
@@ -262,60 +263,61 @@ CRATES="
 	getset@0.1.6
 	ghash@0.5.1
 	gimli@0.32.3
-	gix-actor@0.37.1
-	gix-archive@0.26.0
-	gix-attributes@0.29.0
+	gix-actor@0.38.0
+	gix-archive@0.27.0
+	gix-attributes@0.30.0
 	gix-bitmap@0.2.15
-	gix-blame@0.7.0
-	gix-chunk@0.4.12
-	gix-command@0.6.5
-	gix-commitgraph@0.31.0
-	gix-config-value@0.16.0
-	gix-config@0.50.0
-	gix-credentials@0.34.1
-	gix-date@0.12.1
-	gix-diff@0.57.1
-	gix-dir@0.19.0
-	gix-discover@0.45.0
-	gix-features@0.45.2
-	gix-filter@0.24.1
-	gix-fs@0.18.2
-	gix-glob@0.23.0
-	gix-hash@0.21.2
-	gix-hashtable@0.11.0
-	gix-ignore@0.18.0
-	gix-index@0.45.1
-	gix-lock@20.0.1
-	gix-mailmap@0.29.0
-	gix-negotiate@0.25.0
-	gix-object@0.54.1
-	gix-odb@0.74.0
-	gix-pack@0.64.1
-	gix-packetline@0.20.0
-	gix-path@0.10.22
-	gix-pathspec@0.14.0
-	gix-prompt@0.12.0
-	gix-protocol@0.55.0
+	gix-blame@0.8.0
+	gix-chunk@0.5.0
+	gix-command@0.7.0
+	gix-commitgraph@0.32.0
+	gix-config-value@0.17.0
+	gix-config@0.51.0
+	gix-credentials@0.35.0
+	gix-date@0.13.0
+	gix-diff@0.58.0
+	gix-dir@0.20.0
+	gix-discover@0.46.0
+	gix-error@0.0.0
+	gix-features@0.46.0
+	gix-filter@0.25.0
+	gix-fs@0.19.0
+	gix-glob@0.24.0
+	gix-hash@0.22.0
+	gix-hashtable@0.12.0
+	gix-ignore@0.19.0
+	gix-index@0.46.0
+	gix-lock@21.0.0
+	gix-mailmap@0.30.0
+	gix-negotiate@0.26.0
+	gix-object@0.55.0
+	gix-odb@0.75.0
+	gix-pack@0.65.0
+	gix-packetline@0.21.0
+	gix-path@0.11.0
+	gix-pathspec@0.15.0
+	gix-prompt@0.13.0
+	gix-protocol@0.56.0
 	gix-quote@0.6.1
-	gix-ref@0.57.0
-	gix-refspec@0.35.0
-	gix-revision@0.39.0
-	gix-revwalk@0.25.0
-	gix-sec@0.12.2
-	gix-shallow@0.7.0
-	gix-status@0.24.0
-	gix-submodule@0.24.0
-	gix-tempfile@20.0.1
+	gix-ref@0.58.0
+	gix-refspec@0.36.0
+	gix-revision@0.40.0
+	gix-revwalk@0.26.0
+	gix-sec@0.13.0
+	gix-shallow@0.8.0
+	gix-status@0.25.0
+	gix-submodule@0.25.0
+	gix-tempfile@21.0.0
 	gix-trace@0.1.17
-	gix-transport@0.52.1
-	gix-traverse@0.51.1
-	gix-url@0.34.0
+	gix-transport@0.53.0
+	gix-traverse@0.52.0
+	gix-url@0.35.0
 	gix-utils@0.3.1
-	gix-validate@0.10.1
-	gix-worktree-state@0.24.0
-	gix-worktree-stream@0.26.0
-	gix-worktree@0.46.0
-	gix@0.77.0
+	gix-validate@0.11.0
+	gix-worktree-state@0.25.0
+	gix-worktree-stream@0.27.0
+	gix-worktree@0.47.0
+	gix@0.78.0
 	glob@0.3.3
 	globset@0.4.18
 	globwalk@0.9.1
@@ -417,7 +419,7 @@ CRATES="
 	libbz2-rs-sys@0.2.2
 	libc@0.2.180
 	libloading@0.8.9
-	libm@0.2.15
+	libm@0.2.16
 	libredox@0.1.12
 	linux-raw-sys@0.11.0
 	litemap@0.8.1
@@ -430,7 +432,7 @@ CRATES="
 	logos@0.12.1
 	loom@0.5.6
 	lru-slab@0.1.2
-	lru@0.16.3
+	lru@0.12.5
 	lua-src@548.1.2
 	luajit-src@210.6.6+707c12b
 	lzma-rs@0.3.0
@@ -468,7 +470,7 @@ CRATES="
 	num-bigint-dig@0.8.6
 	num-bigint@0.4.6
 	num-complex@0.4.6
-	num-conv@0.1.0
+	num-conv@0.2.0
 	num-integer@0.1.46
 	num-iter@0.1.45
 	num-rational@0.4.2
@@ -491,7 +493,7 @@ CRATES="
 	openidconnect@4.0.1
 	openssl-macros@0.1.1
 	openssl-probe@0.1.6
-	openssl-probe@0.2.0
+	openssl-probe@0.2.1
 	openssl-sys@0.9.111
 	openssl@0.10.75
 	option-ext@0.2.0
@@ -539,7 +541,7 @@ CRATES="
 	portable-atomic@1.13.0
 	potential_utf@0.1.4
 	powerfmt@0.2.0
-	ppmd-rust@1.3.0
+	ppmd-rust@1.4.0
 	ppv-lite86@0.2.21
 	pretty_assertions@1.4.1
 	prettyplease@0.2.37
@@ -548,8 +550,8 @@ CRATES="
 	proc-macro-error-attr@1.0.4
 	proc-macro-error2@2.0.1
 	proc-macro-error@1.0.4
-	proc-macro2@1.0.105
-	prodash@30.0.1
+	proc-macro2@1.0.106
+	prodash@31.0.0
 	prost-build@0.13.5
 	prost-derive@0.13.5
 	prost-reflect-build@0.15.2
@@ -563,7 +565,7 @@ CRATES="
 	quinn-proto@0.11.13
 	quinn-udp@0.5.14
 	quinn@0.11.9
-	quote@1.0.43
+	quote@1.0.44
 	r-efi@5.3.0
 	rand@0.8.5
 	rand@0.9.2
@@ -667,7 +669,7 @@ CRATES="
 	sigchld@0.2.4
 	signal-hook-registry@1.4.8
 	signal-hook@0.3.18
-	signal-hook@0.4.1
+	signal-hook@0.4.3
 	signature@2.2.0
 	sigstore-protobuf-specs-derive@0.0.1
 	sigstore-verification@0.1.8
@@ -683,8 +685,7 @@ CRATES="
 	snafu-derive@0.8.9
 	snafu@0.8.9
 	socket2@0.5.10
-	socket2@0.6.1
-	spin@0.10.0
+	socket2@0.6.2
 	spin@0.9.8
 	spki@0.7.3
 	stable_deref_trait@1.2.1
@@ -721,9 +722,9 @@ CRATES="
 	thiserror@1.0.69
 	thiserror@2.0.18
 	thread_local@1.1.9
-	time-core@0.1.7
-	time-macros@0.2.25
-	time@0.3.45
+	time-core@0.1.8
+	time-macros@0.2.26
+	time@0.3.46
 	tinystr@0.8.2
 	tinyvec@1.10.0
 	tinyvec_macros@0.1.1
@@ -778,11 +779,11 @@ CRATES="
 	untrusted@0.9.0
 	url@2.5.8
 	urlencoding@2.1.3
-	usage-lib@2.13.1
+	usage-lib@2.15.0
 	utf8-decode@1.0.1
 	utf8_iter@1.0.4
 	utf8parse@0.2.2
-	uuid@1.19.0
+	uuid@1.20.0
 	valuable@0.1.1
 	vcpkg@0.2.15
 	version_check@0.9.5
@@ -884,8 +885,8 @@ CRATES="
 	yansi@1.0.1
 	yoke-derive@0.8.1
 	yoke@0.8.1
-	zerocopy-derive@0.8.33
-	zerocopy@0.8.33
+	zerocopy-derive@0.8.34
+	zerocopy@0.8.34
 	zerofrom-derive@0.1.6
 	zerofrom@0.1.6
 	zeroize@1.8.2
@@ -898,20 +899,17 @@ CRATES="
 	zip@6.0.0
 	zipsign-api@0.1.5
 	zlib-rs@0.5.5
-	zmij@1.0.15
+	zmij@1.0.17
 	zopfli@0.8.3
 	zstd-safe@7.2.4
 	zstd-sys@2.0.16+zstd.1.5.7
 	zstd@0.13.3
 "
 
-inherit shell-completion cargo
+inherit lua-single shell-completion cargo
 
 DESCRIPTION="The front-end to your dev env"
 HOMEPAGE="https://mise.jdx.dev"
-SRC_URI="
-	${CARGO_CRATE_URIS}
-"
 if [[ "${PV}" == *9999* ]]; then
 	inherit git-r3
 	EGIT_REPO_URI="https://github.com/jdx/mise.git"
@@ -930,7 +928,7 @@ LICENSE+="
 SLOT="0"
 IUSE="bash-completion fish-completion zsh-completion man"
 DEPEND="
-	dev-lang/lua:5.1=
+	${LUA_DEPS}
 	app-arch/bzip2
 	app-arch/zstd
 	dev-libs/openssl
@@ -946,6 +944,7 @@ BDEPEND="
 	${DEPEND}
 	virtual/pkgconfig
 "
+REQUIRED_USE="${LUA_REQUIRED_USE}"
 RESTRICT="mirror"
 
 src_unpack() {
