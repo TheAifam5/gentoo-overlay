@@ -52,17 +52,17 @@ CRATES="
 	aws-sdk-s3@1.119.0
 	aws-sdk-sts@1.96.0
 	aws-sigv4@1.3.7
-	aws-smithy-async@1.2.7
+	aws-smithy-async@1.2.10
 	aws-smithy-checksums@0.63.12
-	aws-smithy-eventstream@0.60.14
-	aws-smithy-http-client@1.1.5
+	aws-smithy-eventstream@0.60.17
+	aws-smithy-http-client@1.1.8
 	aws-smithy-http@0.62.6
 	aws-smithy-json@0.61.9
-	aws-smithy-observability@0.2.0
-	aws-smithy-query@0.60.9
-	aws-smithy-runtime-api@1.10.0
+	aws-smithy-observability@0.2.3
+	aws-smithy-query@0.60.12
+	aws-smithy-runtime-api@1.11.2
 	aws-smithy-runtime@1.9.8
-	aws-smithy-types@1.3.6
+	aws-smithy-types@1.4.2
 	aws-smithy-xml@0.60.13
 	aws-types@1.3.11
 	backtrace-ext@0.2.1
@@ -100,7 +100,7 @@ CRATES="
 	calm_io@0.1.1
 	calmio_filters@0.1.0
 	cbc@0.1.2
-	cc@1.2.54
+	cc@1.2.55
 	cesu8@1.1.0
 	cexpr@0.6.0
 	cfg-if@1.0.4
@@ -114,11 +114,12 @@ CRATES="
 	cipher@0.4.4
 	clang-sys@1.8.1
 	clap-sort@1.0.3
-	clap@4.5.54
-	clap_builder@4.5.54
-	clap_derive@4.5.49
+	clap@4.5.56
+	clap_builder@4.5.56
+	clap_derive@4.5.55
 	clap_lex@0.7.7
 	clru@0.6.2
+	clx@1.3.0
 	cmake@0.1.57
 	color-eyre@0.6.5
 	color-print-proc-macro@0.3.7
@@ -178,7 +179,7 @@ CRATES="
 	deadpool@0.12.3
 	decoded-char@0.1.1
 	deflate64@0.1.10
-	demand@1.8.1
+	demand@1.8.2
 	der-parser@10.0.0
 	der@0.7.10
 	der_derive@0.7.3
@@ -229,7 +230,7 @@ CRATES="
 	filetime@0.2.27
 	filetime_creation@0.2.0
 	find-crate@0.6.3
-	find-msvc-tools@0.1.8
+	find-msvc-tools@0.1.9
 	fixedbitset@0.5.7
 	flagset@0.4.7
 	flate2@1.1.8
@@ -357,7 +358,7 @@ CRATES="
 	i18n-embed-impl@0.8.4
 	i18n-embed@0.15.4
 	iana-time-zone-haiku@0.1.2
-	iana-time-zone@0.1.64
+	iana-time-zone@0.1.65
 	icu_collections@2.1.1
 	icu_locale_core@2.1.1
 	icu_normalizer@2.1.1
@@ -376,10 +377,9 @@ CRATES="
 	indexmap@1.9.3
 	indexmap@2.13.0
 	indicatif@0.17.11
-	indicatif@0.18.3
 	indoc@2.0.7
 	inout@0.1.4
-	insta@1.46.1
+	insta@1.46.2
 	intl-memoizer@0.5.3
 	intl_pluralrules@7.0.2
 	io-close@0.3.7
@@ -433,7 +433,7 @@ CRATES="
 	loom@0.5.6
 	lru-slab@0.1.2
 	lru@0.12.5
-	lua-src@548.1.2
+	lua-src@550.0.0
 	luajit-src@210.6.6+707c12b
 	lzma-rs@0.3.0
 	lzma-rust2@0.13.0
@@ -454,8 +454,8 @@ CRATES="
 	minisign-verify@0.2.4
 	miniz_oxide@0.8.9
 	mio@1.1.1
-	mlua-sys@0.9.0
-	mlua@0.11.5
+	mlua-sys@0.10.0
+	mlua@0.11.6
 	mlua_derive@0.11.0
 	mockito@1.7.1
 	multimap@0.10.1
@@ -463,6 +463,7 @@ CRATES="
 	ndk-context@0.1.1
 	netrc-rs@0.1.2
 	nix@0.30.1
+	nix@0.31.1
 	nom@7.1.3
 	nom@8.0.0
 	nt-time@0.8.1
@@ -537,8 +538,8 @@ CRATES="
 	platforms@3.7.0
 	poly1305@0.8.0
 	polyval@0.6.2
-	portable-atomic-util@0.2.4
-	portable-atomic@1.13.0
+	portable-atomic-util@0.2.5
+	portable-atomic@1.13.1
 	potential_utf@0.1.4
 	powerfmt@0.2.0
 	ppmd-rust@1.4.0
@@ -677,8 +678,8 @@ CRATES="
 	sigstore_protobuf_specs@0.4.3
 	simd-adler32@0.3.8
 	similar@2.7.0
-	siphasher@1.0.1
-	slab@0.4.11
+	siphasher@1.0.2
+	slab@0.4.12
 	slug@0.1.6
 	smallstr@0.3.1
 	smallvec@1.15.1
@@ -772,14 +773,13 @@ CRATES="
 	unicode-width@0.1.14
 	unicode-width@0.2.2
 	unicode-xid@0.2.6
-	unit-prefix@0.5.2
 	universal-hash@0.5.1
 	unsafe-libyaml@0.2.11
 	untrusted@0.7.1
 	untrusted@0.9.0
 	url@2.5.8
 	urlencoding@2.1.3
-	usage-lib@2.15.0
+	usage-lib@2.16.1
 	utf8-decode@1.0.1
 	utf8_iter@1.0.4
 	utf8parse@0.2.2
@@ -885,8 +885,8 @@ CRATES="
 	yansi@1.0.1
 	yoke-derive@0.8.1
 	yoke@0.8.1
-	zerocopy-derive@0.8.34
-	zerocopy@0.8.34
+	zerocopy-derive@0.8.37
+	zerocopy@0.8.37
 	zerofrom-derive@0.1.6
 	zerofrom@0.1.6
 	zeroize@1.8.2
@@ -899,7 +899,7 @@ CRATES="
 	zip@6.0.0
 	zipsign-api@0.1.5
 	zlib-rs@0.5.5
-	zmij@1.0.17
+	zmij@1.0.18
 	zopfli@0.8.3
 	zstd-safe@7.2.4
 	zstd-sys@2.0.16+zstd.1.5.7
