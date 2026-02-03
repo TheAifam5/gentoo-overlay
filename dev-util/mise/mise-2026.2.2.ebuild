@@ -29,7 +29,7 @@ CRATES="
 	anstyle@1.0.13
 	anyhow@1.0.100
 	arbitrary@1.4.2
-	arc-swap@1.8.0
+	arc-swap@1.8.1
 	arrayref@0.3.9
 	arrayvec@0.7.6
 	asn1-rs-derive@0.6.0
@@ -49,20 +49,21 @@ CRATES="
 	aws-lc-rs@1.15.4
 	aws-lc-sys@0.37.0
 	aws-runtime@1.5.18
-	aws-sdk-s3@1.119.0
+	aws-sdk-s3@1.121.0
 	aws-sdk-sts@1.96.0
 	aws-sigv4@1.3.7
-	aws-smithy-async@1.2.10
-	aws-smithy-checksums@0.63.12
-	aws-smithy-eventstream@0.60.17
-	aws-smithy-http-client@1.1.8
+	aws-smithy-async@1.2.11
+	aws-smithy-checksums@0.63.13
+	aws-smithy-eventstream@0.60.18
+	aws-smithy-http-client@1.1.9
 	aws-smithy-http@0.62.6
+	aws-smithy-http@0.63.3
 	aws-smithy-json@0.61.9
-	aws-smithy-observability@0.2.3
-	aws-smithy-query@0.60.12
-	aws-smithy-runtime-api@1.11.2
-	aws-smithy-runtime@1.9.8
-	aws-smithy-types@1.4.2
+	aws-smithy-observability@0.2.4
+	aws-smithy-query@0.60.13
+	aws-smithy-runtime-api@1.11.3
+	aws-smithy-runtime@1.10.0
+	aws-smithy-types@1.4.3
 	aws-smithy-xml@0.60.13
 	aws-types@1.3.11
 	backtrace-ext@0.2.1
@@ -149,9 +150,9 @@ CRATES="
 	countme@3.0.1
 	cpufeatures@0.2.17
 	crc-catalog@2.4.0
-	crc-fast@1.6.0
+	crc-fast@1.9.0
 	crc32fast@1.5.0
-	crc@3.4.0
+	crc@3.3.0
 	crossbeam-channel@0.5.15
 	crossbeam-deque@0.8.6
 	crossbeam-epoch@0.9.18
@@ -350,7 +351,7 @@ CRATES="
 	hyper-rustls@0.24.2
 	hyper-rustls@0.27.7
 	hyper-tls@0.6.0
-	hyper-util@0.1.19
+	hyper-util@0.1.20
 	hyper@0.14.32
 	hyper@1.8.1
 	i18n-config@0.4.8
@@ -379,7 +380,7 @@ CRATES="
 	indicatif@0.17.11
 	indoc@2.0.7
 	inout@0.1.4
-	insta@1.46.2
+	insta@1.46.3
 	intl-memoizer@0.5.3
 	intl_pluralrules@7.0.2
 	io-close@0.3.7
@@ -432,11 +433,10 @@ CRATES="
 	logos@0.12.1
 	loom@0.5.6
 	lru-slab@0.1.2
-	lru@0.12.5
+	lru@0.16.3
 	lua-src@550.0.0
 	luajit-src@210.6.6+707c12b
 	lzma-rs@0.3.0
-	lzma-rust2@0.13.0
 	lzma-rust2@0.15.7
 	lzma-rust@0.1.7
 	lzma-sys@0.1.20
@@ -457,7 +457,7 @@ CRATES="
 	mlua-sys@0.10.0
 	mlua@0.11.6
 	mlua_derive@0.11.0
-	mockito@1.7.1
+	mockito@1.7.2
 	multimap@0.10.1
 	native-tls@0.2.14
 	ndk-context@0.1.1
@@ -621,8 +621,8 @@ CRATES="
 	scc@2.4.0
 	schannel@0.1.28
 	schemars@0.9.0
-	schemars@1.2.0
-	schemars_derive@1.2.0
+	schemars@1.2.1
+	schemars_derive@1.2.1
 	scoped-tls@1.0.1
 	scopeguard@1.2.0
 	scrypt@0.11.0
@@ -687,6 +687,7 @@ CRATES="
 	snafu@0.8.9
 	socket2@0.5.10
 	socket2@0.6.2
+	spin@0.10.0
 	spin@0.9.8
 	spki@0.7.3
 	stable_deref_trait@1.2.1
@@ -704,7 +705,7 @@ CRATES="
 	synstructure@0.13.2
 	sys-info@0.9.1
 	system-configuration-sys@0.6.0
-	system-configuration@0.6.1
+	system-configuration@0.7.0
 	tabled@0.20.0
 	tabled_derive@0.11.0
 	taplo@0.14.0
@@ -756,6 +757,7 @@ CRATES="
 	tracing@0.1.44
 	try-lock@0.2.5
 	type-map@0.5.1
+	typed-path@0.12.2
 	typed-path@0.9.3
 	typeid@1.0.3
 	typenum@1.19.0
@@ -880,7 +882,7 @@ CRATES="
 	x509-parser@0.18.0
 	xattr@1.6.1
 	xmlparser@0.13.6
-	xx@2.3.0
+	xx@2.5.1
 	xz2@0.1.7
 	yansi@1.0.1
 	yoke-derive@0.8.1
@@ -896,10 +898,10 @@ CRATES="
 	zerovec@0.11.5
 	zip@2.4.2
 	zip@3.0.0
-	zip@6.0.0
+	zip@7.2.0
 	zipsign-api@0.1.5
 	zlib-rs@0.5.5
-	zmij@1.0.18
+	zmij@1.0.19
 	zopfli@0.8.3
 	zstd-safe@7.2.4
 	zstd-sys@2.0.16+zstd.1.5.7
