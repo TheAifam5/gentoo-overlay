@@ -93,7 +93,7 @@ CRATES="
 	bytecount@0.6.9
 	byteorder@1.5.0
 	bytes-utils@0.1.4
-	bytes@1.11.0
+	bytes@1.11.1
 	bytesize@2.3.1
 	bzip2-sys@0.1.13+1.0.8
 	bzip2@0.5.2
