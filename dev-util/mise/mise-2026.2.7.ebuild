@@ -196,6 +196,7 @@ CRATES="
 	digest@0.10.7
 	directories@6.0.0
 	dirs-sys@0.5.0
+	dirs@6.0.0
 	displaydoc@0.2.5
 	document-features@0.2.12
 	dotenvy@0.15.7
@@ -666,6 +667,7 @@ CRATES="
 	shared_thread@0.2.0
 	shell-escape@0.1.5
 	shell-words@1.1.1
+	shellexpand@3.1.1
 	shlex@1.3.0
 	sigchld@0.2.4
 	signal-hook-registry@1.4.8
@@ -725,8 +727,8 @@ CRATES="
 	thiserror@2.0.18
 	thread_local@1.1.9
 	time-core@0.1.8
-	time-macros@0.2.26
-	time@0.3.46
+	time-macros@0.2.27
+	time@0.3.47
 	tinystr@0.8.2
 	tinyvec@1.10.0
 	tinyvec_macros@0.1.1
