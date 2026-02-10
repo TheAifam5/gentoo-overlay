@@ -650,7 +650,7 @@ CRATES="
 	serde_plain@1.0.2
 	serde_regex@1.1.0
 	serde_repr@0.1.20
-	serde_spanned@0.6.9
+	serde_spanned@1.0.4
 	serde_urlencoded@0.7.1
 	serde_with@3.16.1
 	serde_with_macros@3.16.1
@@ -742,10 +742,11 @@ CRATES="
 	tokio-util@0.7.18
 	tokio@1.49.0
 	toml@0.5.11
-	toml@0.8.23
-	toml_datetime@0.6.11
-	toml_edit@0.22.27
-	toml_write@0.1.2
+	toml@0.9.11+spec-1.1.0
+	toml_datetime@0.7.5+spec-1.1.0
+	toml_edit@0.24.0+spec-1.1.0
+	toml_parser@1.0.6+spec-1.1.0
+	toml_writer@1.0.6+spec-1.1.0
 	tough@0.21.0
 	tower-http@0.6.8
 	tower-layer@0.3.3
