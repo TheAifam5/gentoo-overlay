@@ -6,7 +6,7 @@
 EAPI=8
 
 LUA_COMPAT=( lua5-1 )
-RUST_MIN_VER="1.92.0"
+RUST_MIN_VER="1.93.1"
 CRATES="
 	addr2line@0.25.1
 	adler2@2.0.1
