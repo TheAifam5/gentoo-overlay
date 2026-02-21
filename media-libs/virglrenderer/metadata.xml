@@ -14,8 +14,6 @@
 		<flag name="egl">Enable support for EGL platform</flag>
 		<flag name="glx">Enable support for GLX platform</flag>
 
-		<flag name="minigbm-allocation">Enable support for minigbm allocations</flag>
-
 		<flag name="render-server-worker-process">Use a separate process for rendering server worker
 			contexts</flag>
 		<flag name="render-server-worker-thread">Use a thread for rendering server worker contexts</flag>
@@ -29,7 +27,6 @@
 		<flag name="unstable-apis">Enable unstable APIs</flag>
 
 		<flag name="venus">Enable support for Venus</flag>
-		<flag name="venus-validate">Enable the validation layer for Venus</flag>
 
 		<flag name="vulkan-dload">Enable support for dynamic loading of Vulkan</flag>
 		<flag name="vulkan-preload">

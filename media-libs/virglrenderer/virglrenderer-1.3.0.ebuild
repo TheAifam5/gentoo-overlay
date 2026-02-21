@@ -21,7 +21,7 @@ HOMEPAGE="https://virgil3d.github.io/"
 
 LICENSE="MIT"
 SLOT="0"
-IUSE="static-libs test +egl glx minigbm-allocation venus venus-validate vulkan-dload vulkan-preload +check-gl-errors video_cards_asahi video_cards_freedreno video_cards_amdgpu +render-server-worker-process render-server-worker-thread render-server-worker-minijail vaapi valgrind tracing-percetto tracing-perfetto tracing-sysprof tracing-stderr unstable-apis"
+IUSE="static-libs test +egl glx venus +vulkan-dload vulkan-preload +check-gl-errors video_cards_i915 video_cards_panfrost video_cards_asahi video_cards_freedreno video_cards_amdgpu +render-server-worker-process render-server-worker-thread render-server-worker-minijail vaapi valgrind tracing-percetto tracing-perfetto tracing-sysprof tracing-stderr unstable-apis"
 
 RDEPEND="
 	>=x11-libs/libdrm-2.4.50
@@ -31,7 +31,6 @@ RDEPEND="
 		media-libs/vulkan-loader
 		gui-libs/egl-gbm
 	)
-	minigbm-allocation? ( gui-libs/egl-gbm )
 	vaapi? (
 		media-libs/libva:=
 		media-libs/libva-compat[drm,egl?]
@@ -70,7 +69,6 @@ python_check_deps() {
 src_configure() {
 	local emesonargs=(
 		-Ddefault_library=$(usex static-libs both shared)
-		$(meson_use minigbm-allocation minigbm_allocation)
 		$(meson_use venus)
 		$(meson_use vulkan-dload)
 		$(meson_use vulkan-preload)
@@ -95,12 +93,6 @@ src_configure() {
 		die "No platform selected"
 	fi
 
-	if use venus; then
-		emesonargs+=($(meson_use venus-validate))
-	else
-		emesonargs+=(-Dvenus-validate=false)
-	fi
-
 	local drm_renderers=()
 	if use video_cards_freedreno; then
 		drm_renderers+=(msm)
@@ -112,6 +104,14 @@ src_configure() {
 
 	if use video_cards_asahi; then
 		drm_renderers+=(asahi)
+	fi
+
+	if use video_cards_panfrost; then
+		drm_renderers+=(panfrost-experimental)
+	fi
+
+	if use video_cards_i915; then
+		drm_renderers+=(i915-experimental)
 	fi
 
 	if [ ${#drm_renderers[@]} -gt 0 ]; then
