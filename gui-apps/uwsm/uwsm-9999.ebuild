@@ -17,7 +17,7 @@ fi
 
 LICENSE="GPL-2"
 SLOT="0"
-IUSE="uuctl uwsm-app fumon select wait-tray docs"
+IUSE="uuctl uwsm-app fumon select wait-tray ttyautolock docs"
 REQUIRED_USE="${PYTHON_REQUIRED_USE}"
 
 RDEPEND="
@@ -29,6 +29,7 @@ RDEPEND="
 	sys-apps/util-linux
 	select? ( dev-libs/newt )
 	uwsm-app? ( x11-libs/libnotify )
+	fumon? ( x11-libs/libnotify )
 	uuctl? (
 		|| (
 			gui-apps/walker
@@ -36,11 +37,13 @@ RDEPEND="
 			gui-apps/wofi
 			|| ( x11-misc/rofi gui-apps/rofi-wayland gui-apps/rofi )
 			gui-apps/tofi
+			gui-apps/hyprlauncher
 			dev-libs/bemenu
 			gui-apps/wmenu
 			x11-misc/dmenu
 		)
 	)
+	ttyautolock? ( sys-fs/inotify-tools )
 	${PYTHON_DEPS}
 "
 DEPEND="${RDEPEND}"
@@ -52,10 +55,14 @@ src_configure() {
 	local emesonargs=(
 		-Dpython-bin="${PYTHON}"
 		$(meson_feature uuctl)
-		$(meson_feature uwsm-app)
 		$(meson_feature fumon)
-		$(meson_feature wait-tray)
+		$(meson_feature fumon fumon-preset)
+		$(meson_feature ttyautolock)
+		$(meson_feature ttyautolock ttyautolock-preset)
 		$(meson_feature docs man-pages)
+		$(meson_feature wait-tray)
+		$(meson_feature uwsm-app)
+		-Dpublic-modules=enabled
 		-Ddocdir="/usr/share/doc/${PF}"
 		-Dlicensedir="/usr/share/licenses/${PF}"
 	)
