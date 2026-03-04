@@ -8,11 +8,14 @@ QT6MIN="6.6.0"
 KF5MIN="5.82.0"
 KF6MIN="6.0.0"
 
-inherit cmake multibuild xdg
+inherit cmake multibuild verify-sig xdg
 
 DESCRIPTION="SVG-based theme engine for Qt5, KDE Plasma and LXQt"
 HOMEPAGE="https://github.com/tsujan/Kvantum"
-SRC_URI="https://github.com/tsujan/${PN^}/archive/V${PV}.tar.gz -> ${P}.tar.gz"
+SRC_URI="
+	https://github.com/tsujan/${PN^}/archive/V${PV}.tar.gz -> ${P}.tar.gz
+	verify-sig? ( https://github.com/tsujan/${PN^}/releases/download/V${PV}/${P^}.tar.xz.asc )
+"
 S="${WORKDIR}/${PN^}-${PV}/${PN^}"
 
 LICENSE="GPL-3"
@@ -50,6 +53,8 @@ BDEPEND="
 	qt6? ( >=dev-qt/qttools-${QT6MIN}:6[linguist?] )
 "
 
+VERIFY_SIG_OPENPGP_KEY_PATH="/usr/share/openpgp-keys/tsujan.asc"
+
 pkg_setup() {
 	MULTIBUILD_VARIANTS=($(usev qt5) qt6)
 }
@@ -82,6 +87,4 @@ src_compile() {
 
 src_install() {
 	multibuild_foreach_variant cmake_src_install
-
-	einstalldocs
 }
