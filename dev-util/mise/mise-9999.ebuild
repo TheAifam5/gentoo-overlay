@@ -6,7 +6,7 @@
 EAPI=8
 
 LUA_COMPAT=( lua5-1 )
-RUST_MIN_VER="1.92.0"
+RUST_MIN_VER="1.94.0"
 
 inherit lua-single shell-completion cargo
 
